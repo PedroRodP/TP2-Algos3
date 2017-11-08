@@ -1,27 +1,27 @@
-package unitarios;
+package unitarios.casillerosTest;
 
 import org.junit.Test;
 
 import modelo.Jugador;
 import modelo.casilleros.Barrio;
-import modelo.casilleros.CordobaNorte;
+import modelo.casilleros.Neuquen;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 import org.junit.Assert;
 
-public class CordobaNorteTest {
-	
+public class NeuquenTest {
+
 	private static final double DELTA = 1e-15;
 
 	@Test
 	public void test01ComprarTerrenoNoOcupadoDescuentaPrecioCorrectoDelCapitalDelJugador() throws ExcepcionTerrenoOcupado {
 		
 		Jugador jugador = new Jugador();
-		Barrio barrio = new CordobaNorte();
+		Barrio barrio = new Neuquen();
 		
 		barrio.comprarTerreno(jugador);
 		
-		Assert.assertEquals(20000, 100000 - jugador.balance(), DELTA);
+		Assert.assertEquals(17000, 100000 - jugador.balance(), DELTA);
 	}
 	
 	@Test (expected = ExcepcionTerrenoOcupado.class)
@@ -29,7 +29,7 @@ public class CordobaNorteTest {
 		
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
-		Barrio barrio = new CordobaNorte();
+		Barrio barrio = new Neuquen();
 		
 		barrio.comprarTerreno(jugador1);
 		barrio.comprarTerreno(jugador2);

@@ -1,4 +1,4 @@
-package unitarios;
+package unitarios.casillerosTest;
 
 import org.junit.Test;
 
