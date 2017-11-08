@@ -5,7 +5,7 @@ import modelo.casilleros.estados.AdministradorDeCompra;
 import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
-public class CordobaNorte implements Barrio {
+public class CordobaNorte extends Casillero implements Barrio {
 
 	private AdministradorDeCompra administrador = new AdministradorDeCompra();
 	private RegistroDeInmuebles registro = new RegistroDeInmuebles();
