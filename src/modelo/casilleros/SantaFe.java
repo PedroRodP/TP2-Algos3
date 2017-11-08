@@ -29,15 +29,24 @@ public class SantaFe {
 		duenio = jugador;
 	}
 	
-	public void comprarTerreno(Jugador jugador) {
+	public void comprarTerreno(Jugador jugador) throws ExcepcionTerrenoOcupado {
 		
-		try {
-			disponibilidad.comprar(jugador, precioTerreno);
-			this.setNoDisponible(jugador);
-		}
-		catch (ExcepcionTerrenoOcupado excepcion) {
-		}
+		disponibilidad.comprar(jugador, precioTerreno);
+		this.setNoDisponible(jugador);
+	}
 	
+	public void venderTerreno() {
+		
+		duenio.acreditar(this.calcularReembolso());
+		this.setDisponible();
+	}
+	
+	public double calcularReembolso() {
+		
+		double adicional = registro.getValorEdificios();
+		double total = precioTerreno + adicional;
+		
+		return (total * 85 / 100);
 	}
 	
 	public void cobrar(Jugador jugador) {
