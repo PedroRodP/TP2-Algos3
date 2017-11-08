@@ -1,44 +1,29 @@
 package modelo.casilleros;
 
 import modelo.Jugador;
-import modelo.casilleros.estados.Disponible;
-import modelo.casilleros.estados.Estado;
-import modelo.casilleros.estados.NoDisponible;
+import modelo.casilleros.estados.AdministradorDeCompra;
 import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
-public class SantaFe {
+public class SantaFe implements Barrio {
 
-	private Estado disponibilidad;
-	private RegistroDeInmuebles registro;
-	private Jugador duenio;
-	
+	private AdministradorDeCompra administrador = new AdministradorDeCompra();
+	private RegistroDeInmuebles registro = new RegistroDeInmuebles();
 	private final double precioTerreno = 15000;
 	
-	public SantaFe() {
-		this.setDisponible();
+	@Override
+	public double precio() {
+		return precioTerreno;
 	}
 	
-	private void setDisponible() {
-		disponibilidad = new Disponible();
-		duenio = null;
-	}
-	
-	private void setNoDisponible(Jugador jugador) {
-		disponibilidad = new NoDisponible();
-		duenio = jugador;
-	}
-	
+	@Override
 	public void comprarTerreno(Jugador jugador) throws ExcepcionTerrenoOcupado {
 		
-		disponibilidad.comprar(jugador, precioTerreno);
-		this.setNoDisponible(jugador);
+		administrador.comprar(jugador, precioTerreno);
 	}
 	
 	public void venderTerreno() {
 		
-		duenio.acreditar(this.calcularReembolso());
-		this.setDisponible();
 	}
 	
 	public double calcularReembolso() {
