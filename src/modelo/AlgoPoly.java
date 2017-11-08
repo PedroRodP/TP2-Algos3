@@ -27,11 +27,16 @@ import modelo.casilleros.Tucuman;
 public class AlgoPoly {
 
 	private Tablero tablero = new Tablero();
+	private Jugador jugadorRojo;
+	private Jugador jugadorAmarillo;
+	private Jugador jugadorAzul;
 	
 	public AlgoPoly() {
 		
 		this.prepararTablero();
-		
+		jugadorRojo = new Jugador();
+		jugadorAmarillo = new Jugador();
+		jugadorAzul = new Jugador();
 	}
 	
 	private void prepararTablero() {
