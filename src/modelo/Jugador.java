@@ -2,18 +2,21 @@ package modelo;
 
 public class Jugador {
 
-	private double dinero;
+	private double capital;
 	
 	public Jugador() {
-		dinero = 100000;
+		capital = 100000;
 	}
 	
 	public void cobrar(double monto) {
-		dinero -= monto;
+		capital -= monto;
 	}
 	
 	public void acreditar(double monto) {
-		dinero += monto;
+		capital += monto;
 	}
 	
+	public double balance() {
+		return capital;
+	}
 }
