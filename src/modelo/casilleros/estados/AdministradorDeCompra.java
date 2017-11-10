@@ -33,4 +33,8 @@ public class AdministradorDeCompra {
 	public Jugador getDuenio() {
 		return duenio;
 	}
+	
+	public Estado getDisponibilidad() {
+		return disponibilidad;
+	}
 }

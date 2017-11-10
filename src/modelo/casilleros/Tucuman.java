@@ -2,6 +2,7 @@ package modelo.casilleros;
 
 import modelo.Jugador;
 import modelo.casilleros.estados.AdministradorDeCompra;
+import modelo.casilleros.estados.Estado;
 import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
@@ -20,5 +21,10 @@ public class Tucuman extends Casillero implements Barrio {
 	public void comprarTerreno(Jugador jugador) throws ExcepcionTerrenoOcupado {
 		
 		administrador.comprar(jugador, precioTerreno);
+	}
+	
+	@Override
+	public Estado getDisponibilidad() {
+		return (administrador.getDisponibilidad());
 	}
 }
