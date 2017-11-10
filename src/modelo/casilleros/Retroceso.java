@@ -1,5 +1,5 @@
 package modelo.casilleros;
 
-public class Retroceso extends Casillero {
+public class Retroceso implements Transitable {
 
 }

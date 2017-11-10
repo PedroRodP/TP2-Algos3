@@ -1,5 +1,5 @@
 package modelo.casilleros;
 
-public class Impuesto extends Casillero {
+public class Impuesto implements Transitable {
 
 }

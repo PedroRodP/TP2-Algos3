@@ -1,5 +1,5 @@
 package modelo.casilleros;
 
-public class Aysa extends Casillero {
+public class Aysa implements Transitable {
 
 }

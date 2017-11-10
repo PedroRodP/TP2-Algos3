@@ -7,7 +7,7 @@ import modelo.casilleros.Aysa;
 import modelo.casilleros.BsAsNorte;
 import modelo.casilleros.BsAsSur;
 import modelo.casilleros.Carcel;
-import modelo.casilleros.Casillero;
+import modelo.casilleros.Transitable;
 import modelo.casilleros.CordobaNorte;
 import modelo.casilleros.CordobaSur;
 import modelo.casilleros.Edesur;

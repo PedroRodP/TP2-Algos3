@@ -1,5 +1,5 @@
 package modelo.casilleros;
 
-public class Policia extends Casillero {
+public class Policia implements Transitable {
 
 }

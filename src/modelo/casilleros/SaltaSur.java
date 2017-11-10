@@ -6,26 +6,14 @@ import modelo.casilleros.estados.Estado;
 import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
-public class SaltaSur extends Casillero implements Barrio {
+public class SaltaSur extends Barrio implements Transitable {
 
-	private AdministradorDeCompra administrador = new AdministradorDeCompra();
-	private RegistroDeInmuebles registro = new RegistroDeInmuebles();
-	private final double precioTerreno = 23000;
 	
-	@Override
-	public double precio() {
-		return precioTerreno;
-	}
-	
-	@Override
-	public void comprarTerreno(Jugador jugador) throws ExcepcionTerrenoOcupado {
+	public SaltaSur(){
 		
-		administrador.comprar(jugador, precioTerreno);
+		precioTerreno = 23000;
+		
 	}
-	
-	@Override
-	public Estado getDisponibilidad() {
-		return (administrador.getDisponibilidad());
-	}
-	
+
+
 }

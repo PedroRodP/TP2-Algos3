@@ -6,7 +6,7 @@ import modelo.PrimeraPasada;
 
 import java.util.HashMap;
 
-public class Quini6 extends Casillero {
+public class Quini6 implements Transitable {
 
 	private HashMap<Jugador, Pasada> registroDeGanadores = new HashMap<Jugador, Pasada>();
 	

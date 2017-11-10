@@ -1,5 +1,5 @@
 package modelo.casilleros;
 
-public class Casillero {
+public interface Transitable {
 
 }

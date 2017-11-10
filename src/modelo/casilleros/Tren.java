@@ -1,5 +1,5 @@
 package modelo.casilleros;
 
-public class Tren extends Casillero {
+public class Tren implements Transitable {
 
 }
