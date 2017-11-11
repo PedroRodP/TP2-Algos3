@@ -23,4 +23,8 @@ public abstract class Barrio {
 	public Estado getDisponibilidad(){
 		return (administrador.getDisponibilidad());
 	}
+
+	public long getPropietario() {
+		return administrador.getDuenio();
+	}
 }

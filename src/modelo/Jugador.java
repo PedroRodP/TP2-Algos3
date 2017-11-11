@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ListIterator;
 
+import modelo.casilleros.Neuquen;
 import modelo.casilleros.Transitable;
 
 public class Jugador {
@@ -55,4 +56,5 @@ public class Jugador {
 			iteradorDelTablero.next();
 		}
 	}
+
 }

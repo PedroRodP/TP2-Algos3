@@ -1,5 +1,7 @@
 package unitarios;
 
+import modelo.casilleros.Neuquen;
+import modelo.excepciones.ExcepcionTerrenoOcupado;
 import org.junit.Test;
 import org.junit.Assert;
 
@@ -33,8 +35,16 @@ public class JugadorTest {
 		unJugador.avanzar(3);
 		
 		Assert.assertEquals(unJugador.getUbicacion().getClass(),(new Edesur()).getClass());
-		
-		
+
 	}
-	
+
+	@Test
+	public void test03JugadorCompraNeuquenYQuedaComoPropietario() throws ExcepcionTerrenoOcupado {
+		Jugador unDuenio = new Jugador();
+		Neuquen neuquen = new Neuquen();
+
+		neuquen.comprarTerreno(unDuenio);
+
+		Assert.assertEquals(neuquen.getPropietario(), unDuenio);
+	}
 }
