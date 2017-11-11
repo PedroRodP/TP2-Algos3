@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ListIterator;
 
+import modelo.EstadosJugador.EstadoJugador;
 import modelo.casilleros.Neuquen;
 import modelo.casilleros.Transitable;
 
@@ -10,7 +11,8 @@ public class Jugador {
 	private double capital;
 	private Tablero tablero;
 	private ListIterator<Transitable> iteradorDelTablero;
-	
+	private EstadoJugador estado;
+
 	public Jugador() {
 		capital = 100000;
 	}
