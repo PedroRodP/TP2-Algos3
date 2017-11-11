@@ -19,6 +19,7 @@ public class JugadorTest {
 		Tablero unTablero = new Tablero();
 		
 		unJugador.setTablero(unTablero);
+		unTablero.setJugador(unJugador);
 		
 		Assert.assertEquals(unJugador.getUbicacion().getClass(),(new Salida()).getClass());
 		
@@ -32,6 +33,7 @@ public class JugadorTest {
 		Tablero unTablero = new Tablero();
 		
 		unJugador.setTablero(unTablero);
+		unTablero.setJugador(unJugador);
 		unJugador.avanzar(3);
 		
 		Assert.assertEquals(unJugador.getUbicacion().getClass(),(new Edesur()).getClass());
@@ -46,5 +48,20 @@ public class JugadorTest {
 		neuquen.comprarTerreno(unDuenio);
 
 		Assert.assertEquals(neuquen.getPropietario(), unDuenio);
+	}
+	
+	@Test
+	public void test04SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida(){
+		
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		
+		unJugador.setTablero(unTablero);
+		unTablero.setJugador(unJugador);
+		
+		unJugador.avanzar(20);
+		
+		Assert.assertEquals(unJugador.getUbicacion().getClass(),(new Salida()).getClass());
+		
 	}
 }
