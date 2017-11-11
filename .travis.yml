@@ -2,7 +2,10 @@ language: java
 jdk: oraclejdk8
 
 notifications:
-	slack:
-		on_success: never
-		on_failure: always
+  email:
+    recipients:
+      - lucianolop88@gmail.com
+    on_success: never # default: change
+    on_failure: always # default: always
+
 
