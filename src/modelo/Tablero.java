@@ -69,7 +69,7 @@ public class Tablero extends LinkedList<Casillero> {
 	public Casillero avanzar(Jugador unJugador, int cantidadDePasos) throws JugadorEstaPresoException {
 		
 		int posicionActual = this.indexOf(jugadores.get(unJugador));
-		posicionActual += unJugador.avanzaSiPuede(cantidadDePasos);
+		posicionActual += unJugador.avanzar(cantidadDePasos);
 		if(posicionActual >= this.size())
 			posicionActual -= this.size();
 		jugadores.replace(unJugador, this.get(posicionActual));

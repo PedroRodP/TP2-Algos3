@@ -57,7 +57,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void test01JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws JugadorEstaPresoException {
+	public void test04JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws JugadorEstaPresoException {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
 		Carcel miCarcel = new Carcel();
@@ -70,7 +70,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void test04SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws JugadorEstaPresoException {
+	public void test05SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws JugadorEstaPresoException {
 		
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
@@ -82,7 +82,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test05SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws JugadorEstaPresoException {
+	public void test06SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws JugadorEstaPresoException {
 		
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();

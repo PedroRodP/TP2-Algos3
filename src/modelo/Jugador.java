@@ -17,7 +17,7 @@ public class Jugador {
 		estado = new Jugando();
 	}
 	
-	public void cobrar(double monto) throws ExcepcionCapitalInsuficiente {
+	public void pagar(double monto) throws ExcepcionCapitalInsuficiente {
 		if (monto > capital) { throw new ExcepcionCapitalInsuficiente(); }
 		capital -= monto;
 	}
@@ -38,7 +38,7 @@ public class Jugador {
 		return false;
 	}
 
-	public int avanzaSiPuede(int cantidadDePasos) throws JugadorEstaPresoException {
+	public int avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
 		return estado.avanzar(cantidadDePasos);
 	}
 

@@ -29,7 +29,7 @@ public class PresoBajoFianza1 implements EstadoJugador {
     
     @Override
     public void pagarFianza(Jugador jugador) throws ExcepcionCapitalInsuficiente {
-    	jugador.cobrar(multa);
+    	jugador.pagar(multa);
     	jugador.cambiarEstado(new Jugando());
     }
 }
