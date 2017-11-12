@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import modelo.casilleros.Casillero;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.JugadorEstaPresoException;
 
 public class AlgoPoly {
@@ -50,6 +51,10 @@ public class AlgoPoly {
 		return turno.next();
 	}
 	
+	private void opcionPagarFianza(Jugador jugador) throws ExcepcionCapitalInsuficiente{
+		jugador.pagarFianza();
+	}
+	
 	private void opcionDeEdificar(Jugador jugador) {
 		
 	}
@@ -58,24 +63,23 @@ public class AlgoPoly {
 		
 	}
 	
-	public void jugar() {
+	public void jugar() throws ExcepcionCapitalInsuficiente, JugadorEstaPresoException {
 		
 		Jugador jugador = this.turnoActual();
 		
-		if (jugador.tieneInmuebles()) {
-			this.opcionDeEdificar(jugador);
-		}
+		this.opcionPagarFianza(jugador);
 		
-		try {
+		if (jugador.esLibre()) {
+			
+			if (jugador.tieneInmuebles()) {
+				this.opcionDeEdificar(jugador);
+			}
+			
 			int cantidadDePasos = tirada.arrojarDados();
 			Casillero casilleroActual = tablero.avanzar(jugador, cantidadDePasos);
-			
+				
 			this.opcionCompraOAlquiler(casilleroActual, jugador);
-		}
-		catch (JugadorEstaPresoException e){
-		}
-		
-		
+		}		
 		//El iterador cambia los turnos al devolver el siguiente
 	}
 	

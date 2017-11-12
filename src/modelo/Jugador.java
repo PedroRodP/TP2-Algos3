@@ -41,4 +41,17 @@ public class Jugador {
 	public int avanzaSiPuede(int cantidadDePasos) throws JugadorEstaPresoException {
 		return estado.avanzar(cantidadDePasos);
 	}
+
+	public void pagarFianza() throws ExcepcionCapitalInsuficiente {
+		estado.pagarFianza(this);
+		
+	}
+
+	public boolean esLibre() {
+		return estado.esLibre();
+	}
+
+	public void cambiarEstado(EstadoJugador estadoNuevo) {
+		estado = estadoNuevo;
+	}
 }
