@@ -1,5 +1,5 @@
 package modelo.casilleros;
 
-public class Subte implements Transitable {
+public class Subte implements Casillero {
 
 }

@@ -6,7 +6,7 @@ import modelo.casilleros.estados.Estado;
 import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
-public class BsAsNorte extends Barrio implements Transitable {
+public class BsAsNorte extends Barrio implements Casillero {
 
 	public BsAsNorte(){
 		

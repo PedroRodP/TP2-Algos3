@@ -2,8 +2,7 @@ package modelo;
 
 import java.util.ListIterator;
 
-import modelo.casilleros.Neuquen;
-import modelo.casilleros.Transitable;
+import modelo.casilleros.Casillero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
 public class Jugador {
@@ -33,7 +32,7 @@ public class Jugador {
 		tablero = unTablero;
 	}
 
-	public Transitable getUbicacion(){
+	public Casillero getUbicacion(){
 		return (tablero.getUbicacion(this));
 	
 	}

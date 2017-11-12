@@ -21,13 +21,13 @@ import modelo.casilleros.SaltaNorte;
 import modelo.casilleros.SaltaSur;
 import modelo.casilleros.SantaFe;
 import modelo.casilleros.Subte;
-import modelo.casilleros.Transitable;
+import modelo.casilleros.Casillero;
 import modelo.casilleros.Tren;
 import modelo.casilleros.Tucuman;
 
-public class Tablero extends LinkedList<Transitable> {
+public class Tablero extends LinkedList<Casillero> {
 	
-	private	HashMap<Jugador,Transitable> jugadores;
+	private	HashMap<Jugador,Casillero> jugadores;
 	
 	public Tablero() {
 		
@@ -51,17 +51,16 @@ public class Tablero extends LinkedList<Transitable> {
 		this.add(new Neuquen());
 		this.add(new Retroceso());
 		this.add(new Tucuman());
-		jugadores = new HashMap<Jugador,Transitable>();
+		jugadores = new HashMap<Jugador,Casillero>();
 	}
 	
 	public void setJugador(Jugador unJugador) {
 		
 		jugadores.put(unJugador, this.getFirst());
-		System.out.println("asd");
 			
 	}
 
-	public Transitable getUbicacion(Jugador unJugador) {
+	public Casillero getUbicacion(Jugador unJugador) {
 		return (jugadores.get(unJugador));
 	}
 	
