@@ -4,6 +4,7 @@ import modelo.Jugador;
 import modelo.casilleros.estados.AdministradorDeCompra;
 import modelo.casilleros.estados.Estado;
 import modelo.casilleros.estados.RegistroDeInmuebles;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 public abstract class Barrio {
@@ -12,7 +13,7 @@ public abstract class Barrio {
 	protected RegistroDeInmuebles registro = new RegistroDeInmuebles();
 	protected double precioTerreno;
 	
-	public void comprarTerreno(Jugador jugador) throws ExcepcionTerrenoOcupado{
+	public void comprarTerreno(Jugador jugador) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
 		administrador.comprar(jugador, precioTerreno);
 	}
 	

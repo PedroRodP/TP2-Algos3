@@ -1,10 +1,11 @@
 package modelo.casilleros.estados;
 
 import modelo.Jugador;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
 public class RegistroDeInmuebles {
 
-	public void cobrar(Jugador jugador) {
+	public void cobrar(Jugador jugador) throws ExcepcionCapitalInsuficiente {
 		double monto = this.calcularAlquiler();
 		jugador.cobrar(monto);
 	}

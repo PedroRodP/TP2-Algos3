@@ -1,6 +1,7 @@
 package modelo.casilleros.estados;
 
 import modelo.Jugador;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 public class AdministradorDeCompra {
@@ -12,7 +13,7 @@ public class AdministradorDeCompra {
 		this.setDisponible();
 	}
 
-	public void comprar(Jugador jugador, double precio) throws ExcepcionTerrenoOcupado {
+	public void comprar(Jugador jugador, double precio) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
 		
 		disponibilidad.comprar(jugador, precio);
 		this.setNoDisponible(jugador);

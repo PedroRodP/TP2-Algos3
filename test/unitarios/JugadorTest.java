@@ -2,6 +2,7 @@ package unitarios;
 
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Neuquen;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 import modelo.excepciones.JugadorEstaPresoException;
 import org.junit.Rule;
@@ -10,6 +11,7 @@ import org.junit.Assert;
 
 import modelo.Jugador;
 import modelo.Tablero;
+import modelo.casilleros.Carcel;
 import modelo.casilleros.Edesur;
 import modelo.casilleros.Salida;
 import org.junit.rules.ExpectedException;
@@ -47,7 +49,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void test03JugadorCompraNeuquenYQuedaComoPropietario() throws ExcepcionTerrenoOcupado {
+	public void test03JugadorCompraNeuquenYQuedaComoPropietario() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
 		Jugador unDuenio = new Jugador();
 		Neuquen neuquen = new Neuquen();
 
@@ -79,5 +81,20 @@ public class JugadorTest {
 		unJugador.avanzar(20);
 		
 		Assert.assertEquals(unJugador.getUbicacion().getClass(),(new Salida()).getClass());
+	}
+	
+	@Test
+	public void test05SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws JugadorEstaPresoException {
+		
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		
+		unJugador.setTablero(unTablero);
+		unTablero.setJugador(unJugador);
+		
+		unJugador.avanzar(25);
+		
+		Assert.assertEquals((new Carcel()).getClass(), unJugador.getUbicacion().getClass());
+		
 	}
 }

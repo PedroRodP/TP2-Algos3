@@ -8,6 +8,7 @@ import modelo.EstadosJugador.Preso;
 import modelo.casilleros.Neuquen;
 import modelo.casilleros.Transitable;
 import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
 public class Jugador {
 
@@ -21,7 +22,8 @@ public class Jugador {
 		estado = new Jugando();
 	}
 	
-	public void cobrar(double monto) {
+	public void cobrar(double monto) throws ExcepcionCapitalInsuficiente {
+		if (monto > capital) { throw new ExcepcionCapitalInsuficiente(); }
 		capital -= monto;
 	}
 	

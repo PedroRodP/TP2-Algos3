@@ -4,6 +4,7 @@ import modelo.Jugador;
 import modelo.casilleros.estados.AdministradorDeCompra;
 import modelo.casilleros.estados.Estado;
 import modelo.casilleros.estados.RegistroDeInmuebles;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 public class SantaFe extends Barrio implements Transitable {
@@ -27,7 +28,7 @@ public class SantaFe extends Barrio implements Transitable {
 		return (total * 85 / 100);
 	}
 	
-	public void cobrar(Jugador jugador) {
+	public void cobrar(Jugador jugador) throws ExcepcionCapitalInsuficiente {
 		
 		registro.cobrar(jugador);
 	}
