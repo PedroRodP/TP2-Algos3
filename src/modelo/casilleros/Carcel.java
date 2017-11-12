@@ -15,4 +15,10 @@ public class Carcel implements Transitable {
         listaDePresos.add(unJugador);
         unJugador.irPreso();
     }
+
+    public void cumplirRonda() {
+        for (Jugador unPreso: listaDePresos) {
+
+        }
+    }
 }
