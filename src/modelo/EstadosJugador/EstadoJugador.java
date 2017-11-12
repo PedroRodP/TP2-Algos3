@@ -10,7 +10,7 @@ import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
  */
 public interface EstadoJugador {
 
-    void avanzar(int cantidadDePasos, Jugador esteJugador, Tablero miTablero) throws JugadorEstaPresoException;
+    public int avanzar(int cantidadDePasos) throws JugadorEstaPresoException;
 
     EstadoJugador siguienteEstado() throws JugadorJugandoNoTieneMasEstados;
 }

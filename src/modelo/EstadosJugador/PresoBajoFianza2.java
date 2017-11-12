@@ -13,7 +13,7 @@ public class PresoBajoFianza2 implements EstadoJugador {
     public PresoBajoFianza2(){}
 
     @Override
-    public void avanzar(int cantidadDePasos, Jugador esteJugador, Tablero miTablero) throws JugadorEstaPresoException {
+    public int avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
         throw new JugadorEstaPresoException();
     }
 

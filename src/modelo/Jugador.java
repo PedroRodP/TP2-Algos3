@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.ListIterator;
-
 import modelo.EstadosJugador.EstadoJugador;
 import modelo.EstadosJugador.Jugando;
 import modelo.EstadosJugador.Preso;
@@ -12,8 +10,6 @@ import modelo.excepciones.ExcepcionCapitalInsuficiente;
 public class Jugador {
 
 	private double capital;
-	private Tablero tablero;
-	private ListIterator<Casillero> iteradorDelTablero;
 	private EstadoJugador estado;
 
 	public Jugador() {
@@ -34,20 +30,15 @@ public class Jugador {
 		return capital;
 	}
 
-	public void setTablero(Tablero unTablero) {
-		tablero = unTablero;
-	}
-
-	public Casillero getUbicacion(){
-		return (tablero.getUbicacion(this));
-	
-	}
-
-	public void avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
-		estado.avanzar(cantidadDePasos,this,tablero);
-	}
-
 	public void irPreso() {
 		estado = new Preso();
+	}
+
+	public boolean tieneInmuebles() {
+		return false;
+	}
+
+	public int avanzaSiPuede(int cantidadDePasos) throws JugadorEstaPresoException {
+		return estado.avanzar(cantidadDePasos);
 	}
 }

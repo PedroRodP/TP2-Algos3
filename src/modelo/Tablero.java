@@ -24,6 +24,7 @@ import modelo.casilleros.Subte;
 import modelo.casilleros.Casillero;
 import modelo.casilleros.Tren;
 import modelo.casilleros.Tucuman;
+import modelo.excepciones.JugadorEstaPresoException;
 
 public class Tablero extends LinkedList<Casillero> {
 	
@@ -65,13 +66,14 @@ public class Tablero extends LinkedList<Casillero> {
 	}
 	
 
-	public void avanzar(Jugador unJugador, int cantidadDePasos) {
+	public Casillero avanzar(Jugador unJugador, int cantidadDePasos) throws JugadorEstaPresoException {
 		
 		int posicionActual = this.indexOf(jugadores.get(unJugador));
-		posicionActual += cantidadDePasos;
+		posicionActual += unJugador.avanzaSiPuede(cantidadDePasos);
 		if(posicionActual >= this.size())
 			posicionActual -= this.size();
 		jugadores.replace(unJugador, this.get(posicionActual));
 		
+		return this.getUbicacion(unJugador);
 	}
 }
