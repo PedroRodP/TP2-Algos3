@@ -1,5 +1,18 @@
 package modelo.casilleros;
 
-public class Carcel implements Casillero {
+import modelo.Jugador;
 
+import java.util.ArrayList;
+
+public class Carcel implements Transitable {
+    ArrayList<Jugador> listaDePresos;
+
+    public Carcel(){
+        listaDePresos = new ArrayList<>();
+    }
+
+    public void arrestar(Jugador unJugador) {
+        listaDePresos.add(unJugador);
+        unJugador.irPreso();
+    }
 }
