@@ -1,6 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+
 import modelo.casilleros.Avance;
 import modelo.casilleros.Aysa;
 import modelo.casilleros.BsAsNorte;
@@ -23,8 +26,9 @@ import modelo.casilleros.Transitable;
 import modelo.casilleros.Tren;
 import modelo.casilleros.Tucuman;
 
-public class Tablero extends ArrayList<Transitable> {
+public class Tablero extends LinkedList<Transitable> {
 	
+	private	HashMap<Jugador,Transitable> jugadores;
 	
 	public Tablero() {
 		
@@ -48,5 +52,28 @@ public class Tablero extends ArrayList<Transitable> {
 		this.add(new Neuquen());
 		this.add(new Retroceso());
 		this.add(new Tucuman());
+		jugadores = new HashMap<Jugador,Transitable>();
+	}
+	
+	public void setJugador(Jugador unJugador) {
+		
+		jugadores.put(unJugador, this.getFirst());
+		System.out.println("asd");
+			
+	}
+
+	public Transitable getUbicacion(Jugador unJugador) {
+		return (jugadores.get(unJugador));
+	}
+	
+
+	public void avanzar(Jugador unJugador, int cantidadDePasos) {
+		
+		int posicionActual = this.indexOf(jugadores.get(unJugador));
+		posicionActual += cantidadDePasos;
+		if(posicionActual >= this.size())
+			posicionActual -= this.size();
+		jugadores.replace(unJugador, this.get(posicionActual));
+		
 	}
 }

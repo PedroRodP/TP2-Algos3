@@ -6,11 +6,11 @@ import modelo.excepciones.JugadorEstaPresoException;
 import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
 
 /**
- * Created by nico on 11/11/17.
+ * Created by nico on 12/11/17.
  */
-public class Preso implements EstadoJugador {
+public class PresoBajoFianza2 implements EstadoJugador {
 
-    public Preso(){}
+    public PresoBajoFianza2(){}
 
     @Override
     public void avanzar(int cantidadDePasos, Jugador esteJugador, Tablero miTablero) throws JugadorEstaPresoException {
@@ -19,6 +19,6 @@ public class Preso implements EstadoJugador {
 
     @Override
     public EstadoJugador siguienteEstado() throws JugadorJugandoNoTieneMasEstados {
-        return new PresoBajoFianza1();
+        return new Jugando();
     }
 }

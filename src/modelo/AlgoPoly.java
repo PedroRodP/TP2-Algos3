@@ -15,6 +15,9 @@ public class AlgoPoly {
 		jugadorRojo.setTablero(tablero);
 		jugadorAmarillo.setTablero(tablero);
 		jugadorAzul.setTablero(tablero);
+		tablero.setJugador(jugadorRojo);
+		tablero.setJugador(jugadorAmarillo);
+		tablero.setJugador(jugadorAzul);
 	}
 	
 

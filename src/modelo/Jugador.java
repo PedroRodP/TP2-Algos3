@@ -3,8 +3,11 @@ package modelo;
 import java.util.ListIterator;
 
 import modelo.EstadosJugador.EstadoJugador;
+import modelo.EstadosJugador.Jugando;
+import modelo.EstadosJugador.Preso;
 import modelo.casilleros.Neuquen;
 import modelo.casilleros.Transitable;
+import modelo.excepciones.JugadorEstaPresoException;
 
 public class Jugador {
 
@@ -15,6 +18,7 @@ public class Jugador {
 
 	public Jugador() {
 		capital = 100000;
+		estado = new Jugando();
 	}
 	
 	public void cobrar(double monto) {
@@ -31,32 +35,18 @@ public class Jugador {
 
 	public void setTablero(Tablero unTablero) {
 		tablero = unTablero;
-		iteradorDelTablero = unTablero.listIterator();
-			
 	}
 
 	public Transitable getUbicacion(){
-		// No existe un metodo para ver el elemento actual en los iterador, asi que lo implemente asi por ahora.
-		// Esto va a pasar a ser otra clase, que implemente ListIterator
-		
-		//Tambien se me ocurrio pasar esto a la clase tablero. Que el jugador solo guarde una referencia al tablero
-		// y el tablero sepa donde estan todos los jugadores. Entonces cuando el jugador quiere avanzar, le manda al tablero
-		// la cantidad de pasos y este se encarga de moverlo.
-		if(!iteradorDelTablero.hasNext()){
-			iteradorDelTablero.previous();
-			return iteradorDelTablero.next();
-		}else{
-			iteradorDelTablero.next();
-			return iteradorDelTablero.previous();			
-		}
+		return (tablero.getUbicacion(this));
 	
 	}
 
-	public void avanzar(int cantidadDePasos){
-		
-		for (int i = 0;i<cantidadDePasos; i++){
-			iteradorDelTablero.next();
-		}
+	public void avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
+		estado.avanzar(cantidadDePasos,this,tablero);
 	}
 
+	public void irPreso() {
+		estado = new Preso();
+	}
 }

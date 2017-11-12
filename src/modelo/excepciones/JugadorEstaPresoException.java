@@ -5,7 +5,7 @@ package modelo.excepciones;
  */
 public class JugadorEstaPresoException extends Exception {
 
-    public String message(){
+    public String mensaje(){
         return "Jugador está preso. Imposible realizar acciones. ";
     }
 }
