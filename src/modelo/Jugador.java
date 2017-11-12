@@ -5,8 +5,7 @@ import java.util.ListIterator;
 import modelo.EstadosJugador.EstadoJugador;
 import modelo.EstadosJugador.Jugando;
 import modelo.EstadosJugador.Preso;
-import modelo.casilleros.Neuquen;
-import modelo.casilleros.Transitable;
+import modelo.casilleros.Casillero;
 import modelo.excepciones.JugadorEstaPresoException;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
@@ -14,7 +13,7 @@ public class Jugador {
 
 	private double capital;
 	private Tablero tablero;
-	private ListIterator<Transitable> iteradorDelTablero;
+	private ListIterator<Casillero> iteradorDelTablero;
 	private EstadoJugador estado;
 
 	public Jugador() {
@@ -39,7 +38,7 @@ public class Jugador {
 		tablero = unTablero;
 	}
 
-	public Transitable getUbicacion(){
+	public Casillero getUbicacion(){
 		return (tablero.getUbicacion(this));
 	
 	}
