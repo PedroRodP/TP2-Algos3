@@ -27,10 +27,9 @@ public class JugadorTest {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
 		
-		unJugador.setTablero(unTablero);
 		unTablero.setJugador(unJugador);
 		
-		Assert.assertEquals(unJugador.getUbicacion().getClass(),(new Salida()).getClass());
+		Assert.assertEquals(unTablero.getUbicacion(unJugador).getClass(),(new Salida()).getClass());
 
 	}
 	
@@ -40,11 +39,10 @@ public class JugadorTest {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
 		
-		unJugador.setTablero(unTablero);
 		unTablero.setJugador(unJugador);
-		unJugador.avanzar(3);
+		unTablero.avanzar(unJugador, 3);
 		
-		Assert.assertEquals(unJugador.getUbicacion().getClass(),(new Edesur()).getClass());
+		Assert.assertEquals(unTablero.getUbicacion(unJugador).getClass(),(new Edesur()).getClass());
 
 	}
 
@@ -59,42 +57,41 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void test01JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws JugadorEstaPresoException {
+	public void test04JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws JugadorEstaPresoException {
 		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
 		Carcel miCarcel = new Carcel();
 
+		unTablero.setJugador(unJugador);
 		miCarcel.arrestar(unJugador);
 
 		thrown.expect(JugadorEstaPresoException.class);
-		unJugador.avanzar(1);
+		unTablero.avanzar(unJugador, 1);
 	}
 
 	@Test
-	public void test04SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws JugadorEstaPresoException {
+	public void test05SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws JugadorEstaPresoException {
 		
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
 		
-		unJugador.setTablero(unTablero);
 		unTablero.setJugador(unJugador);
+		unTablero.avanzar(unJugador, 20);
 		
-		unJugador.avanzar(20);
-		
-		Assert.assertEquals(unJugador.getUbicacion().getClass(),(new Salida()).getClass());
+		Assert.assertEquals(unTablero.getUbicacion(unJugador).getClass(),(new Salida()).getClass());
 	}
 	
 	@Test
-	public void test05SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws JugadorEstaPresoException {
+	public void test06SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws JugadorEstaPresoException {
 		
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
 		
-		unJugador.setTablero(unTablero);
 		unTablero.setJugador(unJugador);
 		
-		unJugador.avanzar(25);
+		unTablero.avanzar(unJugador, 25);
 		
-		Assert.assertEquals((new Carcel()).getClass(), unJugador.getUbicacion().getClass());
+		Assert.assertEquals((new Carcel()).getClass(), unTablero.getUbicacion(unJugador).getClass());
 		
 	}
 }

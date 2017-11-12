@@ -9,7 +9,7 @@ public class Disponible implements Estado {
 	@Override
 	public void comprar(Jugador jugador, double precioTerreno) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
 		
-		jugador.cobrar(precioTerreno);
+		jugador.pagar(precioTerreno);
 	}
 
 }

@@ -7,22 +7,26 @@ import modelo.excepciones.ImposiblePagarFianzaPrimerTurnoExeption;
 import modelo.excepciones.JugadorEstaPresoException;
 import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
 import modelo.excepciones.JugadorNoEstaPreso;
+import modelo.excepciones.JugadorEstaPresoException;
 
 /**
  * Created by nico on 11/11/17.
  */
 public class Jugando implements EstadoJugador {
 
-    public Jugando(){}
-
+	@Override
+	public boolean esLibre() {
+		return true;
+	}
+	
     @Override
-    public void avanzar(int cantidadDePasos, Jugador esteJugador, Tablero miTablero) throws JugadorEstaPresoException {
-        miTablero.avanzar(esteJugador, cantidadDePasos);
+    public int avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
+        return cantidadDePasos;
     }
 
     @Override
-    public EstadoJugador siguienteEstado() throws JugadorJugandoNoTieneMasEstados {
-        throw new JugadorJugandoNoTieneMasEstados();
+    public EstadoJugador siguienteEstado() {
+    	return new Jugando();
     }
 
     @Override

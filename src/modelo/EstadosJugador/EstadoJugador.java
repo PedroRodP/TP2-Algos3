@@ -4,13 +4,17 @@ import modelo.Jugador;
 import modelo.Tablero;
 import modelo.casilleros.Carcel;
 import modelo.excepciones.*;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.JugadorEstaPresoException;
 
 /**
  * Created by nico on 11/11/17.
  */
 public interface EstadoJugador {
 
-    void avanzar(int cantidadDePasos, Jugador esteJugador, Tablero miTablero) throws JugadorEstaPresoException;
+	boolean esLibre();
+	
+    int avanzar(int cantidadDePasos) throws JugadorEstaPresoException;
 
     EstadoJugador siguienteEstado() throws JugadorJugandoNoTieneMasEstados;
 

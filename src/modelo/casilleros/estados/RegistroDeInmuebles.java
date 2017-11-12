@@ -7,7 +7,7 @@ public class RegistroDeInmuebles {
 
 	public void cobrar(Jugador jugador) throws ExcepcionCapitalInsuficiente {
 		double monto = this.calcularAlquiler();
-		jugador.cobrar(monto);
+		jugador.pagar(monto);
 	}
 	
 	public void edificar() {

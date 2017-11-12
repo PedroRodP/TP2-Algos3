@@ -1,13 +1,15 @@
 package modelo;
 
-import java.util.ListIterator;
-
 import modelo.EstadosJugador.EstadoJugador;
 import modelo.EstadosJugador.Jugando;
 import modelo.EstadosJugador.Preso;
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Casillero;
 import modelo.excepciones.*;
+import modelo.casilleros.Casillero;
+import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import java.util.ListIterator;
 
 public class Jugador {
 
@@ -21,7 +23,7 @@ public class Jugador {
 		estado = new Jugando();
 	}
 	
-	public void cobrar(double monto) throws ExcepcionCapitalInsuficiente {
+	public void pagar(double monto) throws ExcepcionCapitalInsuficiente {
 		if (monto > capital) { throw new ExcepcionCapitalInsuficiente(); }
 		capital -= monto;
 	}
@@ -34,21 +36,28 @@ public class Jugador {
 		return capital;
 	}
 
-	public void setTablero(Tablero unTablero) {
-		tablero = unTablero;
-	}
-
-	public Casillero getUbicacion(){
-		return (tablero.getUbicacion(this));
-	
-	}
-
-	public void avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
-		estado.avanzar(cantidadDePasos,this,tablero);
-	}
-
 	public void irPreso() {
 		estado = new Preso();
+	}
+
+	public Casillero getUbicacion() {
+		return (tablero.getUbicacion(this));
+	}
+	
+	public boolean tieneInmuebles() {
+		return false;
+	}
+
+	public int avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
+		return estado.avanzar(cantidadDePasos);
+	}
+
+	public boolean esLibre() {
+		return estado.esLibre();
+	}
+
+	public void cambiarEstado(EstadoJugador estadoNuevo) {
+		estado = estadoNuevo;
 	}
 
 	public void siguienteEstado() throws JugadorJugandoNoTieneMasEstados {
@@ -61,5 +70,9 @@ public class Jugador {
 
 	public void pagarFianza(Carcel laCarcel) throws ImposiblePagarFianzaPrimerTurnoExeption, JugadorNoEstaPreso, ExcepcionCapitalInsuficiente {
 		estado.pagarFianza(this, laCarcel);
+	}
+
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
 	}
 }

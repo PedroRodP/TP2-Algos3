@@ -62,7 +62,7 @@ public class Carcel implements Casillero {
     public void cobrarFianza(Jugador unJugador) throws ExcepcionCapitalInsuficiente {
         if (costoFianza > unJugador.balance())
             throw new ExcepcionCapitalInsuficiente();
-        unJugador.cobrar(costoFianza);
+        unJugador.pagar(costoFianza);
         this.excarcelar(unJugador);
     }
 }
