@@ -4,6 +4,7 @@ import java.util.ListIterator;
 
 import modelo.casilleros.Neuquen;
 import modelo.casilleros.Transitable;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
 public class Jugador {
 
@@ -15,7 +16,8 @@ public class Jugador {
 		capital = 100000;
 	}
 	
-	public void cobrar(double monto) {
+	public void cobrar(double monto) throws ExcepcionCapitalInsuficiente {
+		if (monto > capital) { throw new ExcepcionCapitalInsuficiente(); }
 		capital -= monto;
 	}
 	
