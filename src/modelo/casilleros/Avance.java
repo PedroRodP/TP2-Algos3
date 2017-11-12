@@ -1,5 +1,5 @@
 package modelo.casilleros;
 
-public class Avance implements Transitable {
+public class Avance implements Casillero {
 
 }

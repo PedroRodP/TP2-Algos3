@@ -2,8 +2,8 @@ package modelo.EstadosJugador;
 
 import modelo.Jugador;
 import modelo.Tablero;
-import modelo.excepciones.JugadorEstaPresoException;
-import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
+import modelo.casilleros.Carcel;
+import modelo.excepciones.*;
 
 /**
  * Created by nico on 12/11/17.
@@ -20,5 +20,10 @@ public class PresoBajoFianza2 implements EstadoJugador {
     @Override
     public EstadoJugador siguienteEstado() throws JugadorJugandoNoTieneMasEstados {
         return new Jugando();
+    }
+
+    @Override
+    public void pagarFianza(Jugador esteJugador, Carcel laCarcel) throws ImposiblePagarFianzaPrimerTurnoExeption, JugadorNoEstaPreso, ExcepcionCapitalInsuficiente {
+        laCarcel.cobrarFianza(esteJugador);
     }
 }

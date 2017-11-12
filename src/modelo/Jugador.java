@@ -5,16 +5,15 @@ import java.util.ListIterator;
 import modelo.EstadosJugador.EstadoJugador;
 import modelo.EstadosJugador.Jugando;
 import modelo.EstadosJugador.Preso;
-import modelo.casilleros.Neuquen;
-import modelo.casilleros.Transitable;
-import modelo.excepciones.JugadorEstaPresoException;
-import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.casilleros.Carcel;
+import modelo.casilleros.Casillero;
+import modelo.excepciones.*;
 
 public class Jugador {
 
 	private double capital;
 	private Tablero tablero;
-	private ListIterator<Transitable> iteradorDelTablero;
+	private ListIterator<Casillero> iteradorDelTablero;
 	private EstadoJugador estado;
 
 	public Jugador() {
@@ -39,7 +38,7 @@ public class Jugador {
 		tablero = unTablero;
 	}
 
-	public Transitable getUbicacion(){
+	public Casillero getUbicacion(){
 		return (tablero.getUbicacion(this));
 	
 	}
@@ -50,5 +49,17 @@ public class Jugador {
 
 	public void irPreso() {
 		estado = new Preso();
+	}
+
+	public void siguienteEstado() throws JugadorJugandoNoTieneMasEstados {
+		estado = estado.siguienteEstado();
+	}
+
+	public void recobrarLibertad() {
+		estado = new Jugando();
+	}
+
+	public void pagarFianza(Carcel laCarcel) throws ImposiblePagarFianzaPrimerTurnoExeption, JugadorNoEstaPreso, ExcepcionCapitalInsuficiente {
+		estado.pagarFianza(this, laCarcel);
 	}
 }

@@ -7,7 +7,7 @@ import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
-public class SantaFe extends Barrio implements Transitable {
+public class SantaFe extends Barrio implements Casillero {
 
 	
 	public SantaFe(){
