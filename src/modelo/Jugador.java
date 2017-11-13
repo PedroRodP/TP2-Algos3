@@ -15,8 +15,10 @@ public class Jugador {
 
 	private double capital;
 	private Tablero tablero;
-	private ListIterator<Casillero> iteradorDelTablero;
 	private EstadoJugador estado;
+	//Por ahora queda como integer, porque lo necesito para los avances dinamicos
+	//pero hay que pasarlo a una clase, no se si RegistroDeInmuebles era la que se penso para eso
+	private int cantidadDeInmuebles = 0;
 
 	public Jugador() {
 		capital = 100000;
@@ -26,6 +28,8 @@ public class Jugador {
 	public void pagar(double monto) throws ExcepcionCapitalInsuficiente {
 		if (monto > capital) { throw new ExcepcionCapitalInsuficiente(); }
 		capital -= monto;
+		//De nuevo, es para las pruebas de avance dinamico
+		cantidadDeInmuebles++;
 	}
 	
 	public void acreditar(double monto) {
@@ -74,5 +78,10 @@ public class Jugador {
 
 	public void setTablero(Tablero tablero) {
 		this.tablero = tablero;
+	}
+	
+	public int cantidadDeInmuebles(){
+		
+		return cantidadDeInmuebles;
 	}
 }

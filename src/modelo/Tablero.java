@@ -73,7 +73,6 @@ public class Tablero extends LinkedList<Casillero> {
 		if(posicionActual >= this.size())
 			posicionActual -= this.size();
 		jugadores.replace(unJugador, this.get(posicionActual));
-
 		return this.getUbicacion(unJugador);
 	}
 

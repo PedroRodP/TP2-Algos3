@@ -1,5 +1,6 @@
 package unitarios;
 
+import modelo.casilleros.Avance;
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Neuquen;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
@@ -14,6 +15,8 @@ import modelo.Tablero;
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Edesur;
 import modelo.casilleros.Salida;
+import modelo.casilleros.Subte;
+
 import org.junit.rules.ExpectedException;
 
 public class JugadorTest {
@@ -92,6 +95,78 @@ public class JugadorTest {
 		unTablero.avanzar(unJugador, 25);
 		
 		Assert.assertEquals((new Carcel()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		
+	}
+	
+	@Test
+	public void test07UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUntresYAvanzaASubte() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, JugadorEstaPresoException{
+		
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Avance unAvance = new Avance();
+			
+		unTablero.setJugador(unJugador);
+		unTablero.avanzar(unJugador, 4);
+		//cae en avance dinamico, rolleando un 3
+		unTablero.avanzar(unJugador, 3);
+	
+		unAvance.avanzarDinamicamente(unJugador,unTablero, 3);
+		
+		Assert.assertEquals((new Subte()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		
+		
+		
+		
+	}
+	
+	@Test
+	public void test08UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn7YAvanzaASubte() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
+		
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Avance unAvance = new Avance();
+		Neuquen neuquen = new Neuquen();
+
+		neuquen.comprarTerreno(unJugador);
+		
+		unTablero.setJugador(unJugador);
+			
+		//cae en avance dinamico, rolleando un 7
+		unTablero.avanzar(unJugador, 7 );
+
+		unAvance.avanzarDinamicamente(unJugador,unTablero, 7);
+		
+		Assert.assertEquals((new Subte()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		
+		
+		
+		
+	}
+	
+	@Test
+	public void test09UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn11YCaeEnSubte() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
+		
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Avance unAvance = new Avance();
+		Neuquen neuquen = new Neuquen();
+
+		neuquen.comprarTerreno(unJugador);
+		
+		unTablero.setJugador(unJugador);
+			
+		//Avanza 16 y cae en tren
+		unTablero.avanzar(unJugador, 16 );
+		// Desde tren, saca un 11 y cae en Avance Dinamico
+		unTablero.avanzar(unJugador, 11 );
+		
+
+		unAvance.avanzarDinamicamente(unJugador,unTablero, 11);
+		
+		Assert.assertEquals((new Neuquen()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		
+		
+		
 		
 	}
 }
