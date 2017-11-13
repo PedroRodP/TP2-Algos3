@@ -56,7 +56,7 @@ public class AlgoPoly {
 		jugador.pagarFianza();
 	}
 	*/
-
+	
 	private void opcionDeEdificar(Jugador jugador) {
 		
 	}
@@ -65,25 +65,27 @@ public class AlgoPoly {
 		
 	}
 
-	/*
 	public void jugar() throws ExcepcionCapitalInsuficiente, JugadorEstaPresoException {
 		
 		Jugador jugador = this.turnoActual();
 		
-		this.opcionPagarFianza(jugador);
+		/*this.opcionPagarFianza(jugador);*/
 		
 		if (jugador.esLibre()) {
 			
+			//Bloque pre-movida
 			if (jugador.tieneInmuebles()) {
 				this.opcionDeEdificar(jugador);
 			}
 			
+			//Bloque movida
 			int cantidadDePasos = tirada.arrojarDados();
 			Casillero casilleroActual = tablero.avanzar(jugador, cantidadDePasos);
-				
+			
+			//Bloque juego
 			this.opcionCompraOAlquiler(casilleroActual, jugador);
 		}		
 		//El iterador cambia los turnos al devolver el siguiente
 	}
-	*/
+	
 }
