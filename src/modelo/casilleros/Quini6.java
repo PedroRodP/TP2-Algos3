@@ -3,6 +3,9 @@ package modelo.casilleros;
 import modelo.Jugador;
 import modelo.Pasada;
 import modelo.PrimeraPasada;
+import modelo.Tablero;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.JugadorEstaPresoException;
 
 import java.util.HashMap;
 
@@ -15,6 +18,7 @@ public class Quini6 implements Casillero {
 		registroDeGanadores.clear();
 	}
 	
+	//Dejo el metodo premiar para no complejizar las pruebas del Quini6
 	public void premiar(Jugador jugador) {
 		
 		if (registroDeGanadores.containsKey(jugador)) {
@@ -38,6 +42,13 @@ public class Quini6 implements Casillero {
 		Pasada pasada = registroDeGanadores.get(jugador);
 		Pasada nuevaPasada = pasada.incrementar();
 		registroDeGanadores.replace(jugador, nuevaPasada);
+	}
+
+	@Override
+	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
+			throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+		this.premiar(unJugador);
+		
 	}
 	
 }

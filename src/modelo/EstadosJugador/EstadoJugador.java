@@ -1,7 +1,6 @@
 package modelo.EstadosJugador;
 
 import modelo.Jugador;
-import modelo.Tablero;
 import modelo.casilleros.Carcel;
 import modelo.excepciones.*;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;

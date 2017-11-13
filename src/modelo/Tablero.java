@@ -24,8 +24,10 @@ import modelo.casilleros.Subte;
 import modelo.casilleros.Casillero;
 import modelo.casilleros.Tren;
 import modelo.casilleros.Tucuman;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.JugadorEstaPresoException;
 
+@SuppressWarnings("serial")
 public class Tablero extends LinkedList<Casillero> {
 	
 	private	HashMap<Jugador,Casillero> jugadores;
@@ -66,13 +68,17 @@ public class Tablero extends LinkedList<Casillero> {
 	}
 	
 
-	public Casillero avanzar(Jugador unJugador, int cantidadDePasos) throws JugadorEstaPresoException {
+	public Casillero avanzar(Jugador unJugador, int cantidadDePasos) throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		
 		int posicionActual = this.indexOf(jugadores.get(unJugador));
 		posicionActual += unJugador.avanzar(cantidadDePasos);
 		if(posicionActual >= this.size())
 			posicionActual -= this.size();
+		if(posicionActual<0)
+			posicionActual +=this.size();
 		jugadores.replace(unJugador, this.get(posicionActual));
+		if (cantidadDePasos != 0)
+			(this.get(posicionActual)).hazLoTuyo(unJugador, this, cantidadDePasos);
 		return this.getUbicacion(unJugador);
 	}
 

@@ -1,13 +1,10 @@
 package modelo.EstadosJugador;
 
 import modelo.Jugador;
-import modelo.Tablero;
 import modelo.casilleros.Carcel;
 import modelo.excepciones.ImposiblePagarFianzaPrimerTurnoExeption;
 import modelo.excepciones.JugadorEstaPresoException;
-import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
 import modelo.excepciones.JugadorNoEstaPreso;
-import modelo.excepciones.JugadorEstaPresoException;
 
 /**
  * Created by nico on 11/11/17.

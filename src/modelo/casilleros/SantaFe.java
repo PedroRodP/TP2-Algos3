@@ -1,11 +1,9 @@
 package modelo.casilleros;
 
 import modelo.Jugador;
-import modelo.casilleros.estados.AdministradorDeCompra;
-import modelo.casilleros.estados.Estado;
-import modelo.casilleros.estados.RegistroDeInmuebles;
+import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ExcepcionTerrenoOcupado;
+import modelo.excepciones.JugadorEstaPresoException;
 
 public class SantaFe extends Barrio implements Casillero {
 
@@ -28,13 +26,19 @@ public class SantaFe extends Barrio implements Casillero {
 		return (total * 85 / 100);
 	}
 	
-	public void cobrar(Jugador jugador) throws ExcepcionCapitalInsuficiente {
+/*	public void cobrar(Jugador jugador) throws ExcepcionCapitalInsuficiente {
 		
 		registro.cobrar(jugador);
 	}
-	
+*/	
 	public void edificar() {
 		
 		registro.edificar();
+	}
+
+	@Override
+	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+		registro.cobrar(unJugador);
+		
 	}
 }

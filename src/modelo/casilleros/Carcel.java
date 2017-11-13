@@ -1,6 +1,7 @@
 package modelo.casilleros;
 
 import modelo.Jugador;
+import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.JugadorEstaPresoException;
 import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
@@ -17,10 +18,6 @@ public class Carcel implements Casillero {
         listaDePresos = new ArrayList<>();
     }
 
-    public void arrestar(Jugador unJugador) {
-        listaDePresos.add(unJugador);
-        unJugador.irPreso();
-    }
 
     public void cumplirRonda() throws JugadorJugandoNoTieneMasEstados {
         for (Jugador unPreso: listaDePresos) {
@@ -65,4 +62,18 @@ public class Carcel implements Casillero {
         unJugador.pagar(costoFianza);
         this.excarcelar(unJugador);
     }
+
+	@Override
+	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException {
+		
+	  this.arrestar(unJugador);
+		
+	}
+	
+	//Queda el metodo arrestar solamente para no complejizar las pruebas de la Carcel
+
+	public void arrestar(Jugador unJugador) {
+	     listaDePresos.add(unJugador);
+	     unJugador.irPreso();
+	}
 }

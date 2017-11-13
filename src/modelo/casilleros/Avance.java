@@ -2,20 +2,29 @@ package modelo.casilleros;
 
 import modelo.Jugador;
 import modelo.Tablero;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.JugadorEstaPresoException;
 
 public class Avance implements Casillero {
 
-	public void avanzarDinamicamente(Jugador unJugador, Tablero unTablero, int valorSacadoEnDados) throws JugadorEstaPresoException {
-		if(valorSacadoEnDados<7)
-			unTablero.avanzar(unJugador, valorSacadoEnDados-2);
-		else if (valorSacadoEnDados>6 && valorSacadoEnDados <11){
+	//Queda aca para no complejizar las pruebas de avance
+	public void avanzarDinamicamente(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+		if(velorDeLosDados<7)
+			unTablero.avanzar(unJugador, velorDeLosDados-2);
+		else if (velorDeLosDados>6 && velorDeLosDados <11){
 			
-			unTablero.avanzar(unJugador,(int)(unJugador.balance()%valorSacadoEnDados));
+			unTablero.avanzar(unJugador,(int)(unJugador.balance()%velorDeLosDados));
 		}
 		else
-			unTablero.avanzar(unJugador, (valorSacadoEnDados-unJugador.cantidadDeInmuebles()));
+			unTablero.avanzar(unJugador, (velorDeLosDados-unJugador.cantidadDeInmuebles()));
 			
 	}
 
+	@Override
+	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
+			throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+		this.avanzarDinamicamente(unJugador, unTablero, velorDeLosDados);
+	}
+
+	
 }

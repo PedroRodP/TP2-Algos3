@@ -6,10 +6,8 @@ import modelo.EstadosJugador.Preso;
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Casillero;
 import modelo.excepciones.*;
-import modelo.casilleros.Casillero;
 import modelo.excepciones.JugadorEstaPresoException;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import java.util.ListIterator;
 
 public class Jugador {
 
