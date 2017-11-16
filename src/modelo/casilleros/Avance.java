@@ -10,13 +10,13 @@ public class Avance implements Casillero {
 	//Queda aca para no complejizar las pruebas de avance
 	public void avanzarDinamicamente(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		if(velorDeLosDados<7)
-			unTablero.avanzar(unJugador, velorDeLosDados-2);
+			unTablero.avanzar(unJugador, Math.abs(velorDeLosDados-2));
 		else if (velorDeLosDados>6 && velorDeLosDados <11){
 			
-			unTablero.avanzar(unJugador,(int)(unJugador.balance()%velorDeLosDados));
+			unTablero.avanzar(unJugador,(int)Math.abs(unJugador.balance()%velorDeLosDados));
 		}
 		else
-			unTablero.avanzar(unJugador, (velorDeLosDados-unJugador.cantidadDeInmuebles()));
+			unTablero.avanzar(unJugador, Math.abs(velorDeLosDados-unJugador.cantidadDeInmuebles()));
 			
 	}
 
