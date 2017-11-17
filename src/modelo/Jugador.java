@@ -36,14 +36,6 @@ public class Jugador {
 		return capital;
 	}
 
-	public void irPreso() {
-		estado = new Preso();
-	}
-	
-	public boolean tieneInmuebles() {
-		return false;
-	}
-
 	public int avanzar(int cantidadDePasos) throws ExcepcionJugadorPreso {
 		return estado.avanzar(cantidadDePasos);
 	}
@@ -52,14 +44,14 @@ public class Jugador {
 		return estado.esLibre();
 	}
 
-	public void cambiarEstado(EstadoJugador estadoNuevo) {
-		estado = estadoNuevo;
-	}
-
 	public void siguienteEstado() throws ExcepcionJugadorYaEstaJugando {
 		estado = estado.siguienteEstado();
 	}
 
+	public void irPreso() {
+		estado = new Preso();
+	}
+	
 	public void recobrarLibertad() {
 		estado = new Jugando();
 	}

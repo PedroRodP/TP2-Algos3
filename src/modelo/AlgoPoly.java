@@ -12,21 +12,33 @@ public class AlgoPoly {
 	private Tirada tirada = new Tirada();
 	private Turnador turnador;
 	
-	private Jugador jugadorRojo;
-	private Jugador jugadorAmarillo;
-	private Jugador jugadorAzul;
+	private Jugador jugadorRojo = new Jugador();
+	private Jugador jugadorAmarillo = new Jugador();
+	private Jugador jugadorAzul = new Jugador();
 	
 	
 	public AlgoPoly() {
 		
-		jugadorRojo = new Jugador();
-		jugadorAmarillo = new Jugador();
-		jugadorAzul = new Jugador();
-		
-		tablero.agregarJugadores(this.listaDeJugadores());
 		turnador = new Turnador(this.listaDeJugadores());
+		tablero.agregarJugadores(this.listaDeJugadores());
 	}
 
+	public void jugar() {
+		
+		//Cambio de turno
+		Jugador jugador = turnador.siguienteTurno();
+		
+		//Bloque comienzo de turno
+		this.opcionPagarFianza(jugador);
+		
+		//Bloque pre-movida
+		this.opcionEdificar(jugador);
+		
+		//Bloque jugada
+		this.opcionMoverse(jugador);
+	}		
+		
+	
 	private ArrayList<Jugador> listaDeJugadores() {
 		
 		ArrayList<Jugador> lista = new ArrayList<>();
@@ -62,19 +74,4 @@ public class AlgoPoly {
 		}
 	}
 
-	public void jugar() {
-		
-		//Cambio de turno
-		Jugador jugador = turnador.siguienteTurno();
-		
-		//Bloque comienzo de turno
-		this.opcionPagarFianza(jugador);
-		
-		//Bloque pre-movida
-		this.opcionEdificar(jugador);
-		
-		//Bloque jugada
-		this.opcionMoverse(jugador);
-	}		
-		
 }
