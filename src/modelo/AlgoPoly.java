@@ -54,6 +54,7 @@ public class AlgoPoly {
 		
 		Jugador jugador = turnador.siguienteTurno();
 		
+		//Bloque comienzo de turno
 		this.opcionPagarFianza(jugador);
 		
 		//Bloque pre-movida
