@@ -40,7 +40,8 @@ public class Carcel implements Casillero {
 
     private boolean cumplioCondena(Jugador unPreso) {
         try {
-            unPreso.avanzar(0);
+        	Casillero casilleroX = new Salida();
+            unPreso.avanzar(casilleroX);
             return true;
         } catch (ExcepcionJugadorPreso e) {
             return false;

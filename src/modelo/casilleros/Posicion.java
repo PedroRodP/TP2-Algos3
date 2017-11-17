@@ -8,11 +8,11 @@ public class Posicion {
 	
 	private HashMap<Jugador, Casillero> posiciones = new HashMap<>();
 	
-	public Casillero getCasillero(Jugador jugador) {
+	public Casillero getPosicion(Jugador jugador) {
 		return posiciones.get(jugador);
 	}
 
-	public void setCasillero(Jugador jugador, Casillero casillero) {
+	public void setPosicion(Jugador jugador, Casillero casillero) {
 		
 		if (posiciones.containsKey(jugador)) {
 			posiciones.replace(jugador, casillero);

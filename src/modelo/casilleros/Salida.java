@@ -6,6 +6,8 @@ import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Salida implements Casillero {
 
+	Casillero siguiente;
+	
 	@Override
 	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws ExcepcionJugadorPreso {
 		// TODO Auto-generated method stub

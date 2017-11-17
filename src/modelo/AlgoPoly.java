@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.ArrayList;
 
-import modelo.casilleros.Casillero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
@@ -62,10 +61,8 @@ public class AlgoPoly {
 		
 		try {
 			int numeroDados = tirada.arrojarDados();
-			Casillero casilleroAvanzado = tablero.avanzar(jugador, numeroDados);
-			
-			casilleroAvanzado.caer(jugador, tablero, numeroDados);
-		
+			tablero.avanzar(jugador, numeroDados);
+					
 		} catch (ExcepcionJugadorPreso e) {
 			// TODO Auto-generated catch block
 		

@@ -2,6 +2,7 @@ package modelo.EstadosJugador;
 
 import modelo.Jugador;
 import modelo.casilleros.Carcel;
+import modelo.casilleros.Casillero;
 import modelo.excepciones.*;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
@@ -11,7 +12,7 @@ import modelo.excepciones.ExcepcionJugadorPreso;
  */
 public interface EstadoJugador {
 	
-    int avanzar(int cantidadDePasos) throws ExcepcionJugadorPreso;
+    Casillero avanzar(Casillero casillero) throws ExcepcionJugadorPreso;
 
     EstadoJugador siguienteEstado() throws ExcepcionJugadorYaEstaJugando;
 

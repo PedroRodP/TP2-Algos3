@@ -59,32 +59,52 @@ public class Tablero {
 
 	public void agregarJugadores(ArrayList<Jugador> listaJugadores) {
 		
+		Casillero salida = casilleros.getFirst();
+		
 		for (Jugador jugador: listaJugadores) {
-			posiciones.setCasillero(jugador, casilleros.getFirst());
+			posiciones.setPosicion(jugador, salida);
 		}
 	}
 
 	public Casillero getUbicacion(Jugador unJugador) {
-		return (posiciones.getCasillero(unJugador));
+		return (posiciones.getPosicion(unJugador));
 	}
 	
+	public void avanzar(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+		
+		int numeroDePosicion = this.getNumeroDePosicion(jugador);
+		//Actualizar numero de posicion
+		numeroDePosicion += valorDados;
+		
+		Casillero nuevaPosicion = this.calcularNuevaPosicion(numeroDePosicion);
+		
+		//Guardar posicion nueva
+		posiciones.setPosicion(jugador, nuevaPosicion);
+		
+		//Comprueba avance posible del jugador
+		jugador.avanzar(nuevaPosicion);
+		
+		nuevaPosicion.caer(jugador, this, valorDados);
+	}
 
-	public Casillero avanzar(Jugador unJugador, int cantidadDePasos) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	private int getNumeroDePosicion(Jugador jugador) {
 		
-		int posicionActual = casilleros.indexOf(posiciones.getCasillero(unJugador));
-		posicionActual += unJugador.avanzar(cantidadDePasos);
+		Casillero casilleroActual = this.getUbicacion(jugador);
+		int numeroDePosicion = casilleros.indexOf(casilleroActual);
 		
-		if(posicionActual >= casilleros.size())
-			posicionActual -= casilleros.size();
+		return numeroDePosicion;
+	}
+
+	private Casillero calcularNuevaPosicion(int numeroDePosicion) {
 		
-		if(posicionActual<0)
-			posicionActual += casilleros.size();
-		posiciones.setCasillero(unJugador, casilleros.get(posicionActual));
+		//Método para volver al inicio de la lista cuando se termina
+		if (numeroDePosicion >= casilleros.size())
+			numeroDePosicion -= casilleros.size();
 		
-		if (cantidadDePasos != 0)
-			(casilleros.get(posicionActual)).caer(unJugador, this, cantidadDePasos);
-		
-		return posiciones.getCasillero(unJugador);
+		if (numeroDePosicion < 0)
+			numeroDePosicion += casilleros.size();
+				
+		return casilleros.get(numeroDePosicion);
 	}
 
 	public Carcel getCarcel() {

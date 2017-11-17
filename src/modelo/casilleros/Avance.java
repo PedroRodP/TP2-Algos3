@@ -7,23 +7,28 @@ import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Avance implements Casillero {
 
-	//Queda aca para no complejizar las pruebas de avance
-	public void avanzarDinamicamente(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
-		if(velorDeLosDados<7)
-			unTablero.avanzar(unJugador, Math.abs(velorDeLosDados-2));
-		else if (velorDeLosDados>6 && velorDeLosDados <11){
+	private void avanzarDinamicamente(Jugador jugador, Tablero tablero, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+		
+		if (valorDados <= 6) {
 			
-			unTablero.avanzar(unJugador,(int)Math.abs(unJugador.getCapital()%velorDeLosDados));
-		}
-		else
-			unTablero.avanzar(unJugador, Math.abs(velorDeLosDados-unJugador.cantidadDeInmuebles()));
+			tablero.avanzar(jugador, Math.abs(valorDados-2));
+		
+		} else if (valorDados > 6 && valorDados <= 10) {
 			
+			tablero.avanzar(jugador,(int)Math.abs(jugador.getCapital() % valorDados));
+			
+		} else {
+			
+			tablero.avanzar(jugador, Math.abs(valorDados - jugador.cantidadDeInmuebles()));
+			
+		}	
 	}
 
 	@Override
-	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
+	public void caer(Jugador jugador, Tablero tablero, int valorDados)
 			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
-		this.avanzarDinamicamente(unJugador, unTablero, velorDeLosDados);
+		
+		this.avanzarDinamicamente(jugador, tablero, valorDados);
 	}
 
 	

@@ -2,7 +2,7 @@ package modelo.EstadosJugador;
 
 import modelo.Jugador;
 import modelo.casilleros.Carcel;
-
+import modelo.casilleros.Casillero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
@@ -12,7 +12,7 @@ import modelo.excepciones.ExcepcionJugadorPreso;
 public class PresoBajoFianza1 implements EstadoJugador {
 
     @Override
-    public int avanzar(int cantidadDePasos) throws ExcepcionJugadorPreso {
+    public Casillero avanzar(Casillero casillero) throws ExcepcionJugadorPreso {
         throw new ExcepcionJugadorPreso();
     }
 

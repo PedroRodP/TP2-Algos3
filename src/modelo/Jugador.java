@@ -4,6 +4,7 @@ import modelo.EstadosJugador.EstadoJugador;
 import modelo.EstadosJugador.Jugando;
 import modelo.EstadosJugador.Preso;
 import modelo.casilleros.Carcel;
+import modelo.casilleros.Casillero;
 import modelo.excepciones.*;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
@@ -36,8 +37,11 @@ public class Jugador {
 		return capital;
 	}
 
-	public int avanzar(int cantidadDePasos) throws ExcepcionJugadorPreso {
-		return estado.avanzar(cantidadDePasos);
+	public Casillero avanzar(Casillero casillero) throws ExcepcionJugadorPreso {
+		
+		Casillero nuevaPosicion = estado.avanzar(casillero);
+		
+		return nuevaPosicion;
 	}
 
 	public void siguienteEstado() throws ExcepcionJugadorYaEstaJugando {

@@ -25,7 +25,7 @@ public class RetrocesoTest {
 			
 		listaJugadores.add(unJugador);		
 		unTablero.agregarJugadores(listaJugadores);
-		unRetroceso.retrocederDinamicamente(unJugador,unTablero, 4);
+		unRetroceso.caer(unJugador,unTablero, 4);
 		
 		Assert.assertNotEquals((new Salida()).getClass(), unTablero.getUbicacion(unJugador).getClass());
 		

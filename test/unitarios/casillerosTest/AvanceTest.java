@@ -24,7 +24,7 @@ public class AvanceTest {
 		Avance unAvance = new Avance();
 			
 		listaJugadores.add(unJugador);		
-		unAvance.avanzarDinamicamente(unJugador,unTablero, 4);
+		unAvance.caer(unJugador,unTablero, 4);
 		
 		Assert.assertNotEquals((new Salida()).getClass(), unTablero.getUbicacion(unJugador).getClass());
 		
