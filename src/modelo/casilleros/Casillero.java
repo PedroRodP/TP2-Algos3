@@ -7,6 +7,8 @@ import modelo.excepciones.JugadorEstaPresoException;
 
 public interface Casillero {
 
-	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int valorDeLosDados) throws JugadorEstaPresoException,ExcepcionCapitalInsuficiente;
+	public void caer(Jugador unJugador, Tablero unTablero, int valorDeLosDados) throws JugadorEstaPresoException,ExcepcionCapitalInsuficiente;
+	
+	//public Casillero siguienteCasillero();
 
 }

@@ -8,7 +8,7 @@ import modelo.excepciones.JugadorEstaPresoException;
 public class Subte implements Casillero {
 
 	@Override
-	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
+	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
 			throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		// TODO Auto-generated method stub
 		

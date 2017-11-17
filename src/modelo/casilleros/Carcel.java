@@ -64,7 +64,7 @@ public class Carcel implements Casillero {
     }
 
 	@Override
-	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException {
+	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException {
 		
 	  this.arrestar(unJugador);
 		

@@ -13,7 +13,7 @@ public class CordobaSur extends Barrio {
 	}
 
 	@Override
-	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException {
+	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException {
 		// TODO Auto-generated method stub
 		
 	}

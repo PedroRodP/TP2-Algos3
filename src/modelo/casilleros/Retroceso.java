@@ -21,7 +21,7 @@ public class Retroceso implements Casillero {
 	}
 
 	@Override
-	public void hazLoTuyo(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
+	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
 			throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		this.retrocederDinamicamente(unJugador, unTablero, velorDeLosDados);
 	}
