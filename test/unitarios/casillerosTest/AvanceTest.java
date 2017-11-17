@@ -1,5 +1,7 @@
 package unitarios.casillerosTest;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,10 +19,11 @@ public class AvanceTest {
 	public void test01unAvanceDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, JugadorEstaPresoException{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		Avance unAvance = new Avance();
 			
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);		
 		unAvance.avanzarDinamicamente(unJugador,unTablero, 4);
 		
 		Assert.assertNotEquals((new Salida()).getClass(), unTablero.getUbicacion(unJugador).getClass());

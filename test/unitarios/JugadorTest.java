@@ -1,25 +1,23 @@
 package unitarios;
 
-import modelo.casilleros.Avance;
 import modelo.casilleros.Aysa;
-import modelo.casilleros.BsAsSur;
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Neuquen;
-import modelo.casilleros.Policia;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 import modelo.excepciones.JugadorEstaPresoException;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import org.junit.Assert;
 
 import modelo.Jugador;
 import modelo.Tablero;
-import modelo.casilleros.Carcel;
 import modelo.casilleros.Edesur;
 import modelo.casilleros.Salida;
 import modelo.casilleros.SaltaNorte;
-import modelo.casilleros.SaltaSur;
 import modelo.casilleros.SantaFe;
 import modelo.casilleros.Subte;
 import modelo.casilleros.Tren;
@@ -35,9 +33,11 @@ public class JugadorTest {
 	public void test01ElJugadorEmpiezaSuTurnoDesdeLaSalida(){
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 		
 		Assert.assertEquals(unTablero.getUbicacion(unJugador).getClass(),(new Salida()).getClass());
 
@@ -47,9 +47,11 @@ public class JugadorTest {
 	public void test02ElJugadorAvanza3CasillerosYCaeEnEdesur() throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 		unTablero.avanzar(unJugador, 3);
 		
 		Assert.assertEquals(unTablero.getUbicacion(unJugador).getClass(),(new Edesur()).getClass());
@@ -69,10 +71,12 @@ public class JugadorTest {
 	@Test
 	public void test04JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		Carcel miCarcel = new Carcel();
 
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 		miCarcel.arrestar(unJugador);
 
 		thrown.expect(JugadorEstaPresoException.class);
@@ -83,9 +87,11 @@ public class JugadorTest {
 	public void test05SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 		unTablero.avanzar(unJugador, 20);
 		
 		Assert.assertEquals(unTablero.getUbicacion(unJugador).getClass(),(new Salida()).getClass());
@@ -95,9 +101,11 @@ public class JugadorTest {
 	public void test06SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 		
 		unTablero.avanzar(unJugador, 25);
 		
@@ -109,10 +117,11 @@ public class JugadorTest {
 	public void test07UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn3YAvanzaASubte() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, JugadorEstaPresoException{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 		unTablero.avanzar(unJugador, 4); //Dejo al jugador en Bs As Zona sur
 		unTablero.avanzar(unJugador, 3); //Muevo al jugador desde Bs As Zona sur a avanza dinamico
 		
@@ -129,10 +138,11 @@ public class JugadorTest {
 	public void test08UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn7YAvanzaAAysa() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 			
 		//cae en avance dinamico, rolleando un 7
 		unTablero.avanzar(unJugador, 7 );
@@ -150,12 +160,14 @@ public class JugadorTest {
 	public void test09UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn11YCaeEnNeuquen() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		Neuquen neuquen = new Neuquen();
 
 		neuquen.comprarTerreno(unJugador);
 		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 			
 		//Avanza 16 y cae en tren
 		unTablero.avanzar(unJugador, 16 );
@@ -172,10 +184,11 @@ public class JugadorTest {
 	public void test10UnJugadorCaeEnLaPoliciaYEstaLoLlevaALaCarcel() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 			
 		//Avanza 15 para caer en la policia
 		unTablero.avanzar(unJugador, 15 );
@@ -189,10 +202,11 @@ public class JugadorTest {
 	public void test11UnJugadorCaeEnLaPoliciaEstaLoLlevaALaCarcelYAhoraNoSePuedeMover() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 			
 		//Avanza 15 para caer en la policia
 		unTablero.avanzar(unJugador, 15 );
@@ -207,10 +221,11 @@ public class JugadorTest {
 	public void test12UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn4YRetrocedeATren() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, JugadorEstaPresoException{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 		unTablero.avanzar(unJugador, 14); //Dejo al jugador en Salta Sur
 		unTablero.avanzar(unJugador, 4); //Muevo al jugador desde Salta Sur a retroceso dinamico
 		
@@ -227,10 +242,11 @@ public class JugadorTest {
 	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn7YRetrocedeASaltaNorte() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 			
 		unTablero.avanzar(unJugador, 11 );//Dejo al Jugador En Santa Fe
 		unTablero.avanzar(unJugador, 7 ); //Desde Santa Fe saco un 7 y el jugador cae en Retroceso Dinamico
@@ -247,6 +263,7 @@ public class JugadorTest {
 	public void test14UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YCaeEnSubte() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
+		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		Neuquen neuquen = new Neuquen();
 		SantaFe santaFe = new SantaFe();
@@ -254,7 +271,8 @@ public class JugadorTest {
 		neuquen.comprarTerreno(unJugador); 
 		santaFe.comprarTerreno(unJugador);
 		
-		unTablero.setJugador(unJugador);
+		listaJugadores.add(unJugador);
+		unTablero.agregarJugadores(listaJugadores);
 			
 		//Avanza 6 y cae en Cordoba Sur
 		unTablero.avanzar(unJugador, 6 );

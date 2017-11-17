@@ -7,6 +7,9 @@ import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ImposiblePagarFianzaPrimerTurnoExeption;
 import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
 import modelo.excepciones.JugadorNoEstaPreso;
+
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,10 +25,13 @@ public class CarcelTest {
 
     @Test
     public void test01JugadorAzulEsArrestadoYRecuperaSuLibertad3RondasDespues() throws JugadorJugandoNoTieneMasEstados {
-        Jugador jugadorAzul = new Jugador();
+        
+    	Jugador jugadorAzul = new Jugador();
+    	ArrayList<Jugador> listaJugadores = new ArrayList<>();
         Tablero unTablero = new Tablero();
 
-        unTablero.setJugador(jugadorAzul);
+        listaJugadores.add(jugadorAzul);
+        unTablero.agregarJugadores(listaJugadores);
 
         Carcel laCarcel = unTablero.getCarcel();
 

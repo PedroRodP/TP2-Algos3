@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import modelo.casilleros.Avance;
@@ -56,9 +57,11 @@ public class Tablero {
 		casilleros.add(new Tucuman());
 	}
 
-	public void setJugador(Jugador unJugador) {
-		posiciones.setCasillero(unJugador, casilleros.getFirst());;
-			
+	public void agregarJugadores(ArrayList<Jugador> listaJugadores) {
+		
+		for (Jugador jugador: listaJugadores) {
+			posiciones.setCasillero(jugador, casilleros.getFirst());
+		}
 	}
 
 	public Casillero getUbicacion(Jugador unJugador) {
