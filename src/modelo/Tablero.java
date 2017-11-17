@@ -1,6 +1,5 @@
 package modelo;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import modelo.casilleros.Avance;
@@ -14,6 +13,7 @@ import modelo.casilleros.Edesur;
 import modelo.casilleros.Impuesto;
 import modelo.casilleros.Neuquen;
 import modelo.casilleros.Policia;
+import modelo.casilleros.Posicion;
 import modelo.casilleros.Quini6;
 import modelo.casilleros.Retroceso;
 import modelo.casilleros.Salida;
@@ -30,52 +30,45 @@ import modelo.excepciones.JugadorEstaPresoException;
 public class Tablero {
 	
 	private LinkedList<Casillero> casilleros = new LinkedList<>();
-	private	HashMap<Jugador,Casillero> jugadores;
+	private Posicion posiciones = new Posicion();
 	
 	public Tablero() {
 		
-		this.agregarCasillero(new Salida());
-		this.agregarCasillero(new Quini6());
-		this.agregarCasillero(new BsAsSur());
-		this.agregarCasillero(new Edesur());
-		this.agregarCasillero(new BsAsNorte());
-		this.agregarCasillero(new Carcel());
-		this.agregarCasillero(new CordobaSur());
-		this.agregarCasillero(new Avance());
-		this.agregarCasillero(new Subte());
-		this.agregarCasillero(new CordobaNorte());
-		this.agregarCasillero(new Impuesto());
-		this.agregarCasillero(new SantaFe());
-		this.agregarCasillero(new Aysa());
-		this.agregarCasillero(new SaltaNorte());
-		this.agregarCasillero(new SaltaSur());
-		this.agregarCasillero(new Policia());
-		this.agregarCasillero(new Tren());
-		this.agregarCasillero(new Neuquen());
-		this.agregarCasillero(new Retroceso());
-		this.agregarCasillero(new Tucuman());
-		
-		jugadores = new HashMap<Jugador,Casillero>(); //Posicion de jugador. Podria implementarse clase Posicion
-	}
-	
-	private void agregarCasillero(Casillero casillero) {
-		casilleros.add(casillero);
+		casilleros.add(new Salida());
+		casilleros.add(new Quini6());
+		casilleros.add(new BsAsSur());
+		casilleros.add(new Edesur());
+		casilleros.add(new BsAsNorte());
+		casilleros.add(new Carcel());
+		casilleros.add(new CordobaSur());
+		casilleros.add(new Avance());
+		casilleros.add(new Subte());
+		casilleros.add(new CordobaNorte());
+		casilleros.add(new Impuesto());
+		casilleros.add(new SantaFe());
+		casilleros.add(new Aysa());
+		casilleros.add(new SaltaNorte());
+		casilleros.add(new SaltaSur());
+		casilleros.add(new Policia());
+		casilleros.add(new Tren());
+		casilleros.add(new Neuquen());
+		casilleros.add(new Retroceso());
+		casilleros.add(new Tucuman());
 	}
 
 	public void setJugador(Jugador unJugador) {
-		
-		jugadores.put(unJugador, casilleros.getFirst());
+		posiciones.setCasillero(unJugador, casilleros.getFirst());;
 			
 	}
 
 	public Casillero getUbicacion(Jugador unJugador) {
-		return (jugadores.get(unJugador));
+		return (posiciones.getCasillero(unJugador));
 	}
 	
 
 	public Casillero avanzar(Jugador unJugador, int cantidadDePasos) throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
 		
-		int posicionActual = casilleros.indexOf(jugadores.get(unJugador));
+		int posicionActual = casilleros.indexOf(posiciones.getCasillero(unJugador));
 		posicionActual += unJugador.avanzar(cantidadDePasos);
 		
 		if(posicionActual >= casilleros.size())
@@ -83,12 +76,12 @@ public class Tablero {
 		
 		if(posicionActual<0)
 			posicionActual += casilleros.size();
-		jugadores.replace(unJugador, casilleros.get(posicionActual));
+		posiciones.setCasillero(unJugador, casilleros.get(posicionActual));
 		
 		if (cantidadDePasos != 0)
 			(casilleros.get(posicionActual)).caer(unJugador, this, cantidadDePasos);
 		
-		return this.getUbicacion(unJugador);
+		return posiciones.getCasillero(unJugador);
 	}
 
 	public Carcel getCarcel() {
