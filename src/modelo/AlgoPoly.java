@@ -64,6 +64,7 @@ public class AlgoPoly {
 
 	public void jugar() {
 		
+		//Cambio de turno
 		Jugador jugador = turnador.siguienteTurno();
 		
 		//Bloque comienzo de turno
