@@ -10,11 +10,6 @@ import modelo.excepciones.ExcepcionJugadorPreso;
  */
 public class Preso implements EstadoJugador {
 
-	@Override
-	public boolean esLibre() {
-		return false;
-	}
-	
     @Override
     public int avanzar(int cantidadDePasos) throws ExcepcionJugadorPreso {
         throw new ExcepcionJugadorPreso();

@@ -40,10 +40,6 @@ public class Jugador {
 		return estado.avanzar(cantidadDePasos);
 	}
 
-	public boolean esLibre() {
-		return estado.esLibre();
-	}
-
 	public void siguienteEstado() throws ExcepcionJugadorYaEstaJugando {
 		estado = estado.siguienteEstado();
 	}

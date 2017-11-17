@@ -10,8 +10,6 @@ import modelo.excepciones.ExcepcionJugadorPreso;
  * Created by nico on 11/11/17.
  */
 public interface EstadoJugador {
-
-	boolean esLibre();
 	
     int avanzar(int cantidadDePasos) throws ExcepcionJugadorPreso;
 
