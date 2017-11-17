@@ -26,7 +26,6 @@ public class CarcelTest {
         Tablero unTablero = new Tablero();
 
         unTablero.setJugador(jugadorAzul);
-        jugadorAzul.setTablero(unTablero);
 
         Carcel laCarcel = unTablero.getCarcel();
 
