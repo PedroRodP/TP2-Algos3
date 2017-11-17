@@ -4,7 +4,7 @@ import modelo.Jugador;
 import modelo.Tablero;
 import modelo.excepciones.JugadorEstaPresoException;
 
-public class CordobaNorte extends Barrio implements Casillero {
+public class CordobaNorte extends Barrio {
 
 
 	

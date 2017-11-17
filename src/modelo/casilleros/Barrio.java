@@ -7,7 +7,7 @@ import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
-public abstract class Barrio {
+public abstract class Barrio implements Casillero {
 	
 	protected AdministradorDeCompra administrador = new AdministradorDeCompra();
 	protected RegistroDeInmuebles registro = new RegistroDeInmuebles();

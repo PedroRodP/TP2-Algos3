@@ -5,7 +5,7 @@ import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.JugadorEstaPresoException;
 
-public class Tucuman extends Barrio implements Casillero {
+public class Tucuman extends Barrio {
 
 
 	public Tucuman(){
