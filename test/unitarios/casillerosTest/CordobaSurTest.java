@@ -22,7 +22,7 @@ public class CordobaSurTest {
 		
 		barrio.comprarTerreno(jugador);
 		
-		Assert.assertEquals(18000, 100000 - jugador.balance(), DELTA);
+		Assert.assertEquals(18000, 100000 - jugador.getCapital(), DELTA);
 	}
 	
 	@Test (expected = ExcepcionTerrenoOcupado.class)

@@ -13,7 +13,7 @@ public class Retroceso implements Casillero {
 			unTablero.avanzar(unJugador, Math.abs(velorDeLosDados-2)*-1);
 		else if (velorDeLosDados>6 && velorDeLosDados <11){
 			
-			unTablero.avanzar(unJugador,(int) (Math.abs(unJugador.balance()%velorDeLosDados)*-1));
+			unTablero.avanzar(unJugador,(int) (Math.abs(unJugador.getCapital()%velorDeLosDados)*-1));
 		}
 		else
 			unTablero.avanzar(unJugador, Math.abs(velorDeLosDados-unJugador.cantidadDeInmuebles())*-1);

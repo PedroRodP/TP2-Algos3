@@ -22,7 +22,7 @@ public class SaltaNorteTest {
 		
 		barrio.comprarTerreno(jugador);
 		
-		Assert.assertEquals(23000, 100000 - jugador.balance(), DELTA);
+		Assert.assertEquals(23000, 100000 - jugador.getCapital(), DELTA);
 	}
 	
 	@Test (expected = ExcepcionTerrenoOcupado.class)

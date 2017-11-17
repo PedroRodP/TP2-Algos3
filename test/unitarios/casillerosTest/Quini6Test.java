@@ -18,7 +18,7 @@ public class Quini6Test {
 		
 		quini.premiar(jugador);
 		
-		Assert.assertEquals(50000, jugador.balance() - 100000, DELTA);
+		Assert.assertEquals(50000, jugador.getCapital() - 100000, DELTA);
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ public class Quini6Test {
 		quini.premiar(jugador);
 		quini.premiar(jugador);
 		
-		Assert.assertEquals(30000, jugador.balance() - 150000, DELTA);
+		Assert.assertEquals(30000, jugador.getCapital() - 150000, DELTA);
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class Quini6Test {
 		quini.premiar(jugador);
 		quini.premiar(jugador);
 		
-		Assert.assertEquals(0, jugador.balance() - 180000, DELTA);
+		Assert.assertEquals(0, jugador.getCapital() - 180000, DELTA);
 	}
 
 }

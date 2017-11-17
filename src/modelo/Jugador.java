@@ -34,7 +34,7 @@ public class Jugador {
 		capital += monto;
 	}
 	
-	public double balance() {
+	public double getCapital() {
 		return capital;
 	}
 

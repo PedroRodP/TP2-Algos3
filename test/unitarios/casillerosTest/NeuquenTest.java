@@ -22,7 +22,7 @@ public class NeuquenTest {
 		
 		barrio.comprarTerreno(jugador);
 		
-		Assert.assertEquals(17000, 100000 - jugador.balance(), DELTA);
+		Assert.assertEquals(17000, 100000 - jugador.getCapital(), DELTA);
 	}
 	
 	@Test (expected = ExcepcionTerrenoOcupado.class)
