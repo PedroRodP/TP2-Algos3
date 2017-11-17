@@ -11,15 +11,15 @@ public class Retroceso implements Casillero {
 
 		if (valorDados <= 6) {
 			
-			tablero.avanzar(jugador, Math.abs(valorDados-2)*-1);
+			tablero.avanzar(jugador, (valorDados-2)*-1);
 			
 		} else if (valorDados > 6 && valorDados <= 10) {
 			
-			tablero.avanzar(jugador,(int) (Math.abs(jugador.getCapital() % valorDados)*-1));
+			tablero.avanzar(jugador,(int) (jugador.getCapital() % valorDados)*-1);
 		
 		} else {
 			
-			tablero.avanzar(jugador, Math.abs(valorDados - jugador.cantidadDeInmuebles())*-1);
+			tablero.avanzar(jugador, (Math.abs(valorDados - jugador.cantidadDeInmuebles()))*-1);
 			
 		}	
 	}

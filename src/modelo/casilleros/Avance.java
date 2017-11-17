@@ -11,11 +11,11 @@ public class Avance implements Casillero {
 		
 		if (valorDados <= 6) {
 			
-			tablero.avanzar(jugador, Math.abs(valorDados-2));
+			tablero.avanzar(jugador, valorDados-2);
 		
 		} else if (valorDados > 6 && valorDados <= 10) {
 			
-			tablero.avanzar(jugador,(int)Math.abs(jugador.getCapital() % valorDados));
+			tablero.avanzar(jugador, (int) (jugador.getCapital() % valorDados));
 			
 		} else {
 			
