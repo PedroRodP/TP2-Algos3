@@ -11,12 +11,12 @@ import modelo.casilleros.Avance;
 import modelo.casilleros.Salida;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class AvanceTest {
 	
 	@Test
-	public void test01unAvanceDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, JugadorEstaPresoException{
+	public void test01unAvanceDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();

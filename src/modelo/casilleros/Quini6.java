@@ -5,7 +5,7 @@ import modelo.Pasada;
 import modelo.PrimeraPasada;
 import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 
 import java.util.HashMap;
 
@@ -46,7 +46,7 @@ public class Quini6 implements Casillero {
 
 	@Override
 	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
-			throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		this.premiar(unJugador);
 		
 	}

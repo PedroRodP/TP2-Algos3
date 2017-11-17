@@ -2,7 +2,7 @@ package modelo.casilleros;
 
 import modelo.Jugador;
 import modelo.Tablero;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class SaltaNorte extends Barrio {
 
@@ -14,7 +14,7 @@ public class SaltaNorte extends Barrio {
 	}
 
 	@Override
-	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException {
+	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws ExcepcionJugadorPreso {
 		// TODO Auto-generated method stub
 		
 	}

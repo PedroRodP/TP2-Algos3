@@ -3,7 +3,7 @@ package modelo.casilleros;
 import modelo.Jugador;
 import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Tucuman extends Barrio {
 
@@ -16,7 +16,7 @@ public class Tucuman extends Barrio {
 
 	@Override
 	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
-			throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		// TODO Auto-generated method stub
 		
 	}

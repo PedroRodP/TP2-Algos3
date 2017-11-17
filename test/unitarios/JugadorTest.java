@@ -5,7 +5,7 @@ import modelo.casilleros.Carcel;
 import modelo.casilleros.Neuquen;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -44,7 +44,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test02ElJugadorAvanza3CasillerosYCaeEnEdesur() throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+	public void test02ElJugadorAvanza3CasillerosYCaeEnEdesur() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -69,7 +69,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void test04JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+	public void test04JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
@@ -79,12 +79,12 @@ public class JugadorTest {
 		unTablero.agregarJugadores(listaJugadores);
 		miCarcel.arrestar(unJugador);
 
-		thrown.expect(JugadorEstaPresoException.class);
+		thrown.expect(ExcepcionJugadorPreso.class);
 		unTablero.avanzar(unJugador, 1);
 	}
 
 	@Test
-	public void test05SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+	public void test05SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -98,7 +98,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test06SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+	public void test06SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -114,7 +114,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test07UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn3YAvanzaASubte() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, JugadorEstaPresoException{
+	public void test07UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn3YAvanzaASubte() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -135,7 +135,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test08UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn7YAvanzaAAysa() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
+	public void test08UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn7YAvanzaAAysa() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -157,7 +157,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test09UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn11YCaeEnNeuquen() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
+	public void test09UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn11YCaeEnNeuquen() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -181,7 +181,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test10UnJugadorCaeEnLaPoliciaYEstaLoLlevaALaCarcel() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
+	public void test10UnJugadorCaeEnLaPoliciaYEstaLoLlevaALaCarcel() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -199,7 +199,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test11UnJugadorCaeEnLaPoliciaEstaLoLlevaALaCarcelYAhoraNoSePuedeMover() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
+	public void test11UnJugadorCaeEnLaPoliciaEstaLoLlevaALaCarcelYAhoraNoSePuedeMover() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -212,13 +212,13 @@ public class JugadorTest {
 		unTablero.avanzar(unJugador, 15 );
 		
 				
-		thrown.expect(JugadorEstaPresoException.class);
+		thrown.expect(ExcepcionJugadorPreso.class);
 		unTablero.avanzar(unJugador, 1);
 			
 	}
 	
 	@Test
-	public void test12UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn4YRetrocedeATren() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, JugadorEstaPresoException{
+	public void test12UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn4YRetrocedeATren() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -239,7 +239,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn7YRetrocedeASaltaNorte() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
+	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn7YRetrocedeASaltaNorte() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -260,7 +260,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test14UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YCaeEnSubte() throws JugadorEstaPresoException, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
+	public void test14UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YCaeEnSubte() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();

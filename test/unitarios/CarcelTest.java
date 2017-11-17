@@ -4,9 +4,8 @@ import modelo.Jugador;
 import modelo.Tablero;
 import modelo.casilleros.Carcel;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ImposiblePagarFianzaPrimerTurnoExeption;
-import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
-import modelo.excepciones.JugadorNoEstaPreso;
+import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
+import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class CarcelTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void test01JugadorAzulEsArrestadoYRecuperaSuLibertad3RondasDespues() throws JugadorJugandoNoTieneMasEstados {
+    public void test01JugadorAzulEsArrestadoYRecuperaSuLibertad3RondasDespues() throws ExcepcionJugadorYaEstaJugando {
         
     	Jugador jugadorAzul = new Jugador();
     	ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -47,13 +46,13 @@ public class CarcelTest {
     }
 
     @Test
-    public void test02JugadorCaeEnCarcelPagaSuFianzaEnTurno2() throws JugadorNoEstaPreso, ExcepcionCapitalInsuficiente, ImposiblePagarFianzaPrimerTurnoExeption {
+    public void test02JugadorCaeEnCarcelPagaSuFianzaEnTurno2() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde {
         Jugador jugadorAzul = new Jugador();
         Carcel laCarcel = new Carcel();
 
         laCarcel.arrestar(jugadorAzul);
 
-        thrown.expect(ImposiblePagarFianzaPrimerTurnoExeption.class);
+        thrown.expect(ExcepcionPagarFianzaNoCorresponde.class);
         jugadorAzul.pagarFianza(laCarcel);
     }
 }

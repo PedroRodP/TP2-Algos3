@@ -3,12 +3,12 @@ package modelo.casilleros;
 import modelo.Jugador;
 import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Avance implements Casillero {
 
 	//Queda aca para no complejizar las pruebas de avance
-	public void avanzarDinamicamente(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+	public void avanzarDinamicamente(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		if(velorDeLosDados<7)
 			unTablero.avanzar(unJugador, Math.abs(velorDeLosDados-2));
 		else if (velorDeLosDados>6 && velorDeLosDados <11){
@@ -22,7 +22,7 @@ public class Avance implements Casillero {
 
 	@Override
 	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
-			throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		this.avanzarDinamicamente(unJugador, unTablero, velorDeLosDados);
 	}
 

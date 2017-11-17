@@ -26,7 +26,7 @@ import modelo.casilleros.Casillero;
 import modelo.casilleros.Tren;
 import modelo.casilleros.Tucuman;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Tablero {
 	
@@ -69,7 +69,7 @@ public class Tablero {
 	}
 	
 
-	public Casillero avanzar(Jugador unJugador, int cantidadDePasos) throws JugadorEstaPresoException, ExcepcionCapitalInsuficiente {
+	public Casillero avanzar(Jugador unJugador, int cantidadDePasos) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
 		int posicionActual = casilleros.indexOf(posiciones.getCasillero(unJugador));
 		posicionActual += unJugador.avanzar(cantidadDePasos);

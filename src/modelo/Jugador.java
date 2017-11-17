@@ -5,7 +5,7 @@ import modelo.EstadosJugador.Jugando;
 import modelo.EstadosJugador.Preso;
 import modelo.casilleros.Carcel;
 import modelo.excepciones.*;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
 public class Jugador {
@@ -44,7 +44,7 @@ public class Jugador {
 		return false;
 	}
 
-	public int avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
+	public int avanzar(int cantidadDePasos) throws ExcepcionJugadorPreso {
 		return estado.avanzar(cantidadDePasos);
 	}
 
@@ -56,7 +56,7 @@ public class Jugador {
 		estado = estadoNuevo;
 	}
 
-	public void siguienteEstado() throws JugadorJugandoNoTieneMasEstados {
+	public void siguienteEstado() throws ExcepcionJugadorYaEstaJugando {
 		estado = estado.siguienteEstado();
 	}
 
@@ -64,7 +64,9 @@ public class Jugador {
 		estado = new Jugando();
 	}
 
-	public void pagarFianza(Carcel laCarcel) throws ImposiblePagarFianzaPrimerTurnoExeption, JugadorNoEstaPreso, ExcepcionCapitalInsuficiente {
+	public void pagarFianza(Carcel laCarcel) 
+			throws ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente {
+		
 		estado.pagarFianza(this, laCarcel);
 	}
 	

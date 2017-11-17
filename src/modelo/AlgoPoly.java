@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import modelo.casilleros.Casillero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class AlgoPoly {
 
@@ -38,19 +38,31 @@ public class AlgoPoly {
 		return lista;
 	}
 
-	private void opcionPagarFianza(Jugador jugador) throws ExcepcionCapitalInsuficiente{
+	private void opcionPagarFianza(Jugador jugador) {
 		//jugador.pagarFianza();
 	}
 	
-	private void opcionDeEdificar(Jugador jugador) {
+	private void opcionEdificar(Jugador jugador) {
 		
 	}
 	
-	private void opcionCompraOAlquiler(Casillero casillero, Jugador jugador) {
+	private void opcionMoverse(Jugador jugador) {
 		
+		try {
+			int numeroDados = tirada.arrojarDados();
+			Casillero casilleroAvanzado = tablero.avanzar(jugador, numeroDados);
+			
+			casilleroAvanzado.caer(jugador, tablero, numeroDados);
+		
+		} catch (ExcepcionJugadorPreso e) {
+			// TODO Auto-generated catch block
+		
+		} catch (ExcepcionCapitalInsuficiente e) {
+			// TODO Auto-generated catch block
+		}
 	}
 
-	public void jugar() throws ExcepcionCapitalInsuficiente, JugadorEstaPresoException {
+	public void jugar() {
 		
 		Jugador jugador = turnador.siguienteTurno();
 		
@@ -58,14 +70,10 @@ public class AlgoPoly {
 		this.opcionPagarFianza(jugador);
 		
 		//Bloque pre-movida
-		this.opcionDeEdificar(jugador);
+		this.opcionEdificar(jugador);
 		
-		//Bloque movida
-		int cantidadDePasos = tirada.arrojarDados();
-		Casillero casilleroActual = tablero.avanzar(jugador, cantidadDePasos);
-		
-		//Bloque casillero
-		this.opcionCompraOAlquiler(casilleroActual, jugador);
+		//Bloque jugada
+		this.opcionMoverse(jugador);
 	}		
 		
 }

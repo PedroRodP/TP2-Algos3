@@ -2,16 +2,13 @@ package modelo.EstadosJugador;
 
 import modelo.Jugador;
 import modelo.casilleros.Carcel;
-import modelo.excepciones.*;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.JugadorEstaPresoException;
+import modelo.excepciones.ExcepcionJugadorPreso;
 
 /**
  * Created by nico on 12/11/17.
  */
 public class PresoBajoFianza2 implements EstadoJugador {
-
-	private final double multa = 45000;
 
 	@Override
 	public boolean esLibre() {
@@ -19,8 +16,8 @@ public class PresoBajoFianza2 implements EstadoJugador {
 	}
 	
     @Override
-    public int avanzar(int cantidadDePasos) throws JugadorEstaPresoException {
-        throw new JugadorEstaPresoException();
+    public int avanzar(int cantidadDePasos) throws ExcepcionJugadorPreso {
+        throw new ExcepcionJugadorPreso();
     }
 
     @Override
@@ -29,7 +26,7 @@ public class PresoBajoFianza2 implements EstadoJugador {
     }
 
     @Override
-    public void pagarFianza(Jugador esteJugador, Carcel laCarcel) throws ImposiblePagarFianzaPrimerTurnoExeption, JugadorNoEstaPreso, ExcepcionCapitalInsuficiente {
+    public void pagarFianza(Jugador esteJugador, Carcel laCarcel) throws ExcepcionCapitalInsuficiente {
         laCarcel.cobrarFianza(esteJugador);
     }
 }

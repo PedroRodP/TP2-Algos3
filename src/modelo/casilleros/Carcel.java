@@ -3,8 +3,8 @@ package modelo.casilleros;
 import modelo.Jugador;
 import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.JugadorEstaPresoException;
-import modelo.excepciones.JugadorJugandoNoTieneMasEstados;
+import modelo.excepciones.ExcepcionJugadorPreso;
+import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class Carcel implements Casillero {
     }
 
 
-    public void cumplirRonda() throws JugadorJugandoNoTieneMasEstados {
+    public void cumplirRonda() throws ExcepcionJugadorYaEstaJugando {
         for (Jugador unPreso: listaDePresos) {
             unPreso.siguienteEstado();
         }
@@ -42,7 +42,7 @@ public class Carcel implements Casillero {
         try {
             unPreso.avanzar(0);
             return true;
-        } catch (JugadorEstaPresoException e) {
+        } catch (ExcepcionJugadorPreso e) {
             return false;
         }
     }
@@ -57,14 +57,13 @@ public class Carcel implements Casillero {
     }
 
     public void cobrarFianza(Jugador unJugador) throws ExcepcionCapitalInsuficiente {
-        if (costoFianza > unJugador.getCapital())
-            throw new ExcepcionCapitalInsuficiente();
+        
         unJugador.pagar(costoFianza);
         this.excarcelar(unJugador);
     }
 
 	@Override
-	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws JugadorEstaPresoException {
+	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws ExcepcionJugadorPreso {
 		
 	  this.arrestar(unJugador);
 		
