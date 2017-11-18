@@ -15,9 +15,8 @@ public class Turnador {
 		this.setIteradorEnInicio();
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void agregarJugadores(ArrayList<Jugador> listaJugadores) {
-		jugadores = (ArrayList<Jugador>) listaJugadores.clone();
+		jugadores = listaJugadores;
 	}
 		
 	private void generarOrdenAleatorio() {

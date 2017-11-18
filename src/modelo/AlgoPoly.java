@@ -1,6 +1,7 @@
 package modelo;
 
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionJugadorNoRegistrado;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class AlgoPoly {
@@ -47,10 +48,14 @@ public class AlgoPoly {
 			tablero.avanzar(jugador, numeroDados);
 					
 		} catch (ExcepcionJugadorPreso e) {
-			// TODO Auto-generated catch block
+			
 		
 		} catch (ExcepcionCapitalInsuficiente e) {
-			// TODO Auto-generated catch block
+			
+			
+		} catch (ExcepcionJugadorNoRegistrado e) {
+			
+			
 		}
 	}
 

@@ -3,11 +3,12 @@ package modelo.casilleros;
 import modelo.Jugador;
 import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionJugadorNoRegistrado;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Avance implements Casillero {
 
-	private void avanzarDinamicamente(Jugador jugador, Tablero tablero, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	private void avanzarDinamicamente(Jugador jugador, Tablero tablero, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionJugadorNoRegistrado {
 		
 		if (valorDados <= 6) {
 			
@@ -26,7 +27,7 @@ public class Avance implements Casillero {
 
 	@Override
 	public void caer(Jugador jugador, Tablero tablero, int valorDados)
-			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionJugadorNoRegistrado {
 		
 		this.avanzarDinamicamente(jugador, tablero, valorDados);
 	}

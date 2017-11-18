@@ -26,6 +26,7 @@ import modelo.casilleros.Casillero;
 import modelo.casilleros.Tren;
 import modelo.casilleros.Tucuman;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionJugadorNoRegistrado;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Tablero {
@@ -59,6 +60,7 @@ public class Tablero {
 
 	public void agregarJugadores(ArrayList<Jugador> listaJugadores) {
 		
+		//Registra a los jugadores poniendolos en la posicion de salida
 		Casillero salida = casilleros.getFirst();
 		
 		for (Jugador jugador: listaJugadores) {
@@ -70,7 +72,9 @@ public class Tablero {
 		return (posiciones.getPosicion(unJugador));
 	}
 	
-	public void avanzar(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	public void avanzar(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionJugadorNoRegistrado {
+		
+		if (!posiciones.estaRegistrado(jugador)) { throw new ExcepcionJugadorNoRegistrado(); }
 		
 		int numeroDePosicion = this.getNumeroDePosicion(jugador);
 		//Actualizar numero de posicion

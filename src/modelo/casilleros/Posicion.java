@@ -21,4 +21,9 @@ public class Posicion {
 			posiciones.put(jugador, casillero);
 		}
 	}
+
+	public boolean estaRegistrado(Jugador jugador) {
+
+		return posiciones.containsKey(jugador);
+	}
 }
