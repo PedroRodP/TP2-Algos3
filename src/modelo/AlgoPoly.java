@@ -1,7 +1,6 @@
 package modelo;
 
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ExcepcionJugadorNoRegistrado;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
 
@@ -61,9 +60,6 @@ public class AlgoPoly {
 			
 		
 		} catch (ExcepcionCapitalInsuficiente e) {
-			
-			
-		} catch (ExcepcionJugadorNoRegistrado e) {
 			
 			
 		}

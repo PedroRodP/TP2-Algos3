@@ -4,12 +4,9 @@ import modelo.Jugador;
 import modelo.Tablero;
 import modelo.casilleros.Carcel;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ExcepcionJugadorNoRegistrado;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
 import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
-
-import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -28,27 +25,21 @@ public class CarcelTest {
     public void test01JugadorAzulEsArrestadoYRecuperaSuLibertad3RondasDespues() throws ExcepcionJugadorYaEstaJugando {
         
     	Jugador jugadorAzul = new Jugador();
-    	ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        Tablero unTablero = new Tablero();
+        Carcel carcel = new Carcel();
 
-        listaJugadores.add(jugadorAzul);
-        unTablero.agregarJugadores(listaJugadores);
+        carcel.arrestar(jugadorAzul);
 
-        Carcel laCarcel = unTablero.getCarcel();
+        Assert.assertEquals(1, carcel.cantidadDePresos());
 
-        laCarcel.arrestar(jugadorAzul);
+        carcel.cumplirRonda();
+        carcel.cumplirRonda();
+        carcel.cumplirRonda();
 
-        Assert.assertEquals(1,laCarcel.cantidadDePresos());
-
-        laCarcel.cumplirRonda();
-        laCarcel.cumplirRonda();
-        laCarcel.cumplirRonda();
-
-        Assert.assertEquals(0,laCarcel.cantidadDePresos());
+        Assert.assertEquals(0, carcel.cantidadDePresos());
     }
 
     @Test
-    public void test02JugadorCaeEnCarcelPagaSuFianzaEnTurno2() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde, ExcepcionJugadorPreso, ExcepcionJugadorNoRegistrado {
+    public void test02JugadorCaeEnCarcelPagaSuFianzaEnTurno2() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde, ExcepcionJugadorPreso {
         Jugador jugadorAzul = new Jugador();
         Carcel carcel = new Carcel();
         Tablero unTablero = new Tablero();

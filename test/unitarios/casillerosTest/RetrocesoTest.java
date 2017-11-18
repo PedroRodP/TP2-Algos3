@@ -10,14 +10,13 @@ import modelo.Tablero;
 import modelo.casilleros.Retroceso;
 import modelo.casilleros.Salida;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ExcepcionJugadorNoRegistrado;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class RetrocesoTest {
 	
 	@Test
-	public void test01unRetrocesoDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso, ExcepcionJugadorNoRegistrado{
+	public void test01unRetrocesoDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();

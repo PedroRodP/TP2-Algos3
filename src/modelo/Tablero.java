@@ -14,7 +14,6 @@ import modelo.casilleros.Edesur;
 import modelo.casilleros.Impuesto;
 import modelo.casilleros.Neuquen;
 import modelo.casilleros.Policia;
-import modelo.casilleros.Posicion;
 import modelo.casilleros.Quini6;
 import modelo.casilleros.Retroceso;
 import modelo.casilleros.Salida;
@@ -26,13 +25,11 @@ import modelo.casilleros.Casillero;
 import modelo.casilleros.Tren;
 import modelo.casilleros.Tucuman;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ExcepcionJugadorNoRegistrado;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Tablero {
 	
 	private LinkedList<Casillero> casilleros = new LinkedList<>();
-	private Posicion posiciones = new Posicion();
 	
 	public Tablero() {
 		
@@ -60,32 +57,42 @@ public class Tablero {
 
 	public void agregarJugadores(ArrayList<Jugador> listaJugadores) {
 		
-		//Registra a los jugadores poniendolos en la posicion de salida
+		//Pone en la posicion de salida a los jugadores
 		Casillero salida = casilleros.getFirst();
 		
 		for (Jugador jugador: listaJugadores) {
-			posiciones.setPosicion(jugador, salida);
+			
+			try { 
+				jugador.avanzar(salida);
+			} 
+			catch (ExcepcionJugadorPreso e) {
+				//No agrega al jugador por inconsistencia del objeto, no deberia estar preso
+			}
 		}
 	}
+	
+	public void agregarJugador(Jugador jugador) throws ExcepcionJugadorPreso {
+		
+		ArrayList<Jugador> lista = new ArrayList<>();
+		lista.add(jugador);
+		
+		this.agregarJugadores(lista);
+	}
 
-	public Casillero getUbicacion(Jugador unJugador) {
-		return (posiciones.getPosicion(unJugador));
+	public Casillero getUbicacion(Jugador jugador) {
+		return jugador.getPosicion();
 	}
 	
-	public void avanzar(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionJugadorNoRegistrado {
-		
-		if (!posiciones.estaRegistrado(jugador)) { throw new ExcepcionJugadorNoRegistrado(); }
+	public void avanzar(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
 		int numeroDePosicion = this.getNumeroDePosicion(jugador);
+		
 		//Actualizar numero de posicion
 		numeroDePosicion += valorDados;
-		
+				
 		Casillero nuevaPosicion = this.calcularNuevaPosicion(numeroDePosicion);
 		
-		//Guardar posicion nueva
-		posiciones.setPosicion(jugador, nuevaPosicion);
-		
-		//Comprueba avance posible del jugador
+		//Comprueba que se pueda mover y cambia posicion del jugador
 		jugador.avanzar(nuevaPosicion);
 		
 		nuevaPosicion.caer(jugador, this, valorDados);
@@ -93,7 +100,7 @@ public class Tablero {
 
 	private int getNumeroDePosicion(Jugador jugador) {
 		
-		Casillero casilleroActual = this.getUbicacion(jugador);
+		Casillero casilleroActual = jugador.getPosicion();
 		int numeroDePosicion = casilleros.indexOf(casilleroActual);
 		
 		return numeroDePosicion;
@@ -111,8 +118,4 @@ public class Tablero {
 		return casilleros.get(numeroDePosicion);
 	}
 
-	public Carcel getCarcel() {
-
-		return (Carcel) casilleros.get(5);
-	}
 }
