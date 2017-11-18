@@ -28,11 +28,11 @@ public class Carcel implements Casillero {
     }
 
     private void verificarCondenas() {
-        ArrayList<Jugador> listaAuxiliar;
-        listaAuxiliar = (ArrayList<Jugador>) this.listaDePresos.clone();
+        //ArrayList<Jugador> listaAuxiliar;
+        //listaAuxiliar = (ArrayList<Jugador>) this.listaDePresos.clone();
 
         //Recorro la lista de Presos para liberar los que cumplieron los turnos.
-        for (Jugador unPreso: listaAuxiliar) {
+        for (Jugador unPreso: listaDePresos) {
             if (this.cumplioCondena(unPreso))
                 this.excarcelar(unPreso);
         }
