@@ -26,8 +26,6 @@ public class Jugador {
 	public void pagar(double monto) throws ExcepcionCapitalInsuficiente {
 		if (monto > capital) { throw new ExcepcionCapitalInsuficiente(); }
 		capital -= monto;
-		//De nuevo, es para las pruebas de avance dinamico
-		cantidadDeInmuebles++;
 	}
 	
 	public void acreditar(double monto) {
@@ -38,13 +36,11 @@ public class Jugador {
 		return capital;
 	}
 
-	public Casillero avanzar(Casillero casillero) throws ExcepcionJugadorPreso {
+	public void avanzar(Casillero casillero) throws ExcepcionJugadorPreso {
 		
 		Casillero nuevaPosicion = estado.avanzar(casillero);
 		
 		this.actualizarPosicion(nuevaPosicion);
-		
-		return nuevaPosicion;
 	}
 
 	private void actualizarPosicion(Casillero nuevaPosicion) {
@@ -56,7 +52,7 @@ public class Jugador {
 		return posicion;
 	}
 
-	public void siguienteEstado() throws ExcepcionJugadorYaEstaJugando {
+	public void cumplirCondena() throws ExcepcionJugadorYaEstaJugando {
 		estado = estado.siguienteEstado();
 	}
 

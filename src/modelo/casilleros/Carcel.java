@@ -21,7 +21,7 @@ public class Carcel implements Casillero {
 
     public void cumplirRonda() throws ExcepcionJugadorYaEstaJugando {
         for (Jugador unPreso: listaDePresos) {
-            unPreso.siguienteEstado();
+            unPreso.cumplirCondena();
         }
 
         this.verificarCondenas();

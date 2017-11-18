@@ -108,7 +108,7 @@ public class Tablero {
 		if (numeroDePosicion >= casilleros.size())
 			numeroDePosicion -= casilleros.size();
 		
-		//Método para avanzar casilleros hacia atrás
+		//Método para avanzar casilleros en dirección contraria
 		if (numeroDePosicion < 0)
 			numeroDePosicion += casilleros.size();
 				
