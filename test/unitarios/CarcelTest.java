@@ -4,6 +4,8 @@ import modelo.Jugador;
 import modelo.Tablero;
 import modelo.casilleros.Carcel;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionJugadorNoRegistrado;
+import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
 import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
 
@@ -46,13 +48,15 @@ public class CarcelTest {
     }
 
     @Test
-    public void test02JugadorCaeEnCarcelPagaSuFianzaEnTurno2() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde {
+    public void test02JugadorCaeEnCarcelPagaSuFianzaEnTurno2() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde, ExcepcionJugadorPreso, ExcepcionJugadorNoRegistrado {
         Jugador jugadorAzul = new Jugador();
-        Carcel laCarcel = new Carcel();
-
-        laCarcel.arrestar(jugadorAzul);
+        Carcel carcel = new Carcel();
+        Tablero unTablero = new Tablero();
+        
+        jugadorAzul.avanzar(carcel);
+        carcel.caer(jugadorAzul, unTablero, 1);
 
         thrown.expect(ExcepcionPagarFianzaNoCorresponde.class);
-        jugadorAzul.pagarFianza(laCarcel);
+        jugadorAzul.pagarFianza();
     }
 }

@@ -16,6 +16,7 @@ public class Jugador {
 	//Por ahora queda como integer, porque lo necesito para los avances dinamicos
 	//pero hay que pasarlo a una clase, no se si RegistroDeInmuebles era la que se penso para eso
 	private int cantidadDeInmuebles = 0;
+	private Casillero posicion;
 
 	public Jugador() {
 		capital = 100000;
@@ -41,7 +42,18 @@ public class Jugador {
 		
 		Casillero nuevaPosicion = estado.avanzar(casillero);
 		
+		this.actualizarPosicion(nuevaPosicion);
+		
 		return nuevaPosicion;
+	}
+
+	private void actualizarPosicion(Casillero nuevaPosicion) {
+		
+		posicion = nuevaPosicion;
+	}
+	
+	public Casillero getPosicion() {
+		return posicion;
 	}
 
 	public void siguienteEstado() throws ExcepcionJugadorYaEstaJugando {
@@ -56,10 +68,16 @@ public class Jugador {
 		estado = new Jugando();
 	}
 
-	public void pagarFianza(Carcel laCarcel) 
+	public void pagarFianza() 
 			throws ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente {
 		
-		estado.pagarFianza(this, laCarcel);
+		try {
+			Carcel carcel = (Carcel) posicion;
+			estado.pagarFianza(this, carcel);
+			
+		} catch (ClassCastException e) {
+			throw new ExcepcionPagarFianzaNoCorresponde();
+		}
 	}
 	
 	public int cantidadDeInmuebles(){

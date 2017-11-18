@@ -3,6 +3,7 @@ package modelo;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorNoRegistrado;
 import modelo.excepciones.ExcepcionJugadorPreso;
+import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
 
 public class AlgoPoly {
 
@@ -34,7 +35,16 @@ public class AlgoPoly {
 	}		
 
 	private void opcionPagarFianza(Jugador jugador) {
-		//jugador.pagarFianza();
+		try {
+			jugador.pagarFianza();
+			
+		} catch (ExcepcionPagarFianzaNoCorresponde e) {
+			
+			
+		} catch (ExcepcionCapitalInsuficiente e) {
+			
+			
+		}
 	}
 	
 	private void opcionEdificar(Jugador jugador) {
