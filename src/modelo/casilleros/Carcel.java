@@ -70,8 +70,6 @@ public class Carcel implements Casillero {
 	  this.arrestar(unJugador);
 		
 	}
-	
-	//Queda el metodo arrestar solamente para no complejizar las pruebas de la Carcel
 
 	public void arrestar(Jugador unJugador) {
 	     listaDePresos.add(unJugador);

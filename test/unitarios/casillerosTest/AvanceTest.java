@@ -27,7 +27,7 @@ public class AvanceTest {
 		unTablero.agregarJugadores(listaJugadores);
 		unAvance.caer(unJugador,unTablero, 4);
 		
-		Assert.assertNotEquals((new Salida()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertNotEquals((new Salida()).getClass(), unJugador.getPosicion().getClass());
 		
 	}
 	

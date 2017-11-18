@@ -78,10 +78,6 @@ public class Tablero {
 		
 		this.agregarJugadores(lista);
 	}
-
-	public Casillero getUbicacion(Jugador jugador) {
-		return jugador.getPosicion();
-	}
 	
 	public void avanzar(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
@@ -112,6 +108,7 @@ public class Tablero {
 		if (numeroDePosicion >= casilleros.size())
 			numeroDePosicion -= casilleros.size();
 		
+		//Método para avanzar casilleros hacia atrás
 		if (numeroDePosicion < 0)
 			numeroDePosicion += casilleros.size();
 				

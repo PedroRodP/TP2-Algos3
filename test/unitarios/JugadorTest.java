@@ -49,7 +49,7 @@ public class JugadorTest {
 		unTablero.agregarJugadores(listaJugadores);
 		unTablero.avanzar(unJugador, 3);
 		
-		Assert.assertEquals(unTablero.getUbicacion(unJugador).getClass(),(new Edesur()).getClass());
+		Assert.assertEquals(unJugador.getPosicion().getClass(),(new Edesur()).getClass());
 
 	}
 
@@ -89,7 +89,7 @@ public class JugadorTest {
 		unTablero.agregarJugadores(listaJugadores);
 		unTablero.avanzar(unJugador, 20);
 		
-		Assert.assertEquals(unTablero.getUbicacion(unJugador).getClass(),(new Salida()).getClass());
+		Assert.assertEquals(unJugador.getPosicion().getClass(),(new Salida()).getClass());
 	}
 	
 	@Test
@@ -104,7 +104,7 @@ public class JugadorTest {
 		
 		unTablero.avanzar(unJugador, 25);
 		
-		Assert.assertEquals((new Carcel()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertEquals((new Carcel()).getClass(), unJugador.getPosicion().getClass());
 		
 	}
 	
@@ -122,7 +122,7 @@ public class JugadorTest {
 		
 		
 		
-		Assert.assertEquals((new Subte()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertEquals((new Subte()).getClass(), unJugador.getPosicion().getClass());
 		
 		
 		
@@ -144,7 +144,7 @@ public class JugadorTest {
 
 		
 		
-		Assert.assertEquals((new Aysa()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertEquals((new Aysa()).getClass(), unJugador.getPosicion().getClass());
 		
 		
 		
@@ -171,7 +171,7 @@ public class JugadorTest {
 		unTablero.avanzar(unJugador, 11 );
 		
 				
-		Assert.assertEquals((new Neuquen()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertEquals((new Neuquen()).getClass(), unJugador.getPosicion().getClass());
 				
 	}
 	
@@ -189,7 +189,7 @@ public class JugadorTest {
 		unTablero.avanzar(unJugador, 15 );
 		
 				
-		Assert.assertEquals((new Carcel()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertEquals((new Carcel()).getClass(), unJugador.getPosicion().getClass());
 				
 	}
 	
@@ -226,7 +226,7 @@ public class JugadorTest {
 		
 		
 		
-		Assert.assertEquals((new Tren()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertEquals((new Tren()).getClass(), unJugador.getPosicion().getClass());
 		
 		
 		
@@ -248,7 +248,7 @@ public class JugadorTest {
 
 		
 		
-		Assert.assertEquals((new SaltaNorte()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertEquals((new SaltaNorte()).getClass(), unJugador.getPosicion().getClass());
 		
 	
 		
@@ -276,7 +276,7 @@ public class JugadorTest {
 		unTablero.avanzar(unJugador, 12 );
 		
 				
-		Assert.assertEquals((new Subte()).getClass(), unTablero.getUbicacion(unJugador).getClass());
+		Assert.assertEquals((new Subte()).getClass(), unJugador.getPosicion().getClass());
 				
 	}
 }
