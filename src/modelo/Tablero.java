@@ -104,11 +104,11 @@ public class Tablero {
 
 	private Casillero calcularNuevaPosicion(int numeroDePosicion) {
 		
-		//Método para volver al inicio de la lista cuando se termina
+		//Metodo para volver al inicio de la lista cuando se termina
 		if (numeroDePosicion >= casilleros.size())
 			numeroDePosicion -= casilleros.size();
 		
-		//Método para avanzar casilleros en dirección contraria
+		//Metodo para avanzar casilleros en direccion contraria
 		if (numeroDePosicion < 0)
 			numeroDePosicion += casilleros.size();
 				
