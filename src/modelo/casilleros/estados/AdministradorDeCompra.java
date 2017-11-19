@@ -7,22 +7,26 @@ import modelo.excepciones.ExcepcionTerrenoOcupado;
 public class AdministradorDeCompra {
 	
 	private Estado disponibilidad;
-	private Jugador duenio;
+	private Propietario duenio;
 	
 	public AdministradorDeCompra() {
 		this.setDisponible();
 	}
-
-	public void comprar(Jugador jugador, double precio) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	
+	public void comprarTerreno(Jugador jugador, double precio) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
 		
-		disponibilidad.comprar(jugador, precio);
+		disponibilidad.comprarTerreno(jugador, precio);
 		this.setNoDisponible(jugador);
 	}
 	
+	public void venderTerreno(Jugador jugador, double precio) {
+		//A implementar
+	}
+
 	private void setDisponible() {
 		
 		disponibilidad = new Disponible();
-		duenio = null;
+		duenio = new SinPropietario();
 	}
 	
 	private void setNoDisponible(Jugador jugador) {
@@ -31,11 +35,8 @@ public class AdministradorDeCompra {
 		duenio = jugador;
 	}
 	
-	public Jugador getDuenio() {
+	public Propietario getDuenio() {
 		return duenio;
 	}
-	
-	public Estado getDisponibilidad() {
-		return disponibilidad;
-	}
+
 }

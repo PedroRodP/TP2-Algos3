@@ -6,16 +6,23 @@ import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
 public class Retroceso implements Casillero {
+	
+	Tablero tablero;
+	
+	public Retroceso(Tablero referencia) {
+		
+		tablero = referencia;
+	}
 
-	private void retrocederDinamicamente(Jugador jugador, Tablero tablero, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
-
+	private void retrocederDinamicamente(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+		
 		if (valorDados <= 6) {
 			
 			tablero.avanzar(jugador, (valorDados-2)*-1);
 			
 		} else if (valorDados > 6 && valorDados <= 10) {
 			
-			tablero.avanzar(jugador,(int) (jugador.getCapital() % valorDados)*-1);
+			tablero.avanzar(jugador, (int) ((jugador.getCapital()) % valorDados)*(-1));
 		
 		} else {
 			
@@ -25,10 +32,10 @@ public class Retroceso implements Casillero {
 	}
 
 	@Override
-	public void caer(Jugador jugador, Tablero tablero, int valorDados)
+	public void caer(Jugador jugador, int valorDados)
 			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
-		this.retrocederDinamicamente(jugador, tablero, valorDados);
+		this.retrocederDinamicamente(jugador, valorDados);
 	}
 
 

@@ -45,7 +45,7 @@ public class CarcelTest {
         Tablero unTablero = new Tablero();
         
         jugadorAzul.avanzar(carcel);
-        carcel.caer(jugadorAzul, unTablero, 1);
+        carcel.caer(jugadorAzul, 1);
 
         thrown.expect(ExcepcionPagarFianzaNoCorresponde.class);
         jugadorAzul.pagarFianza();

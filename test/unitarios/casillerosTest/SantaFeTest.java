@@ -20,20 +20,18 @@ public class SantaFeTest {
 		Jugador jugador = new Jugador();
 		Barrio barrio = new SantaFe();
 		
-		barrio.comprarTerreno(jugador);
+		barrio.caer(jugador, 1);
 		
 		Assert.assertEquals(15000, 100000 - jugador.getCapital(), DELTA);
 	}
 	
-	@Test (expected = ExcepcionTerrenoOcupado.class)
-	public void test02ComprarTerrenoOcupadoArrojaExcepcion() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	@Test (expected = ExcepcionCapitalInsuficiente.class)
+	public void test02ComprarTerrenoSinDineroArrojaExcepcionCapitalInsuficiente() throws ExcepcionCapitalInsuficiente {
 		
-		Jugador jugador1 = new Jugador();
-		Jugador jugador2 = new Jugador();
+		Jugador jugador = new Jugador();
 		Barrio barrio = new SantaFe();
 		
-		barrio.comprarTerreno(jugador1);
-		barrio.comprarTerreno(jugador2);
-		
+		jugador.pagar(100000); //Su capital queda en 0
+		barrio.caer(jugador, 1);
 	}
 }

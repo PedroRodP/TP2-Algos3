@@ -5,11 +5,12 @@ import modelo.EstadosJugador.Jugando;
 import modelo.EstadosJugador.Preso;
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Casillero;
+import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.*;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
-public class Jugador {
+public class Jugador implements Propietario {
 
 	private double capital;
 	private EstadoJugador estado;

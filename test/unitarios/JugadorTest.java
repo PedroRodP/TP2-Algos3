@@ -18,7 +18,6 @@ import modelo.Jugador;
 import modelo.Tablero;
 import modelo.casilleros.Edesur;
 import modelo.casilleros.Salida;
-import modelo.casilleros.SaltaNorte;
 import modelo.casilleros.Subte;
 import modelo.casilleros.Tren;
 
@@ -58,7 +57,7 @@ public class JugadorTest {
 		Jugador unDuenio = new Jugador();
 		Neuquen neuquen = new Neuquen();
 
-		neuquen.comprarTerreno(unDuenio);
+		neuquen.caer(unDuenio, 1);
 
 		Assert.assertEquals(neuquen.getPropietario(), unDuenio);
 	}
@@ -133,11 +132,9 @@ public class JugadorTest {
 	public void test08UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn7YAvanzaAAysa() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
 		
 		Jugador unJugador = new Jugador();
-		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		listaJugadores.add(unJugador);
-		unTablero.agregarJugadores(listaJugadores);
+		unTablero.agregarJugador(unJugador);
 			
 		//cae en avance dinamico, rolleando un 7
 		unTablero.avanzar(unJugador, 7 );
@@ -218,21 +215,19 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn7YRetrocedeASaltaNorte() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YRetrocedeAlMismoCasillero() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
 		
 		Jugador unJugador = new Jugador();
-		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
 		
-		listaJugadores.add(unJugador);
-		unTablero.agregarJugadores(listaJugadores);
+		unTablero.agregarJugador(unJugador);
 			
-		unTablero.avanzar(unJugador, 11 );//Dejo al Jugador En Santa Fe
-		unTablero.avanzar(unJugador, 7 ); //Desde Santa Fe saco un 7 y el jugador cae en Retroceso Dinamico
+		unTablero.avanzar(unJugador, 6);
+		unTablero.avanzar(unJugador, 12);//Desde CordobaSur saco un 12 y el jugador cae en Retroceso Dinamico
 
+		//Deberia retroceder los 12 casilleros por no tener inmuebles
 		
-		
-		Assert.assertEquals((new SaltaNorte()).getClass(), unJugador.getPosicion().getClass());
+		Assert.assertEquals((new CordobaSur()).getClass(), unJugador.getPosicion().getClass());
 		
 	
 		

@@ -1,7 +1,6 @@
 package modelo.casilleros;
 
 import modelo.Jugador;
-import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
@@ -65,9 +64,9 @@ public class Carcel implements Casillero {
     }
 
 	@Override
-	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados) throws ExcepcionJugadorPreso {
+	public void caer(Jugador jugador, int velorDeLosDados) throws ExcepcionJugadorPreso {
 		
-	  this.arrestar(unJugador);
+	  this.arrestar(jugador);
 		
 	}
 

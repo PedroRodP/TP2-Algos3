@@ -2,7 +2,7 @@ package modelo.casilleros;
 
 import modelo.Jugador;
 import modelo.casilleros.estados.AdministradorDeCompra;
-import modelo.casilleros.estados.Estado;
+import modelo.casilleros.estados.Propietario;
 import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
@@ -13,19 +13,23 @@ public abstract class Barrio implements Casillero {
 	protected RegistroDeInmuebles registro = new RegistroDeInmuebles();
 	protected double precioTerreno;
 	
-	public void comprarTerreno(Jugador jugador) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
-		administrador.comprar(jugador, precioTerreno);
+	@Override
+	public void caer(Jugador jugador, int valorDados) throws ExcepcionCapitalInsuficiente {
+		
+		try {
+			administrador.comprarTerreno(jugador, precioTerreno);
+			
+		} catch (ExcepcionTerrenoOcupado e) {
+			
+			registro.alquilar(jugador);
+		}
 	}
 	
-	public double precio(){
+	public double getPrecio(){
 		return precioTerreno;
 	}
-	
-	public Estado getDisponibilidad(){
-		return (administrador.getDisponibilidad());
-	}
 
-	public Jugador getPropietario() {
+	public Propietario getPropietario() {
 		return administrador.getDuenio();
 	}
 }

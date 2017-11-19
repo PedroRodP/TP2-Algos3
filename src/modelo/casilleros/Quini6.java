@@ -3,7 +3,6 @@ package modelo.casilleros;
 import modelo.Jugador;
 import modelo.Pasada;
 import modelo.PrimeraPasada;
-import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
@@ -45,9 +44,9 @@ public class Quini6 implements Casillero {
 	}
 
 	@Override
-	public void caer(Jugador unJugador, Tablero unTablero, int velorDeLosDados)
+	public void caer(Jugador jugador, int velorDeLosDados)
 			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
-		this.premiar(unJugador);
+		this.premiar(jugador);
 		
 	}
 	
