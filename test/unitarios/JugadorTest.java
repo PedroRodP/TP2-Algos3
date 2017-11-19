@@ -2,11 +2,15 @@ package unitarios;
 
 import modelo.casilleros.Aysa;
 import modelo.casilleros.Carcel;
+import modelo.casilleros.Casillero;
 import modelo.casilleros.CordobaSur;
 import modelo.casilleros.Neuquen;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 import modelo.excepciones.ExcepcionJugadorPreso;
+import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
+import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
+
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -25,6 +29,7 @@ import org.junit.rules.ExpectedException;
 
 public class JugadorTest {
 
+	private static final double DELTA = 1e-15;
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
@@ -250,5 +255,62 @@ public class JugadorTest {
 		//Vuelve a caer en CordobaSur retrocediendo los 12 casilleros por tener 0 inmuebles		
 		Assert.assertEquals((new CordobaSur()).getClass(), unJugador.getPosicion().getClass());
 				
+	}
+	
+	@Test (expected = ExcepcionPagarFianzaNoCorresponde.class)
+	public void test15JugadorPagaFianzaEstandoJugandoArrojaExcepcionPagarFianzaNoCorresponde() throws ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente {
+		
+		Jugador jugador = new Jugador();
+		
+		jugador.pagarFianza();
+	}
+	
+	@Test (expected = ExcepcionJugadorYaEstaJugando.class)
+	public void test16JugadorCumplirCondenaArrojaExcepcionJugadorYaEstaJugandoSiElEstadoEsJugando() throws ExcepcionJugadorYaEstaJugando {
+		
+		Jugador jugador = new Jugador();
+		
+		jugador.cumplirCondena();
+	}
+	
+	@Test
+	public void test17AvanzarJugadorASalidaPoneJugadorEnPosicionSalida() throws ExcepcionJugadorPreso {
+		
+		Jugador jugador = new Jugador();
+		Casillero salida = new Salida();
+		
+		jugador.avanzar(salida);
+		
+		Assert.assertEquals(salida, jugador.getPosicion());
+	}
+	
+	@Test (expected = ExcepcionJugadorPreso.class)
+	public void test18AvanzarJugadorASalidaArrojaExcepcionJugadorPresoCuandoElEstadoEsPreso() throws ExcepcionJugadorPreso {
+		
+		Jugador jugador = new Jugador();
+		Casillero salida = new Salida();
+		
+		jugador.irPreso();
+		jugador.avanzar(salida);
+	}
+	
+	@Test
+	public void test19JugadorPaga50000YLeQuedaLaMitadDeSuCapital() throws ExcepcionCapitalInsuficiente {
+		
+		Jugador jugador = new Jugador();
+		
+		jugador.pagar(50000);
+		
+		Assert.assertEquals(100000 - 50000, jugador.getCapital(), DELTA);
+	}
+	
+	@Test
+	public void test20JugadorCobra100000YLeQuedaElDobleDeSuCapital() {
+		
+		Jugador jugador = new Jugador();
+		
+		jugador.acreditar(100000);
+		
+		Assert.assertEquals(100000 + 100000, jugador.getCapital(), DELTA);
 	}
 }

@@ -15,13 +15,12 @@ public class Jugador implements Propietario {
 	private double capital;
 	private EstadoJugador estado;
 	private Casillero posicion;
-	//Por ahora queda como integer, porque lo necesito para los avances dinamicos
-	//pero hay que pasarlo a una clase, no se si RegistroDeInmuebles era la que se penso para eso
-	private int cantidadDeInmuebles = 0;
+	private int cantidadDeInmuebles;
 
 	public Jugador() {
 		capital = 100000;
 		estado = new Jugando();
+		cantidadDeInmuebles = 0;
 	}
 	
 	public void pagar(double monto) throws ExcepcionCapitalInsuficiente {
