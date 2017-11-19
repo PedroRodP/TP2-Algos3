@@ -93,6 +93,12 @@ public class Tablero {
 		
 		nuevaPosicion.caer(jugador, valorDados);
 	}
+	
+	public void enviarALaCarcel(Jugador jugador) {
+		
+		Carcel carcel = (Carcel) casilleros.get(5);
+		carcel.arrestar(jugador);
+	}
 
 	private int getNumeroDePosicion(Jugador jugador) {
 		

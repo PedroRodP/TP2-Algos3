@@ -289,8 +289,9 @@ public class JugadorTest {
 		
 		Jugador jugador = new Jugador();
 		Casillero salida = new Salida();
+		Carcel carcel = new Carcel();
 		
-		jugador.irPreso();
+		jugador.irPreso(carcel);
 		jugador.avanzar(salida);
 	}
 	

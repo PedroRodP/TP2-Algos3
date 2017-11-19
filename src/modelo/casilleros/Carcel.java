@@ -72,6 +72,6 @@ public class Carcel implements Casillero {
 
 	public void arrestar(Jugador unJugador) {
 	     listaDePresos.add(unJugador);
-	     unJugador.irPreso();
+	     unJugador.irPreso(this);
 	}
 }
