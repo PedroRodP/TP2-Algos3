@@ -5,6 +5,7 @@ import org.junit.Test;
 import modelo.Jugador;
 import modelo.casilleros.Barrio;
 import modelo.casilleros.BsAsNorte;
+import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
 import org.junit.Assert;
@@ -33,5 +34,17 @@ public class BsAsNorteTest {
 		jugador.pagar(100000); //Su capital queda en 0
 		barrio.caer(jugador, 1);
 		
+	}
+	
+	@Test
+	public void test03ComprarTerrenoNoOcupadoAsignaComoPropietarioAlJugadorComprador() throws ExcepcionCapitalInsuficiente {
+		
+		Jugador jugador = new Jugador();
+		Barrio barrio = new BsAsNorte();
+		
+		barrio.caer(jugador, 1);
+		Propietario duenio = jugador; //Casteo de Jugador a Propietario
+		
+		Assert.assertEquals(duenio, barrio.getPropietario());
 	}
 }

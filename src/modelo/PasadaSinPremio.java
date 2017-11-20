@@ -1,6 +1,6 @@
 package modelo;
 
-public class TerceraPasada implements Pasada {
+public class PasadaSinPremio implements Pasada {
 		
 		@Override
 		public void otorgarPremio(Jugador jugador) {
@@ -12,6 +12,6 @@ public class TerceraPasada implements Pasada {
 		public Pasada incrementar() {
 			
 			//No hay necesidad de incrementar pasadas luego de la tercera
-			return new TerceraPasada();
+			return new PasadaSinPremio();
 		}
 }

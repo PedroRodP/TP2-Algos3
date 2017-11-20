@@ -13,6 +13,6 @@ public class SegundaPasada implements Pasada {
 		@Override
 		public Pasada incrementar() {
 			
-			return new TerceraPasada();
+			return new PasadaSinPremio();
 		}
 }

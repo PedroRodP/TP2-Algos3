@@ -9,7 +9,7 @@ public class GrupoJugadores {
 		Jugador jugadorAzul = new Jugador();
 	
 		
-	ArrayList<Jugador> getJugadores() {
+	public ArrayList<Jugador> getJugadores() {
 		
 		ArrayList<Jugador> lista = new ArrayList<>();
 		
