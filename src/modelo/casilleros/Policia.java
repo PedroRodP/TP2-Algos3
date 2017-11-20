@@ -16,7 +16,7 @@ public class Policia implements Casillero {
 	
 	public void enviarACarcel(Jugador jugador) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
-		tablero.avanzar(jugador, 10);
+		tablero.enviarALaCarcel(jugador);
 	}
 	
 	@Override

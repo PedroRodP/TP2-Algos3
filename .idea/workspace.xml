@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="effdabb1-2060-405c-8c7a-620968faf809" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/AlgoPoly.java" afterPath="$PROJECT_DIR$/src/modelo/AlgoPoly.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Jugador.java" afterPath="$PROJECT_DIR$/src/modelo/Jugador.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Tablero.java" afterPath="$PROJECT_DIR$/src/modelo/Tablero.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Tirada.java" afterPath="$PROJECT_DIR$/src/modelo/Tirada.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/casilleros/Carcel.java" afterPath="$PROJECT_DIR$/src/modelo/casilleros/Carcel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/casilleros/Policia.java" afterPath="$PROJECT_DIR$/src/modelo/casilleros/Policia.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unitarios/JugadorTest.java" afterPath="$PROJECT_DIR$/test/unitarios/JugadorTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -26,30 +32,8 @@
               <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1511114121809" expanded="false" signature="1774:1777" ph=" }" />
-                <marker date="1511114121809" expanded="false" signature="1813:1850" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Turnador.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Turnador.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Impuesto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/casilleros/Impuesto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#cantidadDeInmuebles#0;class#Jugador#0" expanded="false" />
+                <marker date="1511146224631" expanded="false" signature="1822:1825" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -75,6 +59,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlgoPoly.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/modelo/AlgoPoly.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="891">
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,6 +102,8 @@
               <caret line="129" column="8" lean-forward="true" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <marker date="1511146224635" expanded="true" signature="9200:9340" ph="{...}" />
+                <marker date="1511146224635" expanded="true" signature="9416:9562" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -123,11 +119,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BsAsSurTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BsAsSurTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/unitarios/casillerosTest/BsAsSurTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
               <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tirada.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modelo/Tirada.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -559,7 +565,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -621,14 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Tirada.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -822,8 +819,8 @@
           <caret line="61" column="24" lean-forward="false" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511114121809" expanded="true" signature="1907:1974" ph="{...}" />
-            <marker date="1511114121809" expanded="true" signature="1973:1974" ph="{...}" />
+            <marker date="1511146224631" expanded="true" signature="1907:1978" ph="{...}" />
+            <marker date="1511146224631" expanded="true" signature="1977:1978" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -836,14 +833,6 @@
             <element signature="imports" expanded="true" />
             <marker date="1511114121809" expanded="true" signature="1532:1540" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/AlgoPoly.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -915,18 +904,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Jugador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1511114121809" expanded="false" signature="1774:1777" ph=" }" />
-            <marker date="1511114121809" expanded="false" signature="1813:1850" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modelo/Turnador.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -965,16 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Tablero.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-770">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/unitarios/casillerosTest/AvanceTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -989,6 +956,8 @@
           <caret line="129" column="8" lean-forward="true" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1511146224635" expanded="true" signature="9200:9340" ph="{...}" />
+            <marker date="1511146224635" expanded="true" signature="9416:9562" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1005,6 +974,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Tirada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Tablero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-770">
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Jugador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#cantidadDeInmuebles#0;class#Jugador#0" expanded="false" />
+            <marker date="1511146224631" expanded="false" signature="1822:1825" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/AlgoPoly.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding />
         </state>
       </provider>

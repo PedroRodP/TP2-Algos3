@@ -56,7 +56,8 @@ public class Jugador implements Propietario {
 		estado = estado.siguienteEstado();
 	}
 
-	public void irPreso() {
+	public void irPreso(Carcel carcel) {
+		this.actualizarPosicion(carcel);
 		estado = new Preso();
 	}
 	
