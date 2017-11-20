@@ -124,12 +124,9 @@ public class JugadorTest {
 		unTablero.avanzar(unJugador, 4); //Dejo al jugador en Bs As Zona sur para avanzar de a 3 a Avance
 		unTablero.avanzar(unJugador, 3); //Muevo al jugador desde Bs As Zona sur a avanza dinamico
 		
-		
-		
+
 		Assert.assertEquals((new Subte()).getClass(), unJugador.getPosicion().getClass());
-		
-		
-		
+
 		
 	}
 	
