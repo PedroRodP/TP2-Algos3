@@ -3,6 +3,7 @@ package unitarios;
 import modelo.Jugador;
 import modelo.Tablero;
 import modelo.casilleros.Carcel;
+import modelo.casilleros.Subte;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
@@ -67,6 +68,21 @@ public class CarcelTest {
 
         thrown.expect(ExcepcionJugadorPreso.class);
         jugadorAzul.avanzar(carcel);
+    }
+
+    @Test
+    public void test04JugadorCaeEnCarcelYPagaSuFianzaEnTurno2YQuedaEnLibertad() throws ExcepcionJugadorPreso, ExcepcionJugadorYaEstaJugando, ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente {
+        Jugador jugadorAzul = new Jugador();
+        Carcel carcel = new Carcel();
+        Subte subte = new Subte();
+
+        carcel.caer(jugadorAzul, 1);
+        carcel.cumplirRonda();
+
+        jugadorAzul.pagarFianza();
+        jugadorAzul.avanzar(subte);
+
+        Assert.assertEquals(subte,jugadorAzul.getPosicion());
     }
 
 }

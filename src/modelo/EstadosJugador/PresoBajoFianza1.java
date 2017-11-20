@@ -24,5 +24,6 @@ public class PresoBajoFianza1 implements EstadoJugador {
     @Override
     public void pagarFianza(Jugador esteJugador, Carcel laCarcel) throws ExcepcionCapitalInsuficiente {
         laCarcel.cobrarFianza(esteJugador);
+        esteJugador.recobrarLibertad();
     }
 }
