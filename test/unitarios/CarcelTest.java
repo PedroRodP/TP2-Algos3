@@ -39,10 +39,9 @@ public class CarcelTest {
     }
 
     @Test
-    public void test02JugadorCaeEnCarcelPagaSuFianzaEnTurno2() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde, ExcepcionJugadorPreso {
+    public void test02JugadorCaeEnCarcelPagaYNoPuedePagarSuFianzaEnPrimerTurno() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde, ExcepcionJugadorPreso {
         Jugador jugadorAzul = new Jugador();
         Carcel carcel = new Carcel();
-        Tablero unTablero = new Tablero();
         
         jugadorAzul.avanzar(carcel);
         carcel.caer(jugadorAzul, 1);
@@ -50,4 +49,24 @@ public class CarcelTest {
         thrown.expect(ExcepcionPagarFianzaNoCorresponde.class);
         jugadorAzul.pagarFianza();
     }
+
+    @Test
+    public void test03JugadorCaeEnCarcelYNoPuedePagarSufianzaEnTurno3PorFaltaDeFondos() throws ExcepcionJugadorPreso, ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente, ExcepcionJugadorYaEstaJugando {
+        Jugador jugadorAzul = new Jugador();
+        Carcel carcel = new Carcel();
+
+        jugadorAzul.avanzar(carcel);
+        carcel.caer(jugadorAzul, 1);
+        carcel.cumplirRonda();
+        carcel.cumplirRonda();
+
+        jugadorAzul.pagar(60000); //Disminuyo en sesenta mil el capital del jugador, asi, luego, no podrá pagar la fianza.
+
+        thrown.expect(ExcepcionCapitalInsuficiente.class);
+        jugadorAzul.pagarFianza();
+
+        thrown.expect(ExcepcionJugadorPreso.class);
+        jugadorAzul.avanzar(carcel);
+    }
+
 }
