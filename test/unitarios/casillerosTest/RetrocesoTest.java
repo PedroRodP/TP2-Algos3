@@ -1,5 +1,6 @@
 package unitarios.casillerosTest;
 
+import modelo.excepciones.ExcepcionNoExistePropietario;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ import modelo.excepciones.ExcepcionJugadorPreso;
 public class RetrocesoTest {
 	
 	@Test
-	public void test01unRetrocesoDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso {
+	public void test01unRetrocesoDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
