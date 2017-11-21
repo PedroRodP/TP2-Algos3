@@ -5,11 +5,7 @@ import modelo.casilleros.Carcel;
 import modelo.casilleros.Casillero;
 import modelo.casilleros.CordobaSur;
 import modelo.casilleros.Neuquen;
-import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ExcepcionTerrenoOcupado;
-import modelo.excepciones.ExcepcionJugadorPreso;
-import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
-import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
+import modelo.excepciones.*;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,7 +39,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test02ElJugadorAvanza3CasillerosYCaeEnEdesur() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	public void test02ElJugadorAvanza3CasillerosYCaeEnEdesur() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -51,6 +47,8 @@ public class JugadorTest {
 		
 		listaJugadores.add(unJugador);
 		unTablero.agregarJugadores(listaJugadores);
+
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 3);
 		
 		Assert.assertEquals(unJugador.getPosicion().getClass(),(new Edesur()).getClass());
@@ -68,7 +66,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void test04JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	public void test04JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
 		Tablero unTablero = new Tablero();
@@ -83,7 +81,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void test05SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	public void test05SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -97,7 +95,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test06SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	public void test06SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -113,7 +111,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test07UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn3YAvanzaASubte() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso {
+	public void test07UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn3YAvanzaASubte() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -124,17 +122,14 @@ public class JugadorTest {
 		unTablero.avanzar(unJugador, 4); //Dejo al jugador en Bs As Zona sur para avanzar de a 3 a Avance
 		unTablero.avanzar(unJugador, 3); //Muevo al jugador desde Bs As Zona sur a avanza dinamico
 		
-		
-		
+
 		Assert.assertEquals((new Subte()).getClass(), unJugador.getPosicion().getClass());
-		
-		
-		
+
 		
 	}
 	
 	@Test
-	public void test08UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn7YAvanzaAAysa() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	public void test08UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn7YAvanzaAAysa() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
@@ -162,7 +157,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test10UnJugadorCaeEnLaPoliciaYEstaLoLlevaALaCarcel() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	public void test10UnJugadorCaeEnLaPoliciaYEstaLoLlevaALaCarcel() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -180,7 +175,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test11UnJugadorCaeEnLaPoliciaEstaLoLlevaALaCarcelYAhoraNoSePuedeMover() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	public void test11UnJugadorCaeEnLaPoliciaEstaLoLlevaALaCarcelYAhoraNoSePuedeMover() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -199,7 +194,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test12UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn4YRetrocedeATren() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso {
+	public void test12UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn4YRetrocedeATren() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -220,7 +215,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YRetrocedeAlMismoCasillero() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YRetrocedeAlMismoCasillero() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
@@ -239,7 +234,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test14UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YCaeEnCordobaSur() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	public void test14UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YCaeEnCordobaSur() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();

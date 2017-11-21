@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Carcel implements Casillero {
 
-    private final double costoFianza = 1000;
+    private final double costoFianza = 45000;
 
     private ArrayList<Jugador> listaDePresos;
 

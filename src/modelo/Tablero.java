@@ -26,6 +26,7 @@ import modelo.casilleros.Tren;
 import modelo.casilleros.Tucuman;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 
 public class Tablero {
 	
@@ -79,7 +80,7 @@ public class Tablero {
 		this.agregarJugadores(lista);
 	}
 	
-	public void avanzar(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	public void avanzar(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		int numeroDePosicion = this.getNumeroDePosicion(jugador);
 		

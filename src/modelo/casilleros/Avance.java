@@ -4,6 +4,7 @@ import modelo.Jugador;
 import modelo.Tablero;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 
 public class Avance implements Casillero {
 	
@@ -14,7 +15,7 @@ public class Avance implements Casillero {
 		tablero = referencia;
 	}
 
-	private void avanzarDinamicamente(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	private void avanzarDinamicamente(Jugador jugador, int valorDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		if (valorDados <= 6) {
 			
@@ -33,7 +34,7 @@ public class Avance implements Casillero {
 
 	@Override
 	public void caer(Jugador jugador, int valorDados)
-			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		this.avanzarDinamicamente(jugador, valorDados);
 	}
