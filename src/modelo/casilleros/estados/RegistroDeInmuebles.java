@@ -5,10 +5,10 @@ import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
 public class RegistroDeInmuebles {
 
-	public void alquilar(Jugador jugador) throws ExcepcionCapitalInsuficiente {
+	public double calcularAlquiler(Jugador jugador) throws ExcepcionCapitalInsuficiente {
 		
-		double monto = this.calcularAlquiler();
-		jugador.pagar(monto);
+		double monto = 0;
+		return monto;
 	}
 	
 	public void edificar() {
@@ -21,10 +21,6 @@ public class RegistroDeInmuebles {
 		double total = precioTerreno + adicional;
 		
 		return (total * 85 / 100);
-	}
-	
-	private double calcularAlquiler() {
-		return 0;
 	}
 	
 	private double getValorEdificios() {

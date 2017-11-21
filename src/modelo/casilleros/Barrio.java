@@ -17,12 +17,33 @@ public abstract class Barrio implements Casillero {
 	public void caer(Jugador jugador, int valorDados) throws ExcepcionCapitalInsuficiente {
 		
 		try {
-			administrador.comprarTerreno(jugador, precioTerreno);
+			this.serComprado(jugador);
 			
 		} catch (ExcepcionTerrenoOcupado e) {
 			
-			registro.alquilar(jugador);
+			this.serAlquilado(jugador);
 		}
+	}
+	
+	public void serComprado(Jugador jugador) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+		
+		administrador.comprarTerreno(jugador, precioTerreno);
+	}
+	
+	public void serVendido(Jugador jugador) {
+		
+		administrador.venderTerreno(jugador, precioTerreno);
+	}
+	
+	public void serAlquilado(Jugador jugador) throws ExcepcionCapitalInsuficiente {
+		
+		double monto = registro.calcularAlquiler(jugador);
+		jugador.pagar(monto);
+	}
+	
+	public void edificar() {
+		
+		registro.edificar();
 	}
 	
 	public double getPrecio(){
