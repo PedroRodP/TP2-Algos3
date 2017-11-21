@@ -17,26 +17,26 @@ public class Quini6 implements Casillero {
 		registroDeGanadores.clear();
 	}
 	
-	//Dejo el metodo premiar para no complejizar las pruebas del Quini6
 	public void premiar(Jugador jugador) {
+		
+		Pasada pasada;
 		
 		if (registroDeGanadores.containsKey(jugador)) {
 			
-			Pasada pasada = registroDeGanadores.get(jugador);
-			pasada.otorgarPremio(jugador);
+			pasada = registroDeGanadores.get(jugador);
 		}
 		else {
 			
-			Pasada pasada = new PrimeraPasada();
+			pasada = new PrimeraPasada();
 			registroDeGanadores.put(jugador, pasada);
-			pasada.otorgarPremio(jugador);
 		}
 		
-		//se otorga el premio dentro del if ya que no reconoce "pasada" afuera
+		pasada.otorgarPremio(jugador);
+
 		this.registrarPasada(jugador);
 	}
 	
-	public void registrarPasada(Jugador jugador) {
+	private void registrarPasada(Jugador jugador) {
 		
 		Pasada pasada = registroDeGanadores.get(jugador);
 		Pasada nuevaPasada = pasada.incrementar();
@@ -44,10 +44,10 @@ public class Quini6 implements Casillero {
 	}
 
 	@Override
-	public void caer(Jugador jugador, int velorDeLosDados)
+	public void caer(Jugador jugador, int valorDados)
 			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
-		this.premiar(jugador);
 		
+		this.premiar(jugador);
 	}
 	
 }
