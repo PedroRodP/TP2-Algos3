@@ -5,7 +5,6 @@ import org.junit.Test;
 import modelo.Jugador;
 import modelo.casilleros.Barrio;
 import modelo.casilleros.CordobaSur;
-import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
@@ -21,30 +20,40 @@ public class CordobaSurTest {
 		Jugador jugador = new Jugador();
 		Barrio barrio = new CordobaSur();
 		
-		barrio.caer(jugador, 1);
+		barrio.serComprado(jugador);
 		
 		Assert.assertEquals(18000, 100000 - jugador.getCapital(), DELTA);
 	}
 	
 	@Test (expected = ExcepcionCapitalInsuficiente.class)
-	public void test02ComprarTerrenoSinDineroArrojaExcepcionCapitalInsuficiente() throws ExcepcionCapitalInsuficiente {
+	public void test02ComprarTerrenoSinDineroArrojaExcepcionCapitalInsuficiente() throws ExcepcionCapitalInsuficiente, ExcepcionTerrenoOcupado {
 		
 		Jugador jugador = new Jugador();
 		Barrio barrio = new CordobaSur();
 		
 		jugador.pagar(100000); //Su capital queda en 0
-		barrio.caer(jugador, 1);
+		barrio.serComprado(jugador);
 	}
 	
 	@Test
-	public void test03ComprarTerrenoNoOcupadoAsignaComoPropietarioAlJugadorComprador() throws ExcepcionCapitalInsuficiente {
+	public void test03ComprarTerrenoNoOcupadoAsignaComoPropietarioAlJugadorComprador() throws ExcepcionCapitalInsuficiente, ExcepcionTerrenoOcupado {
 		
 		Jugador jugador = new Jugador();
 		Barrio barrio = new CordobaSur();
 		
-		barrio.caer(jugador, 1);
-		Propietario duenio = jugador; //Casteo de Jugador a Propietario
+		barrio.serComprado(jugador);
 		
-		Assert.assertEquals(duenio, barrio.getPropietario());
+		Assert.assertEquals(jugador, barrio.getPropietario());
+	}
+	
+	@Test (expected = ExcepcionTerrenoOcupado.class)
+	public void test04ComprarTerrenoOcupadoArrojaExcepcionTerrenoOcupado() throws ExcepcionCapitalInsuficiente, ExcepcionTerrenoOcupado {
+		
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Barrio barrio = new CordobaSur();
+		
+		barrio.serComprado(jugador);
+		barrio.serComprado(otroJugador);
 	}
 }
