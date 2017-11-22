@@ -1,6 +1,7 @@
 package unitarios;
 
 import modelo.Jugador;
+import modelo.casilleros.Aysa;
 import modelo.casilleros.Edesur;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
@@ -27,5 +28,24 @@ public class EdesurTest {
         edesur.caer(unJugador, 2);
 
         Assert.assertEquals(unJugador.getCapital() + 1000, capitalAnterior, DELTA);
+    }
+
+    @Test
+    public void test02UnJugadorCaeEnEdesurYTieneDuenioQueALaVezEsDuenioDeAysaEntoncesPaga1000VecesLoQueIndicanLosDados() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+        Jugador unJugador = new Jugador();
+        Jugador unDuenio = new Jugador();
+        Edesur edesur = new Edesur();
+        Aysa aysa = new Aysa();
+
+        double capitalInicial = unJugador.getCapital();
+
+        edesur.setPropietario(unDuenio);
+        aysa.setPropietario(unDuenio);
+
+        edesur.setSocio(aysa);
+
+        edesur.caer(unJugador, 2);
+
+        Assert.assertEquals(unJugador.getCapital() + 2000, capitalInicial, DELTA);
     }
 }

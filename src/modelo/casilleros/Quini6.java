@@ -3,6 +3,7 @@ package modelo.casilleros;
 import modelo.Jugador;
 import modelo.Pasada;
 import modelo.PrimeraPasada;
+import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
@@ -49,5 +50,10 @@ public class Quini6 implements Casillero {
 		
 		this.premiar(jugador);
 	}
-	
+
+	@Override
+	public boolean esDuenio(Propietario unPropietario) {
+		return false;
+	}
+
 }

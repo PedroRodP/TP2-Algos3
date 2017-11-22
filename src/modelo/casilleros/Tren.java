@@ -1,6 +1,7 @@
 package modelo.casilleros;
 
 import modelo.Jugador;
+import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 
@@ -11,6 +12,11 @@ public class Tren implements Casillero {
 			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean esDuenio(Propietario unPropietario) {
+		return false;
 	}
 
 }

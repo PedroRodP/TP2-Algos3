@@ -1,5 +1,7 @@
 package modelo.casilleros;
 
+import modelo.casilleros.estados.Propietario;
+
 public class SaltaSur extends Barrio {
 
 	public SaltaSur(){
@@ -8,4 +10,8 @@ public class SaltaSur extends Barrio {
 		
 	}
 
+	@Override
+	public boolean esDuenio(Propietario unPropietario) {
+		return false;
+	}
 }

@@ -1,5 +1,7 @@
 package modelo.casilleros;
 
+import modelo.casilleros.estados.Propietario;
+
 public class BsAsSur extends Barrio {
 
 
@@ -9,4 +11,8 @@ public class BsAsSur extends Barrio {
 		
 	}
 
+	@Override
+	public boolean esDuenio(Propietario unPropietario) {
+		return false;
+	}
 }

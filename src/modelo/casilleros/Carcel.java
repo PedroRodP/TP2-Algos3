@@ -1,6 +1,7 @@
 package modelo.casilleros;
 
 import modelo.Jugador;
+import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
@@ -70,7 +71,12 @@ public class Carcel implements Casillero {
 		
 	}
 
-	public void arrestar(Jugador unJugador) {
+    @Override
+    public boolean esDuenio(Propietario unPropietario) {
+        return false;
+    }
+
+    public void arrestar(Jugador unJugador) {
 	     listaDePresos.add(unJugador);
 	     unJugador.irPreso(this);
 	}

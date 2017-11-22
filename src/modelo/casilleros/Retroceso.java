@@ -2,6 +2,7 @@ package modelo.casilleros;
 
 import modelo.Jugador;
 import modelo.Tablero;
+import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionNoExistePropietario;
@@ -39,6 +40,10 @@ public class Retroceso implements Casillero {
 		this.retrocederDinamicamente(jugador, valorDados);
 	}
 
+	@Override
+	public boolean esDuenio(Propietario unPropietario) {
+		return false;
+	}
 
 
 }

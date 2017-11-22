@@ -9,19 +9,38 @@ import modelo.excepciones.ExcepcionNoExistePropietario;
 
 public class Edesur implements Casillero {
 
-    private Propietario propietario;
+	private Propietario miDuenio;
+	private Aysa aysa;
 
-    public Edesur(){
-    	this.propietario = new SinPropietario();
+	public Edesur(){
+		this.miDuenio = new SinPropietario();
+		this.aysa = new Aysa();
 	}
+
 	@Override
 	public void caer(Jugador jugador, int valorDeLosDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
-		double unMonto = 500 * valorDeLosDados;
-		propietario.acreditar(unMonto);
+		double unMonto = this.obtenerValorMultiplicidad() * valorDeLosDados;
+		miDuenio.acreditar(unMonto);
 		jugador.pagar(unMonto);
 	}
 
-    public void setPropietario(Jugador propietario) {
-        this.propietario = propietario;
-    }
+	@Override
+	public boolean esDuenio(Propietario unPropietario) {
+		return (this.miDuenio == unPropietario);
+	}
+
+	private int obtenerValorMultiplicidad() {
+		int valorAgregado = 0;
+		if (this.aysa.esDuenio(miDuenio))
+			valorAgregado = 500;
+		return 500 + valorAgregado;
+	}
+
+	public void setPropietario(Jugador propietario) {
+		this.miDuenio = propietario;
+	}
+
+	public void setSocio(Aysa aysa){
+		this.aysa = aysa;
+	}
 }
