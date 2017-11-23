@@ -121,4 +121,48 @@ public class BsAsNorteTest {
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3000, DELTA);
 	}
+
+	//Test 4 de la 2da Entrega
+	@Test
+	public void test08UnContrincanteCaeEnBsAsSurDeJugadorYJugadorRecibePagoDe3500PesosPorTenerDosCasas() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador unJugador = new Jugador();
+		Jugador unContrincante = new Jugador();
+		BsAsNorte bsAsNorte = new BsAsNorte();
+		BsAsSur bsAsSur = new BsAsSur();
+
+		double montoInicial = unContrincante.getCapital();
+
+		bsAsNorte.setPropietario(unJugador);
+		bsAsSur.setPropietario(unJugador);
+
+		bsAsNorte.edificar();
+		bsAsSur.edificar();
+		bsAsSur.edificar();
+
+		bsAsSur.caer(unContrincante, 1);
+
+		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3500, DELTA);
+	}
+
+	//Test 4-bis de la 2da Entrega
+	@Test
+	public void test09UnContrincanteCaeEnBsAsNorteDeJugadorYJugadorRecibePagoDe3500PesosPorTenerUnaCasa() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador unJugador = new Jugador();
+		Jugador unContrincante = new Jugador();
+		BsAsNorte bsAsNorte = new BsAsNorte();
+		BsAsSur bsAsSur = new BsAsSur();
+
+		double montoInicial = unContrincante.getCapital();
+
+		bsAsNorte.setPropietario(unJugador);
+		bsAsSur.setPropietario(unJugador);
+
+		bsAsNorte.edificar();
+		bsAsSur.edificar();
+		bsAsSur.edificar();
+
+		bsAsNorte.caer(unContrincante, 1);
+
+		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3500, DELTA);
+	}
 }

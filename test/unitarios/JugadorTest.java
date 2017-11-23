@@ -231,9 +231,6 @@ public class JugadorTest {
 		//Deberia retroceder los 12 casilleros por no tener inmuebles
 		
 		Assert.assertEquals((new CordobaSur()).getClass(), unJugador.getPosicion().getClass());
-		
-	
-		
 	}
 	
 	@Test
@@ -254,7 +251,6 @@ public class JugadorTest {
 		
 		//Vuelve a caer en CordobaSur retrocediendo los 12 casilleros por tener 0 inmuebles		
 		Assert.assertEquals((new CordobaSur()).getClass(), unJugador.getPosicion().getClass());
-				
 	}
 	
 	@Test (expected = ExcepcionPagarFianzaNoCorresponde.class)
