@@ -8,6 +8,6 @@ public class SinPropietario implements Propietario {
 
     @Override
     public void acreditar(double unMonto) throws ExcepcionNoExistePropietario {
-        throw new ExcepcionNoExistePropietario();
+        //throw new ExcepcionNoExistePropietario();
     }
 }
