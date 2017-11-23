@@ -4,10 +4,7 @@ import modelo.Jugador;
 import modelo.casilleros.estados.AdministradorDeCompra;
 import modelo.casilleros.estados.Propietario;
 import modelo.casilleros.estados.RegistroDeInmuebles;
-import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ExcepcionNoExistePropietario;
-import modelo.excepciones.ExcepcionTerrenoCompleto;
-import modelo.excepciones.ExcepcionTerrenoOcupado;
+import modelo.excepciones.*;
 
 public abstract class Barrio implements Casillero {
 	
@@ -49,6 +46,13 @@ public abstract class Barrio implements Casillero {
 		
 		registro.edificarEn(this);
 	}
+
+	public void edificarHotel() throws ExcepcionTerrenoCompleto, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionNoSePuedeConstruirHotelAun {
+		if (registro.sePuedeConstruirHotel())
+			registro.edificarEn(this);
+		else
+			throw new ExcepcionNoSePuedeConstruirHotelAun();
+	}
 	
 	public double getPrecio(){
 		return precioTerreno;
@@ -87,9 +91,4 @@ public abstract class Barrio implements Casillero {
 		return precioConstruccionHotel;
 	}
 
-	/*
-	public void construirCasa() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
-		registro.edificarEn(this);
-	}
-	*/
 }

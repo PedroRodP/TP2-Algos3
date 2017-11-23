@@ -27,5 +27,8 @@ public class RegistroDeInmuebles {
 	public double calcularReembolsoDeEdificios() {
 		return 100;
 	}
-	
+
+	public boolean sePuedeConstruirHotel() {
+		return false;
+	}
 }

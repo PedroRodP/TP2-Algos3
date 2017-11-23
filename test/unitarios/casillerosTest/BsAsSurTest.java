@@ -1,5 +1,6 @@
 package unitarios.casillerosTest;
 
+import modelo.casilleros.BsAsNorte;
 import org.junit.Test;
 
 import modelo.Jugador;
@@ -60,19 +61,61 @@ public class BsAsSurTest {
 	}
 	
 	//Test 10 de la 2da entrega
-		@Test
-		public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
-			
-			Jugador jugador = new Jugador();
-			Jugador otroJugador = new Jugador();
-			Barrio barrio = new BsAsSur();
-			
-			barrio.serComprado(otroJugador);
-			barrio.edificar();
-			barrio.serAlquilado(jugador);
-			
-			double alquilerConUnaCasa = 3000;
-			
-			Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
-		}
+	@Test
+	public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
+
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Barrio barrio = new BsAsSur();
+
+		barrio.serComprado(otroJugador);
+		barrio.edificar();
+		barrio.serAlquilado(jugador);
+
+		double alquilerConUnaCasa = 3000;
+
+		Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
+	}
+	//Test 3 de la 2da Entrega
+	@Test
+	public void test06UnContrincanteCaeEnBsAsSurDeJugadorYJugadorRecibePagoDe3000Pesos() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador unJugador = new Jugador();
+		Jugador unContrincante = new Jugador();
+		BsAsNorte bsAsNorte = new BsAsNorte();
+		BsAsSur bsAsSur = new BsAsSur();
+
+		double montoInicial = unContrincante.getCapital();
+
+		bsAsNorte.setPropietario(unJugador);
+		bsAsSur.setPropietario(unJugador);
+
+		bsAsNorte.edificar();
+		bsAsSur.edificar();
+
+		bsAsSur.caer(unContrincante, 1);
+
+		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3000, DELTA);
+	}
+
+	//Test 4 de la 2da Entrega
+	@Test
+	public void test07UnContrincanteCaeEnBsAsSurDeJugadorYJugadorRecibePagoDe3500PesosPorTenerDosCasas() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador unJugador = new Jugador();
+		Jugador unContrincante = new Jugador();
+		BsAsNorte bsAsNorte = new BsAsNorte();
+		BsAsSur bsAsSur = new BsAsSur();
+
+		double montoInicial = unContrincante.getCapital();
+
+		bsAsNorte.setPropietario(unJugador);
+		bsAsSur.setPropietario(unJugador);
+
+		bsAsNorte.edificar();
+		bsAsSur.edificar();
+		bsAsSur.edificar();
+
+		bsAsSur.caer(unContrincante, 1);
+
+		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3500, DELTA);
+	}
 }
