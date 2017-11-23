@@ -59,19 +59,34 @@ public class SantaFeTest {
 	}
 	
 	//Test 10 de la 2da entrega
-		@Test
-		public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
-			
-			Jugador jugador = new Jugador();
-			Jugador otroJugador = new Jugador();
-			Barrio barrio = new SantaFe();
-			
-			barrio.serComprado(otroJugador);
-			barrio.edificar();
-			barrio.serAlquilado(jugador);
-			
-			double alquilerConUnaCasa = 3500;
-			
-			Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
-		}
+	@Test
+	public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
+
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Barrio barrio = new SantaFe();
+
+		barrio.serComprado(otroJugador);
+		barrio.edificar();
+		barrio.serAlquilado(jugador);
+
+		double alquilerConUnaCasa = 3500;
+
+		Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
+	}
+
+	//Test 3 de la 2da Entrega
+	@Test
+	public void test06JugadorEsDuenioDeSantaFeYConstruyeUnaCasaConUnCostoDe4000Pesos() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador unJugador = new Jugador();
+		SantaFe santaFe = new SantaFe();
+
+		double montoInicial = unJugador.getCapital();
+
+		santaFe.setPropietario(unJugador);
+
+		santaFe.edificar();
+
+		Assert.assertEquals(montoInicial, unJugador.getCapital() + 4000, DELTA);
+	}
 }
