@@ -1,6 +1,7 @@
 package unitarios.casillerosTest;
 
 import modelo.casilleros.BsAsSur;
+import org.junit.Rule;
 import org.junit.Test;
 
 import modelo.Jugador;
@@ -12,10 +13,14 @@ import modelo.excepciones.ExcepcionTerrenoCompleto;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 import org.junit.Assert;
+import org.junit.rules.ExpectedException;
 
 public class BsAsNorteTest {
 	
 	private static final double DELTA = 1e-15;
+
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
 	public void test01ComprarTerrenoNoOcupadoDescuentaPrecioCorrectoDelCapitalDelJugador() throws ExcepcionCapitalInsuficiente, ExcepcionTerrenoOcupado {
@@ -61,6 +66,7 @@ public class BsAsNorteTest {
 		barrio.serComprado(otroJugador);
 	}
 
+	//Test 2 de la 2da entrega
 	@Test
 	public void test05UnJugadorEsDuenioDeBsAsNorteYBsAsSurEntoncesConstruyeUnaCasaPor5000Pesos() throws ExcepcionCapitalInsuficiente, ExcepcionTerrenoOcupado, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
 		Jugador unJugador = new Jugador();
@@ -72,14 +78,14 @@ public class BsAsNorteTest {
 		bsAsNorte.setPropietario(unJugador);
 		bsAsSur.setPropietario(unJugador);
 
-		bsAsNorte.construirCasa();
+		bsAsSur.edificar();
 
 		Assert.assertEquals(montoInicial, unJugador.getCapital() + 5000, DELTA);
 	}
 
 	//Test 10 de la 2da entrega
 	@Test
-	public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
+	public void test06JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
 		
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
@@ -93,5 +99,26 @@ public class BsAsNorteTest {
 		
 		Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
 
+	}
+
+	//Test 3 de la 2da Entrega
+	@Test
+	public void test07UnContrincanteCaeEnBsAsSurDeJugadorYJugadorRecibePagoDe3000Pesos() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador unJugador = new Jugador();
+		Jugador unContrincante = new Jugador();
+		BsAsNorte bsAsNorte = new BsAsNorte();
+		BsAsSur bsAsSur = new BsAsSur();
+
+		double montoInicial = unContrincante.getCapital();
+
+		bsAsNorte.setPropietario(unJugador);
+		bsAsSur.setPropietario(unJugador);
+
+		bsAsNorte.edificar();
+		bsAsSur.edificar();
+
+		bsAsSur.caer(unContrincante, 1);
+
+		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3000, DELTA);
 	}
 }

@@ -9,5 +9,5 @@ public interface Estado {
 	
 	public void comprarTerreno(Jugador jugador, double precioTerreno) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente;
 
-	public void venderTerreno(Jugador jugador, double precio) throws ExcepcionNoExistePropietario;
+	public void venderTerreno(Jugador jugador, double precio) throws ExcepcionNoExistePropietario, ExcepcionCapitalInsuficiente;
 }

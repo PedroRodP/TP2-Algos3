@@ -24,15 +24,22 @@ public class Jugador implements Propietario {
 	}
 
 	@Override
+	public void acreditar(double unMonto) throws ExcepcionNoExistePropietario, ExcepcionCapitalInsuficiente {
+		capital += unMonto;
+	}
+
+	@Override
+	public void recibirPagoDe(Jugador unJugador, double unMonto) throws ExcepcionNoExistePropietario, ExcepcionCapitalInsuficiente {
+		unJugador.pagar(unMonto);
+		this.acreditar(unMonto);
+	}
+
+	@Override
 	public void pagar(double monto) throws ExcepcionCapitalInsuficiente {
 		if (monto > capital) { throw new ExcepcionCapitalInsuficiente(); }
 		capital -= monto;
 	}
-	
-	public void acreditar(double monto) {
-		capital += monto;
-	}
-	
+
 	public double getCapital() {
 		return capital;
 	}

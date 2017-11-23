@@ -9,11 +9,11 @@ import modelo.excepciones.ExcepcionNoExistePropietario;
 
 public class BsAsNorte extends Barrio {
 
-	private Propietario miDuenio;
+	//private Propietario miDuenio;
 	private BsAsSur miSur;
 
 	public BsAsNorte(){
-		this.miDuenio = new SinPropietario();
+		//this.miDuenio = new SinPropietario();
 		precioTerreno = 25000;
 		alquilerDefault = 2500;
 		precioPrimeraCasa = 3500;
@@ -26,14 +26,12 @@ public class BsAsNorte extends Barrio {
 
 	@Override
 	public boolean esDuenio(Propietario unPropietario) {
-		return (this.miDuenio == unPropietario);
+		return (this.administrador.getDuenio() == unPropietario);
 	}
 
     public void setPropietario(Jugador propietario) {
-        this.miDuenio = propietario;
+        //this.miDuenio = propietario;
+		administrador.setDuenio(propietario);
     }
 
-	public void construirCasa() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
-		miDuenio.pagar(5000);
-	}
 }

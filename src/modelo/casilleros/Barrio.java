@@ -18,22 +18,13 @@ public abstract class Barrio implements Casillero {
 	protected double precioHotel;
 	protected double precioConstruccionCasa;
 	protected double precioConstruccionHotel;
-	
 	protected AdministradorDeCompra administrador = new AdministradorDeCompra();
 	protected RegistroDeInmuebles registro;
-	
-	
-	
+
 	@Override
 	public void caer(Jugador jugador, int valorDados) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
-		
-		try {
-			this.serComprado(jugador);
-			
-		} catch (ExcepcionTerrenoOcupado e) {
-			
-			this.serAlquilado(jugador);
-		}
+		double unMonto = registro.calcularAlquiler();
+		administrador.getDuenio().recibirPagoDe(jugador, unMonto);
 	}
 	
 	public void serComprado(Jugador jugador) throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
@@ -41,7 +32,7 @@ public abstract class Barrio implements Casillero {
 		administrador.comprarTerreno(jugador, precioTerreno);
 	}
 	
-	public void serVendido(Jugador jugador) throws ExcepcionNoExistePropietario {
+	public void serVendido(Jugador jugador) throws ExcepcionNoExistePropietario, ExcepcionCapitalInsuficiente {
 		
 		administrador.venderTerreno(jugador, precioTerreno);
 	}
@@ -49,10 +40,9 @@ public abstract class Barrio implements Casillero {
 	public void serAlquilado(Jugador jugador) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		double monto = registro.calcularAlquiler();
-		jugador.pagar(monto);
-		
+
 		Propietario duenio = this.getPropietario();
-		duenio.acreditar(monto);
+		duenio.recibirPagoDe(jugador, monto);
 	}
 	
 	public void edificar() throws ExcepcionTerrenoCompleto, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
@@ -96,4 +86,10 @@ public abstract class Barrio implements Casillero {
 	public double getPrecioConstruccionHotel() {
 		return precioConstruccionHotel;
 	}
+
+	/*
+	public void construirCasa() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		registro.edificarEn(this);
+	}
+	*/
 }

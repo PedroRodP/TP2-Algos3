@@ -20,7 +20,7 @@ public class AdministradorDeCompra {
 		this.setNoDisponible(jugador);
 	}
 	
-	public void venderTerreno(Jugador jugador, double precio) throws ExcepcionNoExistePropietario {
+	public void venderTerreno(Jugador jugador, double precio) throws ExcepcionNoExistePropietario, ExcepcionCapitalInsuficiente {
 		
 		disponibilidad.venderTerreno(jugador, precio);
 		this.setDisponible();

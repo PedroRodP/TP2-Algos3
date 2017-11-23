@@ -6,6 +6,7 @@ import modelo.PrimeraPasada;
 import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 
 import java.util.HashMap;
 
@@ -18,7 +19,7 @@ public class Quini6 implements Casillero {
 		registroDeGanadores.clear();
 	}
 	
-	public void premiar(Jugador jugador) {
+	public void premiar(Jugador jugador) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Pasada pasada;
 		
@@ -46,7 +47,7 @@ public class Quini6 implements Casillero {
 
 	@Override
 	public void caer(Jugador jugador, int valorDados)
-			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		this.premiar(jugador);
 	}

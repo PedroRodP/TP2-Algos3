@@ -62,6 +62,7 @@ public class JugadorTest {
 		Jugador unDuenio = new Jugador();
 		Neuquen neuquen = new Neuquen();
 
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		neuquen.caer(unDuenio, 1);
 
 		Assert.assertEquals(neuquen.getPropietario(), unDuenio);
@@ -121,9 +122,12 @@ public class JugadorTest {
 		
 		listaJugadores.add(unJugador);
 		unTablero.agregarJugadores(listaJugadores);
+
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 4); //Dejo al jugador en Bs As Zona sur para avanzar de a 3 a Avance
+
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 3); //Muevo al jugador desde Bs As Zona sur a avanza dinamico
-		
 
 		Assert.assertEquals((new Subte()).getClass(), unJugador.getPosicion().getClass());
 
@@ -141,13 +145,8 @@ public class JugadorTest {
 		//cae en avance dinamico, rolleando un 7
 		unTablero.avanzar(unJugador, 7 );
 
-		
-		
 		Assert.assertEquals((new Aysa()).getClass(), unJugador.getPosicion().getClass());
-		
-		
-		
-		
+
 	}
 	
 	@Test
@@ -222,8 +221,11 @@ public class JugadorTest {
 		Tablero unTablero = new Tablero();
 		
 		unTablero.agregarJugador(unJugador);
-			
+
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 6);
+
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 12);//Desde CordobaSur saco un 12 y el jugador cae en Retroceso Dinamico
 
 		//Deberia retroceder los 12 casilleros por no tener inmuebles
@@ -243,9 +245,11 @@ public class JugadorTest {
 		unTablero.agregarJugador(unJugador);
 		
 		//Avanza 6 y cae en Cordoba Sur
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 6 );
 		
 		// Desde Cordoba sur, saca un 12 y cae en Retroceso Dinamico
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 12 );
 		
 		//Vuelve a caer en CordobaSur retrocediendo los 12 casilleros por tener 0 inmuebles		
@@ -302,7 +306,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test20JugadorCobra100000YLeQuedaElDobleDeSuCapital() {
+	public void test20JugadorCobra100000YLeQuedaElDobleDeSuCapital() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador jugador = new Jugador();
 		

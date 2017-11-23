@@ -1,6 +1,8 @@
 package modelo.casilleros.estados;
 
 import modelo.Jugador;
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 public class NoDisponible implements Estado {
@@ -12,7 +14,7 @@ public class NoDisponible implements Estado {
 	}	
 	
 	@Override
-	public void venderTerreno(Jugador jugador, double precioTerreno) {
+	public void venderTerreno(Jugador jugador, double precioTerreno) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		jugador.acreditar(precioTerreno * 0.85);
 	}

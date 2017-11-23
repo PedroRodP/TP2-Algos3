@@ -1,5 +1,7 @@
 package unitarios.casillerosTest;
 
+import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 import org.junit.Test;
 
 import org.junit.Assert;
@@ -11,7 +13,7 @@ public class Quini6Test {
 	private static final double DELTA = 1e-15;
 	
 	@Test
-	public void test01JugadorCaeEnQuini6PorPrimeraVezYSuCapitalSeIncrementa50000() {
+	public void test01JugadorCaeEnQuini6PorPrimeraVezYSuCapitalSeIncrementa50000() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Quini6 quini = new Quini6();
 		Jugador jugador = new Jugador();
@@ -22,7 +24,7 @@ public class Quini6Test {
 	}
 	
 	@Test
-	public void test02JugadorCaeEnQuini6PorSegundaVezYSuCapitalSeIncrementa30000() {
+	public void test02JugadorCaeEnQuini6PorSegundaVezYSuCapitalSeIncrementa30000() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Quini6 quini = new Quini6();
 		Jugador jugador = new Jugador();
@@ -34,7 +36,7 @@ public class Quini6Test {
 	}
 	
 	@Test
-	public void test03JugadorCaeEnQuini6PorTerceraVezYSuCapitalYaNoSeIncrementa() {
+	public void test03JugadorCaeEnQuini6PorTerceraVezYSuCapitalYaNoSeIncrementa() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Quini6 quini = new Quini6();
 		Jugador jugador = new Jugador();

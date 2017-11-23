@@ -27,7 +27,8 @@ public class BsAsSur extends Barrio {
 		return false;
 	}
 
-    public void setPropietario(Jugador propietario) {
-        this.miDuenio = propietario;
+    public void setPropietario(Jugador unPropietario) {
+        administrador.setDuenio(unPropietario);
     }
+
 }
