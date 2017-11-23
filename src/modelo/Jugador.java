@@ -22,7 +22,8 @@ public class Jugador implements Propietario {
 		estado = new Jugando();
 		cantidadDeInmuebles = 0;
 	}
-	
+
+	@Override
 	public void pagar(double monto) throws ExcepcionCapitalInsuficiente {
 		if (monto > capital) { throw new ExcepcionCapitalInsuficiente(); }
 		capital -= monto;

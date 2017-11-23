@@ -1,5 +1,6 @@
 package unitarios.casillerosTest;
 
+import modelo.casilleros.BsAsSur;
 import org.junit.Test;
 
 import modelo.Jugador;
@@ -56,5 +57,21 @@ public class BsAsNorteTest {
 		
 		barrio.serComprado(jugador);
 		barrio.serComprado(otroJugador);
+	}
+
+	@Test
+	public void test05UnJugadorEsDuenioDeBsAsNorteYBsAsSurEntoncesConstruyeUnaCasaPor5000Pesos() throws ExcepcionCapitalInsuficiente {
+		Jugador unJugador = new Jugador();
+		BsAsNorte bsAsNorte = new BsAsNorte();
+		BsAsSur bsAsSur = new BsAsSur();
+
+		double montoInicial = unJugador.getCapital();
+
+		bsAsNorte.setPropietario(unJugador);
+		bsAsSur.setPropietario(unJugador);
+
+		bsAsNorte.construirCasa();
+
+		Assert.assertEquals(montoInicial, unJugador.getCapital() + 5000, DELTA);
 	}
 }

@@ -53,4 +53,5 @@ public abstract class Barrio implements Casillero {
 	public Propietario getPropietario() {
 		return administrador.getDuenio();
 	}
+
 }
