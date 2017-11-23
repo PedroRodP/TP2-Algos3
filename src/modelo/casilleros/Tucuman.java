@@ -7,6 +7,10 @@ public class Tucuman extends Barrio {
 	public Tucuman(){
 		
 		precioTerreno = 25000;
+		alquilerDefault = 2500;
+		precioPrimeraCasa = 4500;
+		precioSegundaCasa = 4500;
+		precioHotel = 4500;
 		
 	}
 

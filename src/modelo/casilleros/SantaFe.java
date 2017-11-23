@@ -7,6 +7,10 @@ public class SantaFe extends Barrio {
 	public SantaFe(){
 		
 		precioTerreno = 15000;
+		alquilerDefault = 1500;
+		precioPrimeraCasa = 3500;
+		precioSegundaCasa = 3500;
+		precioHotel = 3500;
 		
 	}
 

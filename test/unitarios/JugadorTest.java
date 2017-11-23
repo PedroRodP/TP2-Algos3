@@ -1,6 +1,7 @@
 package unitarios;
 
 import modelo.casilleros.Aysa;
+import modelo.casilleros.Barrio;
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Casillero;
 import modelo.casilleros.CordobaSur;
@@ -56,7 +57,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void test03JugadorCompraNeuquenYQuedaComoPropietario() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	public void test03JugadorCompraNeuquenYQuedaComoPropietario() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		Jugador unDuenio = new Jugador();
 		Neuquen neuquen = new Neuquen();
 
@@ -308,5 +309,54 @@ public class JugadorTest {
 		jugador.acreditar(100000);
 		
 		Assert.assertEquals(100000 + 100000, jugador.getCapital(), DELTA);
+	}
+	
+	//Test 13 de la 2da entrega
+	@Test
+	public void test21JugadoresIntercambianPropiedadesYElAlquilerDeTerrenoEdificadoSeAcreditaAlNuevoDuenio() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Barrio barrio = new Neuquen();
+		Barrio otroBarrio = new Neuquen();
+		Jugador tercero = new Jugador();
+		
+		barrio.serComprado(jugador);
+		otroBarrio.serComprado(otroJugador);
+		
+		barrio.edificar();
+		
+		barrio.setNuevoDuenio(otroJugador);
+		otroBarrio.setNuevoDuenio(jugador);
+		
+		barrio.serAlquilado(tercero);
+		
+		int precioNeuquen = 17000;
+		int alquilerConUnaCasa = 3800;
+		
+		Assert.assertEquals(100000 - precioNeuquen + alquilerConUnaCasa, otroJugador.getCapital(), DELTA);
+	}
+	
+	@Test
+	public void test22JugadoresIntercambianPropiedadesYElAlquilerSeAcreditaAlNuevoDuenio() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+		
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Barrio barrio = new Neuquen();
+		Barrio otroBarrio = new Neuquen();
+		Jugador tercero = new Jugador();
+		
+		barrio.serComprado(jugador);
+		otroBarrio.serComprado(otroJugador);
+		
+		barrio.setNuevoDuenio(otroJugador);
+		otroBarrio.setNuevoDuenio(jugador);
+		
+		barrio.serAlquilado(tercero);
+		
+		int precioNeuquen = 17000;
+		int alquilerDefault = 1800;
+		
+		Assert.assertEquals(100000 - precioNeuquen + alquilerDefault, otroJugador.getCapital(), DELTA);
 	}
 }
