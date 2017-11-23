@@ -1,6 +1,9 @@
 package unitarios.casillerosTest;
 
 import modelo.Jugador;
+import modelo.casilleros.Aysa;
+import modelo.casilleros.Edesur;
+import modelo.casilleros.Subte;
 import modelo.casilleros.Tren;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
@@ -27,5 +30,24 @@ public class TrenTest {
         tren.caer(unJugador, 2);
 
         Assert.assertEquals(unJugador.getCapital() + 900, capitalAnterior, DELTA);
+    }
+
+    @Test
+    public void test02UnJugadorCaeEnTrenYPagaAlDuenio800VecesLoQueIndicanLosDadosPorqueTambienEsDuenioDeSubte() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+        Jugador unJugador = new Jugador();
+        Jugador unDuenio = new Jugador();
+        Tren tren = new Tren();
+        Subte subte = new Subte();
+
+        double capitalInicial = unJugador.getCapital();
+
+        tren.setPropietario(unDuenio);
+        subte.setPropietario(unDuenio);
+
+        tren.setSocio(subte);
+
+        tren.caer(unJugador, 2);
+
+        Assert.assertEquals(unJugador.getCapital() + 1600, capitalInicial, DELTA);
     }
 }
