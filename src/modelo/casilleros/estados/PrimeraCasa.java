@@ -5,14 +5,16 @@ import modelo.casilleros.Barrio;
 public class PrimeraCasa implements Construccion {
 
 	private double alquiler;
+	private double valorDeConstruccion;
 	
-	public PrimeraCasa(double alquiler) {
+	public PrimeraCasa(double alquiler, double construccion) {
 		this.alquiler = alquiler;
+		this.valorDeConstruccion = construccion;
 	}
 	
 	@Override
 	public Construccion construirEn(Barrio barrio) {
-		return new SegundaCasa(barrio.getPrecioSegundaCasa());
+		return new SegundaCasa(barrio.getPrecioSegundaCasa(), barrio.getPrecioConstruccionCasa());
 	}
 	
 	@Override
@@ -20,4 +22,8 @@ public class PrimeraCasa implements Construccion {
 		return alquiler;
 	}
 	
+	@Override
+	public double getValorDeConstruccion() {
+		return valorDeConstruccion;
+	}
 }

@@ -9,16 +9,19 @@ public class RegistroDeInmuebles {
 	
 	Construccion edificio;
 	
-	public RegistroDeInmuebles(Barrio barrio) {
-		edificio = new SinEdificar(barrio.getAlquilerDefault());
+	public RegistroDeInmuebles(double alquilerDefault) {
+		edificio = new SinEdificar(alquilerDefault);
 	}
 
 	public double calcularAlquiler() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		return (edificio.getValorDeAlquiler());
 	}
 	
-	public void edificarEn(Barrio barrio) throws ExcepcionTerrenoCompleto {
-		edificio.construirEn(barrio);
+	public void edificarEn(Barrio barrio) throws ExcepcionTerrenoCompleto, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+		edificio = edificio.construirEn(barrio);
+		
+		Propietario duenio = barrio.getPropietario();
+		duenio.pagar(edificio.getValorDeConstruccion());
 	}
 	
 	public double calcularReembolsoDeEdificios() {

@@ -1,6 +1,7 @@
 package modelo.casilleros;
 
 import modelo.casilleros.estados.Propietario;
+import modelo.casilleros.estados.RegistroDeInmuebles;
 
 public class Tucuman extends Barrio {
 
@@ -11,6 +12,9 @@ public class Tucuman extends Barrio {
 		precioPrimeraCasa = 4500;
 		precioSegundaCasa = 4500;
 		precioHotel = 4500;
+		precioConstruccionCasa = 7000;
+		precioConstruccionHotel = 0;
+		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}
 

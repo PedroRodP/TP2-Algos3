@@ -4,6 +4,8 @@ import modelo.Jugador;
 import modelo.casilleros.estados.Propietario;
 import modelo.casilleros.estados.SinPropietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.casilleros.estados.RegistroDeInmuebles;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 
 public class BsAsNorte extends Barrio {
 
@@ -17,7 +19,9 @@ public class BsAsNorte extends Barrio {
 		precioPrimeraCasa = 3500;
 		precioSegundaCasa = 4000;
 		precioHotel = 6000;
-
+		precioConstruccionCasa = 5500;
+		precioConstruccionHotel = 9000;
+		registro = new RegistroDeInmuebles(alquilerDefault);
 	}
 
 	@Override
@@ -29,7 +33,7 @@ public class BsAsNorte extends Barrio {
         this.miDuenio = propietario;
     }
 
-	public void construirCasa() throws ExcepcionCapitalInsuficiente {
+	public void construirCasa() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		miDuenio.pagar(5000);
 	}
 }

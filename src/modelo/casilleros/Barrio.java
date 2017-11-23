@@ -16,8 +16,12 @@ public abstract class Barrio implements Casillero {
 	protected double precioPrimeraCasa;
 	protected double precioSegundaCasa;
 	protected double precioHotel;
+	protected double precioConstruccionCasa;
+	protected double precioConstruccionHotel;
+	
 	protected AdministradorDeCompra administrador = new AdministradorDeCompra();
-	protected RegistroDeInmuebles registro = new RegistroDeInmuebles(this);
+	protected RegistroDeInmuebles registro;
+	
 	
 	
 	@Override
@@ -51,7 +55,7 @@ public abstract class Barrio implements Casillero {
 		duenio.acreditar(monto);
 	}
 	
-	public void edificar() throws ExcepcionTerrenoCompleto {
+	public void edificar() throws ExcepcionTerrenoCompleto, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		registro.edificarEn(this);
 	}
@@ -85,4 +89,11 @@ public abstract class Barrio implements Casillero {
 		administrador.setDuenio(otroJugador);
 	}
 
+	public double getPrecioConstruccionCasa() {
+		return precioConstruccionCasa;
+	}
+	
+	public double getPrecioConstruccionHotel() {
+		return precioConstruccionHotel;
+	}
 }

@@ -9,4 +9,6 @@ public interface Construccion {
 	
 	public double getValorDeAlquiler();
 
+	public double getValorDeConstruccion();
+
 }

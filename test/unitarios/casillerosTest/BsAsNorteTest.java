@@ -7,6 +7,8 @@ import modelo.Jugador;
 import modelo.casilleros.Barrio;
 import modelo.casilleros.BsAsNorte;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionNoExistePropietario;
+import modelo.excepciones.ExcepcionTerrenoCompleto;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 import org.junit.Assert;
@@ -60,7 +62,7 @@ public class BsAsNorteTest {
 	}
 
 	@Test
-	public void test05UnJugadorEsDuenioDeBsAsNorteYBsAsSurEntoncesConstruyeUnaCasaPor5000Pesos() throws ExcepcionCapitalInsuficiente {
+	public void test05UnJugadorEsDuenioDeBsAsNorteYBsAsSurEntoncesConstruyeUnaCasaPor5000Pesos() throws ExcepcionCapitalInsuficiente, ExcepcionTerrenoOcupado, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
 		Jugador unJugador = new Jugador();
 		BsAsNorte bsAsNorte = new BsAsNorte();
 		BsAsSur bsAsSur = new BsAsSur();
@@ -73,5 +75,23 @@ public class BsAsNorteTest {
 		bsAsNorte.construirCasa();
 
 		Assert.assertEquals(montoInicial, unJugador.getCapital() + 5000, DELTA);
+	}
+
+	//Test 10 de la 2da entrega
+	@Test
+	public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
+		
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Barrio barrio = new BsAsNorte();
+		
+		barrio.serComprado(otroJugador);
+		barrio.edificar();
+		barrio.serAlquilado(jugador);
+		
+		double alquilerConUnaCasa = 3500;
+		
+		Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
+
 	}
 }

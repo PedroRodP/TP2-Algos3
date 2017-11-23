@@ -1,6 +1,7 @@
 package modelo.casilleros;
 
 import modelo.casilleros.estados.Propietario;
+import modelo.casilleros.estados.RegistroDeInmuebles;
 
 public class CordobaSur extends Barrio {
 
@@ -11,6 +12,9 @@ public class CordobaSur extends Barrio {
 		precioPrimeraCasa = 1500;
 		precioSegundaCasa = 2500;
 		precioHotel = 3000;
+		precioConstruccionCasa = 2000;
+		precioConstruccionHotel = 3000;
+		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}
 
