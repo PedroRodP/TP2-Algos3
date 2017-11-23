@@ -1,5 +1,6 @@
 package unitarios.casillerosTest;
 
+import modelo.casilleros.SaltaNorte;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -59,19 +60,62 @@ public class SaltaSurTest {
 	}
 	
 	//Test 10 de la 2da entrega
-		@Test
-		public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
-			
-			Jugador jugador = new Jugador();
-			Jugador otroJugador = new Jugador();
-			Barrio barrio = new SaltaSur();
-			
-			barrio.serComprado(otroJugador);
-			barrio.edificar();
-			barrio.serAlquilado(jugador);
-			
-			double alquilerConUnaCasa = 3250;
-			
-			Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
-		}
+	@Test
+	public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
+
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Barrio barrio = new SaltaSur();
+
+		barrio.serComprado(otroJugador);
+		barrio.edificar();
+		barrio.serAlquilado(jugador);
+
+		double alquilerConUnaCasa = 3250;
+
+		Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
+	}
+
+	//Test 3 de la 2da Entrega
+	@Test
+	public void test06UnContrincanteCaeEnSaltaSurDeJugadorYJugadorRecibePagoDe3250Pesos() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador unJugador = new Jugador();
+		Jugador unContrincante = new Jugador();
+		SaltaNorte saltaNorte = new SaltaNorte();
+		SaltaSur saltaSur = new SaltaSur();
+
+		double montoInicial = unContrincante.getCapital();
+
+		saltaNorte.setPropietario(unJugador);
+		saltaSur.setPropietario(unJugador);
+
+		saltaNorte.edificar();
+		saltaSur.edificar();
+
+		saltaSur.caer(unContrincante, 1);
+
+		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3250, DELTA);
+	}
+
+	//Test 4 de la 2da Entrega
+	@Test
+	public void test07UnContrincanteCaeEnSaltaSurDeJugadorYJugadorRecibePagoDe3850PesosPorTenerDosCasas() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador unJugador = new Jugador();
+		Jugador unContrincante = new Jugador();
+		SaltaNorte saltaNorte = new SaltaNorte();
+		SaltaSur saltaSur = new SaltaSur();
+
+		double montoInicial = unContrincante.getCapital();
+
+		saltaNorte.setPropietario(unJugador);
+		saltaSur.setPropietario(unJugador);
+
+		saltaNorte.edificar();
+		saltaSur.edificar();
+		saltaSur.edificar();
+
+		saltaSur.caer(unContrincante, 1);
+
+		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3850, DELTA);
+	}
 }

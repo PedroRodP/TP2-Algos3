@@ -1,5 +1,6 @@
 package modelo.casilleros;
 
+import modelo.Jugador;
 import modelo.casilleros.estados.Propietario;
 import modelo.casilleros.estados.RegistroDeInmuebles;
 
@@ -22,4 +23,8 @@ public class CordobaSur extends Barrio {
 	public boolean esDuenio(Propietario unPropietario) {
 		return false;
 	}
+
+    public void setPropietario(Jugador propietario) {
+        administrador.setDuenio(propietario);
+    }
 }

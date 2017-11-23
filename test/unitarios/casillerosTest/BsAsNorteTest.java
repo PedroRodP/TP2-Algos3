@@ -120,28 +120,6 @@ public class BsAsNorteTest {
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3500, DELTA);
 	}
 
-	/*
-	//Test 5 de la 2da Entrega
-	@Test
-	public void test08UnContrincanteCaeEnBsAsNorteDeJugadorYJugadorRecibePagoDe3500PesosPorTenerUnaCasa() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto, ExcepcionNoSePuedeConstruirHotelAun {
-		Jugador unJugador = new Jugador();
-		BsAsNorte bsAsNorte = new BsAsNorte();
-		BsAsSur bsAsSur = new BsAsSur();
-
-		bsAsNorte.setPropietario(unJugador);
-		bsAsSur.setPropietario(unJugador);
-
-		bsAsNorte.edificar();
-		bsAsSur.edificar();
-		bsAsSur.edificar();
-
-		double montoAntesDelHotel = unJugador.getCapital();
-		bsAsNorte.edificarHotel();
-
-		Assert.assertEquals(montoAntesDelHotel, unJugador.getCapital(), DELTA);
-	}
-	*/
-
 	//Test 6 de la 2da Entrega
 	@Test
 	public void test09UnJugadorConstruyeUnHotelEnBsAsSurConunCostoDe8000Pesos() throws ExcepcionTerrenoCompleto, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionNoSePuedeConstruirHotelAun {
@@ -165,14 +143,14 @@ public class BsAsNorteTest {
 
 	//Test 7 de la 2da Entrega
 	@Test
-	public void test10UnContrincanteCaeEnElHotelDeJugadorAzulEnBsAsSurYPaga5000DeAlquiler() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
-		Jugador unJugador = new Jugador();
+	public void test10UnContrincanteCaeEnElHotelDeJugadorRojoEnBsAsSurYPaga5000DeAlquiler() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto {
+		Jugador jugadorRojo = new Jugador();
 		Jugador unContrincante = new Jugador();
 		BsAsNorte bsAsNorte = new BsAsNorte();
 		BsAsSur bsAsSur = new BsAsSur();
 
-		bsAsNorte.setPropietario(unJugador);
-		bsAsSur.setPropietario(unJugador);
+		bsAsNorte.setPropietario(jugadorRojo);
+		bsAsSur.setPropietario(jugadorRojo);
 
 		bsAsNorte.edificar();
 		bsAsNorte.edificar();
