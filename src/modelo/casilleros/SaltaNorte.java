@@ -1,6 +1,7 @@
 package modelo.casilleros;
 
 import modelo.casilleros.estados.Propietario;
+import modelo.casilleros.estados.RegistroDeInmuebles;
 
 public class SaltaNorte extends Barrio {
 
@@ -11,6 +12,7 @@ public class SaltaNorte extends Barrio {
 		precioPrimeraCasa = 3250;
 		precioSegundaCasa = 3850;
 		precioHotel = 5500;
+		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}
 

@@ -1,6 +1,7 @@
 package modelo.casilleros;
 
 import modelo.casilleros.estados.Propietario;
+import modelo.casilleros.estados.RegistroDeInmuebles;
 
 public class Neuquen extends Barrio {
 
@@ -11,6 +12,7 @@ public class Neuquen extends Barrio {
 		precioPrimeraCasa = 3800;
 		precioSegundaCasa = 3800;
 		precioHotel = 3800;
+		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}
 

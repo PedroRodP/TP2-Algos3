@@ -17,7 +17,7 @@ public abstract class Barrio implements Casillero {
 	protected double precioSegundaCasa;
 	protected double precioHotel;
 	protected AdministradorDeCompra administrador = new AdministradorDeCompra();
-	protected RegistroDeInmuebles registro = new RegistroDeInmuebles(this);
+	protected RegistroDeInmuebles registro;
 	
 	
 	@Override

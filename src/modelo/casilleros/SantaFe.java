@@ -1,6 +1,7 @@
 package modelo.casilleros;
 
 import modelo.casilleros.estados.Propietario;
+import modelo.casilleros.estados.RegistroDeInmuebles;
 
 public class SantaFe extends Barrio {
 
@@ -11,6 +12,7 @@ public class SantaFe extends Barrio {
 		precioPrimeraCasa = 3500;
 		precioSegundaCasa = 3500;
 		precioHotel = 3500;
+		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}
 
