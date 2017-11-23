@@ -6,9 +6,11 @@ import modelo.excepciones.ExcepcionTerrenoCompleto;
 public class Hotel implements Construccion {
 
 	private double alquiler;
+	private double valorDeConstruccion;
 	
-	public Hotel(double alquiler) {
+	public Hotel(double alquiler, double construccion) {
 		this.alquiler = alquiler;
+		this.valorDeConstruccion = construccion;
 	}
 	
 	@Override
@@ -19,5 +21,10 @@ public class Hotel implements Construccion {
 	@Override
 	public double getValorDeAlquiler() {
 		return alquiler;
+	}
+	
+	@Override
+	public double getValorDeConstruccion() {
+		return valorDeConstruccion;
 	}
 }

@@ -12,6 +12,8 @@ public class BsAsNorte extends Barrio {
 		precioPrimeraCasa = 3500;
 		precioSegundaCasa = 4000;
 		precioHotel = 6000;
+		precioConstruccionCasa = 5500;
+		precioConstruccionHotel = 9000;
 		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}

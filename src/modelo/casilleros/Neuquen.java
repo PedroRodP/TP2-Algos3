@@ -12,6 +12,8 @@ public class Neuquen extends Barrio {
 		precioPrimeraCasa = 3800;
 		precioSegundaCasa = 3800;
 		precioHotel = 3800;
+		precioConstruccionCasa = 4800;
+		precioConstruccionHotel = 0;
 		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}

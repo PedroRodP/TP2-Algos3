@@ -13,6 +13,8 @@ public class BsAsSur extends Barrio {
 		precioPrimeraCasa = 3000;
 		precioSegundaCasa = 3500;
 		precioHotel = 5000;
+		precioConstruccionCasa = 5000;
+		precioConstruccionHotel = 8000;
 		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}

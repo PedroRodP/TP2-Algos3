@@ -7,6 +7,8 @@ import modelo.Jugador;
 import modelo.casilleros.Barrio;
 import modelo.casilleros.SaltaSur;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionNoExistePropietario;
+import modelo.excepciones.ExcepcionTerrenoCompleto;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 public class SaltaSurTest {
@@ -55,4 +57,21 @@ public class SaltaSurTest {
 		barrio.serComprado(jugador);
 		barrio.serComprado(otroJugador);
 	}
+	
+	//Test 10 de la 2da entrega
+		@Test
+		public void test05JugadorPagaAlquilerDeUnaCasaCorrectamente() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
+			
+			Jugador jugador = new Jugador();
+			Jugador otroJugador = new Jugador();
+			Barrio barrio = new SaltaSur();
+			
+			barrio.serComprado(otroJugador);
+			barrio.edificar();
+			barrio.serAlquilado(jugador);
+			
+			double alquilerConUnaCasa = 3250;
+			
+			Assert.assertEquals(100000 - alquilerConUnaCasa, jugador.getCapital(), DELTA);
+		}
 }

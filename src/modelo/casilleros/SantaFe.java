@@ -12,6 +12,8 @@ public class SantaFe extends Barrio {
 		precioPrimeraCasa = 3500;
 		precioSegundaCasa = 3500;
 		precioHotel = 3500;
+		precioConstruccionCasa = 4000;
+		precioConstruccionHotel = 0;
 		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}

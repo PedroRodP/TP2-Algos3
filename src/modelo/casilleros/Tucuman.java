@@ -12,6 +12,8 @@ public class Tucuman extends Barrio {
 		precioPrimeraCasa = 4500;
 		precioSegundaCasa = 4500;
 		precioHotel = 4500;
+		precioConstruccionCasa = 7000;
+		precioConstruccionHotel = 0;
 		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}

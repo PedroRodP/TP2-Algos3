@@ -12,6 +12,8 @@ public class CordobaSur extends Barrio {
 		precioPrimeraCasa = 1500;
 		precioSegundaCasa = 2500;
 		precioHotel = 3000;
+		precioConstruccionCasa = 2000;
+		precioConstruccionHotel = 3000;
 		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}

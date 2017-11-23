@@ -19,6 +19,7 @@ import modelo.Jugador;
 import modelo.Tablero;
 import modelo.casilleros.Edesur;
 import modelo.casilleros.Salida;
+import modelo.casilleros.SantaFe;
 import modelo.casilleros.Subte;
 import modelo.casilleros.Tren;
 
@@ -49,7 +50,7 @@ public class JugadorTest {
 		listaJugadores.add(unJugador);
 		unTablero.agregarJugadores(listaJugadores);
 
-		//thrown.expect(ExcepcionNoExistePropietario.class);
+		thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 3);
 		
 		Assert.assertEquals(unJugador.getPosicion().getClass(),(new Edesur()).getClass());
@@ -331,12 +332,13 @@ public class JugadorTest {
 		
 		barrio.serAlquilado(tercero);
 		
-		int precioNeuquen = 17000;
-		int alquilerConUnaCasa = 3800;
+		double precioNeuquen = 17000;
+		double alquilerConUnaCasa = 3800;
 		
 		Assert.assertEquals(100000 - precioNeuquen + alquilerConUnaCasa, otroJugador.getCapital(), DELTA);
 	}
 	
+	//Test 14 de la 2da entrega
 	@Test
 	public void test22JugadoresIntercambianPropiedadesYElAlquilerSeAcreditaAlNuevoDuenio() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
@@ -354,9 +356,32 @@ public class JugadorTest {
 		
 		barrio.serAlquilado(tercero);
 		
-		int precioNeuquen = 17000;
-		int alquilerDefault = 1800;
+		double precioNeuquen = 17000;
+		double alquilerDefault = 1800;
 		
 		Assert.assertEquals(100000 - precioNeuquen + alquilerDefault, otroJugador.getCapital(), DELTA);
+	}
+	
+	//Test 9 de la 2da entrega
+	@Test
+	public void test23JugadorCompraSantaFeEdificaUnaCasaYSuCapitalSeDecrementa4000PorLaConstruccion() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionTerrenoCompleto, ExcepcionNoExistePropietario {
+		
+		Jugador jugador = new Jugador();
+		Barrio santafe = new SantaFe();
+		
+		santafe.serComprado(jugador);
+		santafe.edificar();
+		
+		double precioTerreno = 15000;
+		
+		Assert.assertEquals(100000 - precioTerreno - 4000, jugador.getCapital(), DELTA);
+	}
+	
+	@Test (expected = ExcepcionNoExistePropietario.class)
+	public void test24EdificarSinDuenioArrojaExcepcionNoExistePropietario() throws ExcepcionNoExistePropietario, ExcepcionTerrenoCompleto, ExcepcionCapitalInsuficiente {
+		
+		Barrio barrio = new SantaFe();
+		
+		barrio.edificar();
 	}
 }

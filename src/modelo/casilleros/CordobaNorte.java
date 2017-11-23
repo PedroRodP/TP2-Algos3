@@ -12,6 +12,8 @@ public class CordobaNorte extends Barrio {
 		precioPrimeraCasa = 1800;
 		precioSegundaCasa = 2900;
 		precioHotel = 3500;
+		precioConstruccionCasa = 2200;
+		precioConstruccionHotel = 3500;
 		registro = new RegistroDeInmuebles(alquilerDefault);
 		
 	}

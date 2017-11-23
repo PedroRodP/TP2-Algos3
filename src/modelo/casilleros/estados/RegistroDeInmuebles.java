@@ -17,8 +17,11 @@ public class RegistroDeInmuebles {
 		return (edificio.getValorDeAlquiler());
 	}
 	
-	public void edificarEn(Barrio barrio) throws ExcepcionTerrenoCompleto {
+	public void edificarEn(Barrio barrio) throws ExcepcionTerrenoCompleto, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		edificio = edificio.construirEn(barrio);
+		
+		Propietario duenio = barrio.getPropietario();
+		duenio.pagar(edificio.getValorDeConstruccion());
 	}
 	
 	public double calcularReembolsoDeEdificios() {

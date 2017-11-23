@@ -12,11 +12,16 @@ public class SinEdificar implements Construccion {
 	
 	@Override
 	public Construccion construirEn(Barrio barrio) {
-		return new PrimeraCasa(barrio.getPrecioPrimeraCasa());
+		return new PrimeraCasa(barrio.getPrecioPrimeraCasa(), barrio.getPrecioConstruccionCasa());
 	}
 	
 	@Override
 	public double getValorDeAlquiler() {
 		return alquiler;
+	}
+	
+	@Override
+	public double getValorDeConstruccion() {
+		return 0;
 	}
 }
