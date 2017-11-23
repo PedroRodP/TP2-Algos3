@@ -5,16 +5,23 @@ import modelo.casilleros.estados.AdministradorDeCompra;
 import modelo.casilleros.estados.Propietario;
 import modelo.casilleros.estados.RegistroDeInmuebles;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionNoExistePropietario;
+import modelo.excepciones.ExcepcionTerrenoCompleto;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 public abstract class Barrio implements Casillero {
 	
-	protected AdministradorDeCompra administrador = new AdministradorDeCompra();
-	protected RegistroDeInmuebles registro = new RegistroDeInmuebles();
+	protected double alquilerDefault;
 	protected double precioTerreno;
+	protected double precioPrimeraCasa;
+	protected double precioSegundaCasa;
+	protected double precioHotel;
+	protected AdministradorDeCompra administrador = new AdministradorDeCompra();
+	protected RegistroDeInmuebles registro = new RegistroDeInmuebles(this);
+	
 	
 	@Override
-	public void caer(Jugador jugador, int valorDados) throws ExcepcionCapitalInsuficiente {
+	public void caer(Jugador jugador, int valorDados) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		try {
 			this.serComprado(jugador);
@@ -30,20 +37,23 @@ public abstract class Barrio implements Casillero {
 		administrador.comprarTerreno(jugador, precioTerreno);
 	}
 	
-	public void serVendido(Jugador jugador) {
+	public void serVendido(Jugador jugador) throws ExcepcionNoExistePropietario {
 		
 		administrador.venderTerreno(jugador, precioTerreno);
 	}
 	
-	public void serAlquilado(Jugador jugador) throws ExcepcionCapitalInsuficiente {
+	public void serAlquilado(Jugador jugador) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
-		double monto = registro.calcularAlquiler(jugador);
+		double monto = registro.calcularAlquiler();
 		jugador.pagar(monto);
+		
+		Propietario duenio = this.getPropietario();
+		duenio.acreditar(monto);
 	}
 	
-	public void edificar() {
+	public void edificar() throws ExcepcionTerrenoCompleto {
 		
-		registro.edificar();
+		registro.edificarEn(this);
 	}
 	
 	public double getPrecio(){
@@ -52,6 +62,27 @@ public abstract class Barrio implements Casillero {
 
 	public Propietario getPropietario() {
 		return administrador.getDuenio();
+	}
+
+	public double getPrecioPrimeraCasa() {
+		return precioPrimeraCasa;
+	}
+	
+	public double getPrecioSegundaCasa() {
+		return precioSegundaCasa;
+	}
+	
+	public double getPrecioHotel() {
+		return precioHotel;
+	}
+	
+	public double getAlquilerDefault() {
+		return alquilerDefault;
+	}
+
+	//Metodo para intercambios
+	public void setNuevoDuenio(Propietario otroJugador) {
+		administrador.setDuenio(otroJugador);
 	}
 
 }

@@ -10,4 +10,10 @@ public class NoDisponible implements Estado {
 	
 		throw new ExcepcionTerrenoOcupado();
 	}	
+	
+	@Override
+	public void venderTerreno(Jugador jugador, double precioTerreno) {
+		
+		jugador.acreditar(precioTerreno * 0.85);
+	}
 }

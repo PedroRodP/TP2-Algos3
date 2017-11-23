@@ -2,6 +2,7 @@ package modelo.casilleros.estados;
 
 import modelo.Jugador;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
 
 public class AdministradorDeCompra {
@@ -19,8 +20,10 @@ public class AdministradorDeCompra {
 		this.setNoDisponible(jugador);
 	}
 	
-	public void venderTerreno(Jugador jugador, double precio) {
-		//A implementar
+	public void venderTerreno(Jugador jugador, double precio) throws ExcepcionNoExistePropietario {
+		
+		disponibilidad.venderTerreno(jugador, precio);
+		this.setDisponible();
 	}
 
 	private void setDisponible() {
@@ -37,6 +40,10 @@ public class AdministradorDeCompra {
 	
 	public Propietario getDuenio() {
 		return duenio;
+	}
+
+	public void setDuenio(Propietario otroJugador) {
+		duenio = otroJugador;
 	}
 
 }

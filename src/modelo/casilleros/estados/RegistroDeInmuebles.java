@@ -1,30 +1,28 @@
 package modelo.casilleros.estados;
 
-import modelo.Jugador;
+import modelo.casilleros.Barrio;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
+import modelo.excepciones.ExcepcionNoExistePropietario;
+import modelo.excepciones.ExcepcionTerrenoCompleto;
 
 public class RegistroDeInmuebles {
+	
+	Construccion edificio;
+	
+	public RegistroDeInmuebles(Barrio barrio) {
+		edificio = new SinEdificar(barrio.getAlquilerDefault());
+	}
 
-	public double calcularAlquiler(Jugador jugador) throws ExcepcionCapitalInsuficiente {
-		
-		double monto = 0;
-		return monto;
+	public double calcularAlquiler() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+		return (edificio.getValorDeAlquiler());
 	}
 	
-	public void edificar() {
-		
+	public void edificarEn(Barrio barrio) throws ExcepcionTerrenoCompleto {
+		edificio.construirEn(barrio);
 	}
 	
-	public double calcularReembolso(double precioTerreno) {
-		
-		double adicional = this.getValorEdificios();
-		double total = precioTerreno + adicional;
-		
-		return (total * 85 / 100);
-	}
-	
-	private double getValorEdificios() {
-		return 0;
+	public double calcularReembolsoDeEdificios() {
+		return 100;
 	}
 	
 }
