@@ -1,4 +1,4 @@
-package unitarios;
+package unitarios.casillerosTest;
 
 import modelo.Jugador;
 import modelo.casilleros.Aysa;

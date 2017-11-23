@@ -48,11 +48,11 @@ public class JugadorTest {
 		listaJugadores.add(unJugador);
 		unTablero.agregarJugadores(listaJugadores);
 
-		thrown.expect(ExcepcionNoExistePropietario.class);
+		//thrown.expect(ExcepcionNoExistePropietario.class);
 		unTablero.avanzar(unJugador, 3);
 		
 		Assert.assertEquals(unJugador.getPosicion().getClass(),(new Edesur()).getClass());
-
+		//TODO falta refactorizar, quitar ".getClass()"
 	}
 
 	@Test
