@@ -115,7 +115,7 @@ public class BsAsNorteTest {
 		bsAsSur.edificar();
 		bsAsSur.edificar();
 
-		bsAsNorte.caer(unContrincante, 1);
+		bsAsNorte.caer(unContrincante);
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3500, DELTA);
 	}
@@ -161,7 +161,7 @@ public class BsAsNorteTest {
 
 		double montoInicial = unContrincante.getCapital();
 
-		bsAsSur.caer(unContrincante, 1);
+		bsAsSur.caer(unContrincante);
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 5000, DELTA);
 	}

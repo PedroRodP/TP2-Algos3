@@ -92,7 +92,7 @@ public class BsAsSurTest {
 		bsAsNorte.edificar();
 		bsAsSur.edificar();
 
-		bsAsSur.caer(unContrincante, 1);
+		bsAsSur.caer(unContrincante);
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3000, DELTA);
 	}
@@ -114,7 +114,7 @@ public class BsAsSurTest {
 		bsAsSur.edificar();
 		bsAsSur.edificar();
 
-		bsAsSur.caer(unContrincante, 1);
+		bsAsSur.caer(unContrincante);
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3500, DELTA);
 	}

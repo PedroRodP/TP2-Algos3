@@ -23,9 +23,10 @@ public class EdesurTest {
         Edesur edesur = new Edesur();
 
         double capitalAnterior = unJugador.getCapital();
+        unJugador.setUltimoValorDeDados(2);
 
         edesur.setPropietario(unDuenio);
-        edesur.caer(unJugador, 2);
+        edesur.caer(unJugador);
 
         Assert.assertEquals(unJugador.getCapital() + 1000, capitalAnterior, DELTA);
     }
@@ -41,10 +42,11 @@ public class EdesurTest {
 
         edesur.setPropietario(unDuenio);
         aysa.setPropietario(unDuenio);
-
+        unJugador.setUltimoValorDeDados(2);
+        
         edesur.setSocio(aysa);
 
-        edesur.caer(unJugador, 2);
+        edesur.caer(unJugador);
 
         Assert.assertEquals(unJugador.getCapital() + 2000, capitalInicial, DELTA);
     }

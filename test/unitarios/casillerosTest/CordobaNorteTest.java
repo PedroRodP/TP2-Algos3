@@ -107,7 +107,7 @@ public class CordobaNorteTest {
 		cordobaSur.edificar();
 		cordobaSur.edificar();
 
-		cordobaNorte.caer(unContrincante, 1);
+		cordobaNorte.caer(unContrincante);
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 1800, DELTA);
 	}
@@ -175,7 +175,7 @@ public class CordobaNorteTest {
 
 		double montoInicial = unContrincante.getCapital();
 
-		cordobaSur.caer(unContrincante, 1);
+		cordobaSur.caer(unContrincante);
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3000, DELTA);
 	}

@@ -18,8 +18,8 @@ public class Edesur implements Casillero {
 	}
 
 	@Override
-	public void caer(Jugador jugador, int valorDeLosDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
-		double unMonto = this.obtenerValorMultiplicidad() * valorDeLosDados;
+	public void caer(Jugador jugador) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+		double unMonto = this.obtenerValorMultiplicidad() * (jugador.getUltimoValorDeDados());
 		miDuenio.acreditar(unMonto);
 		jugador.pagar(unMonto);
 	}

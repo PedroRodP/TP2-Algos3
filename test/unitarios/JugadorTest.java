@@ -1,11 +1,14 @@
 package unitarios;
 
+import modelo.casilleros.Avance;
 import modelo.casilleros.Aysa;
 import modelo.casilleros.Barrio;
 import modelo.casilleros.Carcel;
 import modelo.casilleros.Casillero;
 import modelo.casilleros.CordobaSur;
 import modelo.casilleros.Neuquen;
+import modelo.casilleros.Policia;
+import modelo.casilleros.Retroceso;
 import modelo.excepciones.*;
 
 import org.junit.Rule;
@@ -22,6 +25,7 @@ import modelo.casilleros.Salida;
 import modelo.casilleros.SantaFe;
 import modelo.casilleros.Subte;
 import modelo.casilleros.Tren;
+import modelo.casilleros.Tucuman;
 
 import org.junit.rules.ExpectedException;
 
@@ -41,29 +45,28 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test02ElJugadorAvanza3CasillerosYCaeEnEdesur() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+	public void test02ElJugadorAvanza3CasillerosYCaeEnEdesurEntoncesSuCapitalDisminuyeEn500VecesSuValorDeDados() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
-		ArrayList<Jugador> listaJugadores = new ArrayList<>();
-		Tablero unTablero = new Tablero();
+		Jugador otroJugador = new Jugador();
+		Edesur unEdesur = new Edesur();
 		
-		listaJugadores.add(unJugador);
-		unTablero.agregarJugadores(listaJugadores);
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 3);
+		unEdesur.setPropietario(otroJugador);
+		unJugador.setUltimoValorDeDados(2);
+		unJugador.avanzar(unEdesur);
 		
-		Assert.assertEquals(unJugador.getPosicion().getClass(),(new Edesur()).getClass());
-		//TODO falta refactorizar, quitar ".getClass()"
+		
+		Assert.assertEquals(unJugador.getCapital(),99000,DELTA);
 	}
 
 	@Test
 	public void test03JugadorCompraNeuquenYQuedaComoPropietario() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		Jugador unDuenio = new Jugador();
 		Neuquen neuquen = new Neuquen();
+		unDuenio.setUltimoValorDeDados(1);
 
 		thrown.expect(ExcepcionNoExistePropietario.class);
-		neuquen.caer(unDuenio, 1);
+		neuquen.caer(unDuenio);
 
 		Assert.assertEquals(neuquen.getPropietario(), unDuenio);
 	}
@@ -71,18 +74,14 @@ public class JugadorTest {
 	@Test
 	public void test04JugadorCaeEnLaCarcelYNoPuedeDesplazarse() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		Jugador unJugador = new Jugador();
-		ArrayList<Jugador> listaJugadores = new ArrayList<>();
-		Tablero unTablero = new Tablero();
 		Carcel miCarcel = new Carcel();
 
-		listaJugadores.add(unJugador);
-		unTablero.agregarJugadores(listaJugadores);
-		miCarcel.arrestar(unJugador);
-
+		unJugador.avanzar(miCarcel);
+		
 		thrown.expect(ExcepcionJugadorPreso.class);
-		unTablero.avanzar(unJugador, 1);
+		unJugador.avanzar(new Salida());
 	}
-
+/* Como ahora para avanzar se le pasa un casillero, esta prueba no tiene sentido
 	@Test
 	public void test05SiUnJugadorAvanza20CasillerosCaeDeNuevoEnLaSalida() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
@@ -96,6 +95,8 @@ public class JugadorTest {
 		
 		Assert.assertEquals(unJugador.getPosicion().getClass(),(new Salida()).getClass());
 	}
+	
+//	Idem a la anterior, como se le pasa el casillero para avanzar, no tiene razon de ser  
 	
 	@Test
 	public void test06SiUnJugadorAvanza25CasillerosDaLaVueltaYCaeEnCarcel() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
@@ -112,24 +113,17 @@ public class JugadorTest {
 		Assert.assertEquals((new Carcel()).getClass(), unJugador.getPosicion().getClass());
 		
 	}
-	
+*/	
 	@Test
 	public void test07UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn3YAvanzaASubte() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
-		ArrayList<Jugador> listaJugadores = new ArrayList<>();
-		Tablero unTablero = new Tablero();
 		
-		listaJugadores.add(unJugador);
-		unTablero.agregarJugadores(listaJugadores);
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 4); //Dejo al jugador en Bs As Zona sur para avanzar de a 3 a Avance
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 3); //Muevo al jugador desde Bs As Zona sur a avanza dinamico
-
-		Assert.assertEquals((new Subte()).getClass(), unJugador.getPosicion().getClass());
+		unJugador.setUltimoValorDeDados(3);
+		
+		unJugador.avanzar(new Avance());
+	
+		Assert.assertEquals(unJugador.getPosicion(), new Subte());
 
 		
 	}
@@ -138,43 +132,43 @@ public class JugadorTest {
 	public void test08UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn7YAvanzaAAysa() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
-		Tablero unTablero = new Tablero();
-		
-		unTablero.agregarJugador(unJugador);
-			
-		//cae en avance dinamico, rolleando un 7
-		unTablero.avanzar(unJugador, 7 );
-
-		Assert.assertEquals((new Aysa()).getClass(), unJugador.getPosicion().getClass());
+	
+		unJugador.setUltimoValorDeDados(7);
+		unJugador.avanzar(new Avance());
+	
+		Assert.assertEquals(unJugador.getPosicion(),new Aysa());
 
 	}
 	
 	@Test
-	public void test09UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn12YCaeEnTren() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente {
+	public void test09UnJugadorCaeEnAvanceDinamicoDespuesDeHaberSacadoUn12YCaeEnTucuman() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
-		//Rehacer tests
+		Jugador unJugador = new Jugador();
 		
-		Assert.assertTrue(true);
+		
+		unJugador.setUltimoValorDeDados(12);
+		try {
+			unJugador.avanzar(new Avance());
+		} catch (ExcepcionNoExistePropietario e) {
+		
+		}
+		
+		Assert.assertEquals(unJugador.getPosicion(),new Tucuman());
 	}
 	
 	@Test
 	public void test10UnJugadorCaeEnLaPoliciaYEstaLoLlevaALaCarcel() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador unJugador = new Jugador();
-		ArrayList<Jugador> listaJugadores = new ArrayList<>();
-		Tablero unTablero = new Tablero();
+		Policia unaPolicia = new Policia();
 		
-		listaJugadores.add(unJugador);
-		unTablero.agregarJugadores(listaJugadores);
-			
-		//Avanza 15 para caer en la policia
-		unTablero.avanzar(unJugador, 15 );
+		unaPolicia.setCarcel(new Carcel());
+		unJugador.avanzar(unaPolicia);
 		
-				
-		Assert.assertEquals((new Carcel()).getClass(), unJugador.getPosicion().getClass());
-				
+		thrown.expect(ExcepcionJugadorPreso.class);
+		unJugador.avanzar(new Salida());				
 	}
-	
+/*	Esto se testeo en la prueba anterior
 	@Test
 	public void test11UnJugadorCaeEnLaPoliciaEstaLoLlevaALaCarcelYAhoraNoSePuedeMover() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
@@ -193,66 +187,38 @@ public class JugadorTest {
 		unTablero.avanzar(unJugador, 1);
 			
 	}
-	
+*/	
 	@Test
-	public void test12UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn4YRetrocedeATren() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso, ExcepcionNoExistePropietario {
+	public void test12UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn4YRetrocedeATren() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso {
 		
 		Jugador unJugador = new Jugador();
-		ArrayList<Jugador> listaJugadores = new ArrayList<>();
-		Tablero unTablero = new Tablero();
+	
+		unJugador.setUltimoValorDeDados(4);
+		try {
+			unJugador.avanzar(new Retroceso());
+		} catch (ExcepcionNoExistePropietario e) {
+			
+		}
 		
-		listaJugadores.add(unJugador);
-		unTablero.agregarJugadores(listaJugadores);
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 14); //Dejo al jugador en Salta Sur
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 4); //Muevo al jugador desde Salta Sur a retroceso dinamico
-
-		Assert.assertEquals((new Tren()).getClass(), unJugador.getPosicion().getClass());
+		Assert.assertEquals(unJugador.getPosicion(),new Tren());
 
 	}
-	
+
 	@Test
-	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YRetrocedeAlMismoCasillero() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+	public void test13UnJugadorConCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YRetrocedeACordobaSur() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente{
 		
 		Jugador unJugador = new Jugador();
-		Tablero unTablero = new Tablero();
 		
-		unTablero.agregarJugador(unJugador);
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 6);
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 12);//Desde CordobaSur saco un 12 y el jugador cae en Retroceso Dinamico
-
-		//Deberia retroceder los 12 casilleros por no tener inmuebles
+		unJugador.setUltimoValorDeDados(12);
+		try {
+			unJugador.avanzar(new Retroceso());
+		} catch (ExcepcionNoExistePropietario e) {
+			
+		}
 		
-		Assert.assertEquals((new CordobaSur()).getClass(), unJugador.getPosicion().getClass());
+		Assert.assertEquals(unJugador.getPosicion(), new CordobaSur());
 	}
-	
-	@Test
-	public void test14UnJugadorCaeEnRetrocesoDinamicoDespuesDeHaberSacadoUn12YCaeEnCordobaSur() throws ExcepcionJugadorPreso, ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
-		
-		Jugador unJugador = new Jugador();
-		Tablero unTablero = new Tablero();
-		
-		unTablero.agregarJugador(unJugador);
-		
-		//Avanza 6 y cae en Cordoba Sur
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 6 );
-		
-		// Desde Cordoba sur, saca un 12 y cae en Retroceso Dinamico
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 12 );
-		
-		//Vuelve a caer en CordobaSur retrocediendo los 12 casilleros por tener 0 inmuebles		
-		Assert.assertEquals((new CordobaSur()).getClass(), unJugador.getPosicion().getClass());
-	}
-	
+
 	@Test (expected = ExcepcionPagarFianzaNoCorresponde.class)
 	public void test15JugadorPagaFianzaEstandoJugandoArrojaExcepcionPagarFianzaNoCorresponde() throws ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente {
 		
@@ -270,7 +236,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test17AvanzarJugadorASalidaPoneJugadorEnPosicionSalida() throws ExcepcionJugadorPreso {
+	public void test17AvanzarJugadorASalidaPoneJugadorEnPosicionSalida() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador jugador = new Jugador();
 		Casillero salida = new Salida();
@@ -281,7 +247,7 @@ public class JugadorTest {
 	}
 	
 	@Test (expected = ExcepcionJugadorPreso.class)
-	public void test18AvanzarJugadorASalidaArrojaExcepcionJugadorPresoCuandoElEstadoEsPreso() throws ExcepcionJugadorPreso {
+	public void test18AvanzarJugadorASalidaArrojaExcepcionJugadorPresoCuandoElEstadoEsPreso() throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Jugador jugador = new Jugador();
 		Casillero salida = new Salida();

@@ -14,7 +14,7 @@ public class Subte implements Casillero {
 		this.miDuenio = new SinPropietario();
 	}
 	@Override
-	public void caer(Jugador jugador, int velorDeLosDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
+	public void caer(Jugador jugador) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		// TODO Auto-generated method stub
 		
 	}
@@ -27,4 +27,8 @@ public class Subte implements Casillero {
     public void setPropietario(Jugador propietario) {
         this.miDuenio = propietario;
     }
+    @Override
+	public boolean equals(Object o){
+		return (this.getClass()==o.getClass());
+	}
 }

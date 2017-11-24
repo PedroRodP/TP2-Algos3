@@ -9,7 +9,7 @@ public class Salida implements Casillero {
 	Casillero siguiente;
 	
 	@Override
-	public void caer(Jugador jugador, int velorDeLosDados) throws ExcepcionJugadorPreso {
+	public void caer(Jugador jugador) throws ExcepcionJugadorPreso {
 		// TODO Auto-generated method stub
 		
 	}

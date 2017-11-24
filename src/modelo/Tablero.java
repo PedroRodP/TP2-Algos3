@@ -41,7 +41,7 @@ public class Tablero {
 		casilleros.add(new BsAsNorte());
 		casilleros.add(new Carcel());
 		casilleros.add(new CordobaSur());
-		casilleros.add(new Avance(this));
+		casilleros.add(new Avance());
 		casilleros.add(new Subte());
 		casilleros.add(new CordobaNorte());
 		casilleros.add(new Impuesto());
@@ -49,14 +49,14 @@ public class Tablero {
 		casilleros.add(new Aysa());
 		casilleros.add(new SaltaNorte());
 		casilleros.add(new SaltaSur());
-		casilleros.add(new Policia(this));
+		casilleros.add(new Policia());
 		casilleros.add(new Tren());
 		casilleros.add(new Neuquen());
-		casilleros.add(new Retroceso(this));
+		casilleros.add(new Retroceso());
 		casilleros.add(new Tucuman());
 	}
 
-	public void agregarJugadores(ArrayList<Jugador> listaJugadores) {
+/*	public void agregarJugadores(ArrayList<Jugador> listaJugadores) {
 		
 		//Pone en la posicion de salida a los jugadores
 		Casillero salida = casilleros.getFirst();
@@ -121,5 +121,5 @@ public class Tablero {
 				
 		return casilleros.get(numeroDePosicion);
 	}
-
+*/
 }

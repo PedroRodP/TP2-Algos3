@@ -26,5 +26,10 @@ public class CordobaSur extends Barrio {
 
     public void setPropietario(Jugador propietario) {
         administrador.setDuenio(propietario);
+ 
     }
+	@Override
+	public boolean equals(Object o){
+		return (this.getClass()==o.getClass());
+	}
 }

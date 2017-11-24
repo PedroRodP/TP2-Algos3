@@ -7,8 +7,6 @@ import modelo.casilleros.Carcel;
 import modelo.casilleros.Casillero;
 import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.*;
-import modelo.excepciones.ExcepcionJugadorPreso;
-import modelo.excepciones.ExcepcionCapitalInsuficiente;
 
 public class Jugador implements Propietario {
 
@@ -16,7 +14,8 @@ public class Jugador implements Propietario {
 	private EstadoJugador estado;
 	private Casillero posicion;
 	private int cantidadDeInmuebles;
-
+	private int ultimoValorObtenidoEnDados;
+	
 	public Jugador() {
 		capital = 100000;
 		estado = new Jugando();
@@ -44,11 +43,13 @@ public class Jugador implements Propietario {
 		return capital;
 	}
 
-	public void avanzar(Casillero casillero) throws ExcepcionJugadorPreso {
+	public void avanzar(Casillero casillero) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		Casillero nuevaPosicion = estado.avanzar(casillero);
 		
 		this.actualizarPosicion(nuevaPosicion);
+		
+		casillero.caer(this);
 	}
 
 	private void actualizarPosicion(Casillero nuevaPosicion) {
@@ -88,5 +89,21 @@ public class Jugador implements Propietario {
 	public int cantidadDeInmuebles(){
 		
 		return cantidadDeInmuebles;
+	}
+	
+	public void tirarDados(){
+		
+		ultimoValorObtenidoEnDados = (new Tirada()).arrojarDados();
+		
+	}
+	
+	//solamente para ser usado en las pruebas que requieran un valor fijo
+	//en los dados, como por ejemplo las de avance y retroceso dinamico
+	public void setUltimoValorDeDados(int valor){
+		ultimoValorObtenidoEnDados = valor;
+	}
+	
+	public int getUltimoValorDeDados(){
+		return ultimoValorObtenidoEnDados;
 	}
 }

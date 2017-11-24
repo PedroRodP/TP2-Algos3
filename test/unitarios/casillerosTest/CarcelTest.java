@@ -6,6 +6,7 @@ import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
 import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -21,7 +22,7 @@ public class CarcelTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void test01JugadorAzulEsArrestadoYRecuperaSuLibertad3RondasDespues() throws ExcepcionJugadorYaEstaJugando {
+    public void test01JugadorAzulEsArrestadoYRecuperaSuLibertad3RondasDespues() throws ExcepcionJugadorYaEstaJugando, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
         
     	Jugador jugadorAzul = new Jugador();
         Carcel carcel = new Carcel();
@@ -38,24 +39,24 @@ public class CarcelTest {
     }
 
     @Test
-    public void test02JugadorCaeEnCarcelPagaYNoPuedePagarSuFianzaEnPrimerTurno() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde, ExcepcionJugadorPreso {
+    public void test02JugadorCaeEnCarcelPagaYNoPuedePagarSuFianzaEnPrimerTurno() throws ExcepcionCapitalInsuficiente, ExcepcionPagarFianzaNoCorresponde, ExcepcionJugadorPreso, ExcepcionNoExistePropietario {
         Jugador jugadorAzul = new Jugador();
         Carcel carcel = new Carcel();
         
         jugadorAzul.avanzar(carcel);
-        carcel.caer(jugadorAzul, 1);
+        carcel.caer(jugadorAzul);
 
         thrown.expect(ExcepcionPagarFianzaNoCorresponde.class);
         jugadorAzul.pagarFianza();
     }
 
     @Test
-    public void test03JugadorCaeEnCarcelYNoPuedePagarSufianzaEnTurno3PorFaltaDeFondos() throws ExcepcionJugadorPreso, ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente, ExcepcionJugadorYaEstaJugando {
+    public void test03JugadorCaeEnCarcelYNoPuedePagarSufianzaEnTurno3PorFaltaDeFondos() throws ExcepcionJugadorPreso, ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente, ExcepcionJugadorYaEstaJugando, ExcepcionNoExistePropietario {
         Jugador jugadorAzul = new Jugador();
         Carcel carcel = new Carcel();
 
         jugadorAzul.avanzar(carcel);
-        carcel.caer(jugadorAzul, 1);
+//        carcel.caer(jugadorAzul);
         carcel.cumplirRonda();
         carcel.cumplirRonda();
 
@@ -69,12 +70,12 @@ public class CarcelTest {
     }
 
     @Test
-    public void test04JugadorCaeEnCarcelYPagaSuFianzaEnTurno2YQuedaEnLibertad() throws ExcepcionJugadorPreso, ExcepcionJugadorYaEstaJugando, ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente {
+    public void test04JugadorCaeEnCarcelYPagaSuFianzaEnTurno2YQuedaEnLibertad() throws ExcepcionJugadorPreso, ExcepcionJugadorYaEstaJugando, ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
         Jugador jugadorAzul = new Jugador();
         Carcel carcel = new Carcel();
         Carcel otraCarcel = new Carcel();
 
-        carcel.caer(jugadorAzul, 1);
+        carcel.caer(jugadorAzul);
         carcel.cumplirRonda();
 
         jugadorAzul.pagarFianza();

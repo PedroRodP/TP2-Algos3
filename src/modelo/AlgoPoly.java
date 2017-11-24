@@ -8,14 +8,13 @@ import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
 public class AlgoPoly {
 
 	private GrupoJugadores grupo = new GrupoJugadores();
-	private Tablero tablero = new Tablero();
 	private Turnador turnador;
 	
 	
 	public AlgoPoly() {
 		
 		turnador = new Turnador(grupo.getJugadores());
-		tablero.agregarJugadores(grupo.getJugadores());
+		//tablero.agregarJugadores(grupo.getJugadores());
 	}
 
 	public void jugar() {
@@ -30,7 +29,7 @@ public class AlgoPoly {
 		this.opcionEdificar(jugador);
 		
 		//Bloque jugada
-		this.opcionMoverse(jugador);
+//		this.opcionMoverse(jugador);
 	}		
 
 	private void opcionPagarFianza(Jugador jugador) {
@@ -50,7 +49,7 @@ public class AlgoPoly {
 		
 	}
 	
-	private void opcionMoverse(Jugador jugador) {
+/*	private void opcionMoverse(Jugador jugador) {
 		
 		Tirada tirada = new Tirada();
 		
@@ -75,5 +74,5 @@ public class AlgoPoly {
 			e.printStackTrace();
 		}
 	}
-
+*/
 }

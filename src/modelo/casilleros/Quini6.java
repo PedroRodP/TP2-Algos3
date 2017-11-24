@@ -46,7 +46,7 @@ public class Quini6 implements Casillero {
 	}
 
 	@Override
-	public void caer(Jugador jugador, int valorDados)
+	public void caer(Jugador jugador)
 			throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		
 		this.premiar(jugador);
