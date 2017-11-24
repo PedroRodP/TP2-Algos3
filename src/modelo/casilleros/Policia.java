@@ -9,19 +9,20 @@ import modelo.excepciones.ExcepcionJugadorPreso;
 public class Policia implements Casillero {
 
 	Tablero tablero;
+	private Carcel miCarcel;
 	
-	public Policia(Tablero referencia) {
+/*	public Policia(Tablero referencia) {
 		
 		tablero = referencia;
 	}
-	
+	*/
 	public void enviarACarcel(Jugador jugador) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente {
 		
-		tablero.enviarALaCarcel(jugador);
+		miCarcel.caer(jugador);;
 	}
 	
 	@Override
-	public void caer(Jugador jugador, int velorDeLosDados) throws ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso {
+	public void caer(Jugador jugador) throws ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso {
 		
 		this.enviarACarcel(jugador);
 	}
@@ -29,6 +30,9 @@ public class Policia implements Casillero {
 	@Override
 	public boolean esDuenio(Propietario unPropietario) {
 		return false;
+	}
+	public void setCarcel(Carcel unaCarcel){
+		miCarcel = unaCarcel;
 	}
 
 }

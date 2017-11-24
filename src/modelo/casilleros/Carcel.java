@@ -5,6 +5,7 @@ import modelo.casilleros.estados.Propietario;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExcepcionJugadorYaEstaJugando;
+import modelo.excepciones.ExcepcionNoExistePropietario;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class Carcel implements Casillero {
     }
 
 
-    public void cumplirRonda() throws ExcepcionJugadorYaEstaJugando {
+    public void cumplirRonda() throws ExcepcionJugadorYaEstaJugando, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
         for (Jugador unPreso: listaDePresos) {
             unPreso.cumplirCondena();
         }
@@ -28,7 +29,7 @@ public class Carcel implements Casillero {
     }
 
     @SuppressWarnings("unchecked")
-	private void verificarCondenas() {
+	private void verificarCondenas() throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
         ArrayList<Jugador> listaAuxiliar;
         listaAuxiliar = (ArrayList<Jugador>) this.listaDePresos.clone();
 
@@ -39,7 +40,7 @@ public class Carcel implements Casillero {
         }
     }
 
-    private boolean cumplioCondena(Jugador unPreso) {
+    private boolean cumplioCondena(Jugador unPreso) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
         try {
         	Casillero casilleroX = new Salida();
             unPreso.avanzar(casilleroX);
@@ -65,7 +66,7 @@ public class Carcel implements Casillero {
     }
 
 	@Override
-	public void caer(Jugador jugador, int velorDeLosDados) throws ExcepcionJugadorPreso {
+	public void caer(Jugador jugador) throws ExcepcionJugadorPreso {
 		
 	  this.arrestar(jugador);
 		

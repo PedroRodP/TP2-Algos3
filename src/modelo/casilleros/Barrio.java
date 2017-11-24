@@ -19,7 +19,7 @@ public abstract class Barrio implements Casillero {
 	protected RegistroDeInmuebles registro;
 
 	@Override
-	public void caer(Jugador jugador, int valorDados) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+	public void caer(Jugador jugador) throws ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
 		double unMonto = registro.calcularAlquiler();
 		administrador.getDuenio().recibirPagoDe(jugador, unMonto);
 	}
@@ -90,5 +90,5 @@ public abstract class Barrio implements Casillero {
 	public double getPrecioConstruccionHotel() {
 		return precioConstruccionHotel;
 	}
-
+	
 }

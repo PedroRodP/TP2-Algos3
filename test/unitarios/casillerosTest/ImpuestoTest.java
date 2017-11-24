@@ -21,7 +21,7 @@ public class ImpuestoTest {
 
         double capitalAnterior = unJugador.getCapital();
 
-        casilleroImpuesto.caer(unJugador, 1);
+        casilleroImpuesto.caer(unJugador);
 
         Assert.assertEquals(capitalAnterior * 0.9, unJugador.getCapital(), DELTA);
     }

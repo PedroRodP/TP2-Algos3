@@ -25,9 +25,10 @@ public class TrenTest {
         Tren tren = new Tren();
 
         double capitalAnterior = unJugador.getCapital();
+        unJugador.setUltimoValorDeDados(2);
 
         tren.setPropietario(unDuenio);
-        tren.caer(unJugador, 2);
+        tren.caer(unJugador);
 
         Assert.assertEquals(unJugador.getCapital() + 900, capitalAnterior, DELTA);
     }
@@ -40,13 +41,14 @@ public class TrenTest {
         Subte subte = new Subte();
 
         double capitalInicial = unJugador.getCapital();
+        unJugador.setUltimoValorDeDados(2);
 
         tren.setPropietario(unDuenio);
         subte.setPropietario(unDuenio);
 
         tren.setSocio(subte);
 
-        tren.caer(unJugador, 2);
+        tren.caer(unJugador);
 
         Assert.assertEquals(unJugador.getCapital() + 1600, capitalInicial, DELTA);
     }

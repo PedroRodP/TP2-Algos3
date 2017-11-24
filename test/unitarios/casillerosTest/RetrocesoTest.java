@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import modelo.Jugador;
 import modelo.Tablero;
+import modelo.casilleros.Retroceso;
 import modelo.casilleros.SaltaSur;
 import modelo.excepciones.ExcepcionCapitalInsuficiente;
 import modelo.excepciones.ExcepcionTerrenoOcupado;
@@ -19,22 +20,21 @@ public class RetrocesoTest {
 	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
-	public void test01unRetrocesoDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso, ExcepcionNoExistePropietario {
+	public void test01unRetrocesoDinamicoMueveAlJugadorQueCaeEnElla() throws ExcepcionTerrenoOcupado, ExcepcionCapitalInsuficiente, ExcepcionJugadorPreso {
 		
 		Jugador unJugador = new Jugador();
-		Tablero unTablero = new Tablero();
 		
-		unTablero.agregarJugador(unJugador);
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 12);
-
-		thrown.expect(ExcepcionNoExistePropietario.class);
-		unTablero.avanzar(unJugador, 6); //Avanza hasta Retroceso Dinamico con valorDados = 6
-		
+		unJugador.setUltimoValorDeDados(6);
+		try {
+			unJugador.avanzar(new Retroceso());
+		} catch (ExcepcionNoExistePropietario e) {
+			
+		}
+			
 		//Debe retroceder 4 casilleros y caer en Salta Sur
 		
-		Assert.assertEquals((new SaltaSur()).getClass(), unJugador.getPosicion().getClass());
+		Assert.assertEquals(unJugador.getPosicion(),new SaltaSur());
 		
 	}
+
 }

@@ -92,7 +92,7 @@ public class SaltaSurTest {
 		saltaNorte.edificar();
 		saltaSur.edificar();
 
-		saltaSur.caer(unContrincante, 1);
+		saltaSur.caer(unContrincante);
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3250, DELTA);
 	}
@@ -114,7 +114,7 @@ public class SaltaSurTest {
 		saltaSur.edificar();
 		saltaSur.edificar();
 
-		saltaSur.caer(unContrincante, 1);
+		saltaSur.caer(unContrincante);
 
 		Assert.assertEquals(montoInicial, unContrincante.getCapital() + 3850, DELTA);
 	}

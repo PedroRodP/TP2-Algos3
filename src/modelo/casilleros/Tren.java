@@ -17,8 +17,8 @@ public class Tren implements Casillero {
 		subte = new Subte();
 	}
 	@Override
-	public void caer(Jugador jugador, int valorDeLosDados) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
-		double unMonto = this.obtenerValorMultiplicidad() * valorDeLosDados;
+	public void caer(Jugador jugador) throws ExcepcionJugadorPreso, ExcepcionCapitalInsuficiente, ExcepcionNoExistePropietario {
+		double unMonto = this.obtenerValorMultiplicidad() * (jugador.getUltimoValorDeDados());
 		miDuenio.acreditar(unMonto); //acreditar debería recibir al jugador y pagar dentro de este metodo
 		jugador.pagar(unMonto);
 	}
@@ -41,5 +41,10 @@ public class Tren implements Casillero {
 
 	public void setSocio(Subte socio) {
 		this.subte = socio;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		return (this.getClass()==o.getClass());
 	}
 }

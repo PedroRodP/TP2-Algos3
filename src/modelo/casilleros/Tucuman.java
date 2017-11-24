@@ -22,4 +22,9 @@ public class Tucuman extends Barrio {
 	public boolean esDuenio(Propietario unPropietario) {
 		return false;
 	}
+	
+	@Override
+	public boolean equals(Object o){
+		return (this.getClass()==o.getClass());
+	}
 }
