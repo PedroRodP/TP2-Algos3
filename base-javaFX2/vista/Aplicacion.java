@@ -10,7 +10,7 @@ import modelo.Terreno;
 import vista.eventos.AplicacionOnKeyPressEventHandler;
 
 public class Aplicacion extends Application {
-
+	
     public static void main(String[] args) {
         launch(args);
     }
