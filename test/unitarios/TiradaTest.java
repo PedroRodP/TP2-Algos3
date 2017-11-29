@@ -11,15 +11,17 @@ import org.junit.Assert;
 public class TiradaTest {
 
 	@Test
-	public void test01ArrojarLosDadosDevuelveUnNumeroEntre1Y12() throws ExceptionArrojoDoblesTresVeces {
+	public void test01ArrojarLosDadosDevuelveUnNumeroEntre0Y12() throws ExceptionArrojoDoblesTresVeces {
 		
 		Tirada tirada = new Tirada();
 		
 		int resultado = tirada.arrojarDados();
-		
-		Assert.assertTrue(1 <= resultado && resultado <= 12);
+
+		//0 es cuando los dados son dobles
+		Assert.assertTrue(0 <= resultado && resultado <= 12);
 	}
 
+	//Test 1: 3ra. Entega
 	//Un jugador arroja los dados y ambos tienen el mismo valor. Verificar que puede volver a jugar.
 	@Test
 	public void test02JugadorArrojaLosDadosConMismoValorUnaVezYPuedeVuelveAJugar() throws ExceptionArrojoDoblesTresVeces {
@@ -32,4 +34,24 @@ public class TiradaTest {
 
 		Assert.assertEquals(true, tiradaJugador.arrojarDados() >= 0);
 	}
+
+    //Test 1: 3ra. Entega
+    //Un jugador arroja los dados y ambos tienen el mismo valor en dos oportunidades. Verificar que puede volver a jugar.
+    @Test
+    public void test03JugadorArrojaLosDadosConMismoValorUnaVezYPuedeVuelveAJugar() throws ExceptionArrojoDoblesTresVeces {
+        Tirada tiradaJugador = new Tirada();
+        int saleDobleEsCero;
+
+        //Saca doble 1ra vez
+        do {
+            saleDobleEsCero = tiradaJugador.arrojarDados();
+        } while (saleDobleEsCero > 0);
+
+        //Saca doble 2da vez
+        do {
+            saleDobleEsCero = tiradaJugador.arrojarDados();
+        } while (saleDobleEsCero > 0);
+
+        Assert.assertEquals(true, tiradaJugador.arrojarDados() >= 0);
+    }
 }
