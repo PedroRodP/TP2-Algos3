@@ -18,9 +18,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import modelo.AlgoPoly;
+import modelo.Jugador;
 import vista.eventos.BotonArrojarDadosHandler;
 import vista.eventos.BotonEdificarHandler;
-import vista.eventos.BotonFinTurnoHandler;
+import vista.eventos.BotonProximoTurnoHandler;
 import vista.eventos.BotonPagarFianzaHandler;
 import vista.eventos.BotonVenderHandler;
 
@@ -28,15 +29,14 @@ public class ContenedorPrincipal extends BorderPane {
 
     BarraDeMenu menuBar;
     AlgoPoly aPoly;
-//    Canvas canvasCentral;
+    Canvas canvasCentral;
     VBox contenedorCentral;
 
     public ContenedorPrincipal(Stage stage, AlgoPoly aPoly) {
         this.setMenu(stage);
-//        this.setCentro(aPoly);
+        this.setCentro(aPoly);
         this.setConsola();
     	this.setBotonera(aPoly);
-    	this.setBotonFinTurno(aPoly);
     }
 
     private void setBotonera(AlgoPoly aPoly) {
@@ -44,7 +44,7 @@ public class ContenedorPrincipal extends BorderPane {
     	//Creacion de todos los botones
     	
         Button botonTurno = new Button();
-        botonTurno.setText("Terminar turno");
+        botonTurno.setText("Proximo turno");
     	
         Button botonDados = new Button();
         botonDados.setText("Arrojar dados");
@@ -60,7 +60,7 @@ public class ContenedorPrincipal extends BorderPane {
     	
     	//Asignacion de controladores
 
-        BotonArrojarDadosHandler dadosButtonHandler = new BotonArrojarDadosHandler(aPoly, botonDados);
+        BotonArrojarDadosHandler dadosButtonHandler = new BotonArrojarDadosHandler(aPoly, botonDados, botonTurno);
         botonDados.setOnAction(dadosButtonHandler);
 
         BotonPagarFianzaHandler fianzaButtonHandler = new BotonPagarFianzaHandler(aPoly, botonFianza);
@@ -73,7 +73,7 @@ public class ContenedorPrincipal extends BorderPane {
         BotonEdificarHandler edificarButtonHandler = new BotonEdificarHandler(aPoly, botonEdificar);
         botonEdificar.setOnAction(edificarButtonHandler);
         
-        BotonFinTurnoHandler turnoButtonHandler = new BotonFinTurnoHandler(aPoly, botonTurno, botonFianza, botonVender, botonEdificar, botonDados);
+        BotonProximoTurnoHandler turnoButtonHandler = new BotonProximoTurnoHandler(aPoly, botonTurno, botonFianza, botonVender, botonEdificar, botonDados);
         botonTurno.setOnAction(turnoButtonHandler);
         
 
@@ -82,6 +82,7 @@ public class ContenedorPrincipal extends BorderPane {
         VBox contenedorVertical = new VBox(botonFianza, botonVender, botonEdificar, botonDados);
         contenedorVertical.setSpacing(10);
         contenedorVertical.setPadding(new Insets(15));
+        contenedorVertical.setStyle("-fx-background-color: darkred;");
 
         this.setLeft(contenedorVertical);
         
@@ -89,16 +90,11 @@ public class ContenedorPrincipal extends BorderPane {
         //Botonera derecha
 
         VBox contenedorVertical2 = new VBox(botonTurno);
-        contenedorVertical.setSpacing(10);
-        contenedorVertical.setPadding(new Insets(15));
+        contenedorVertical2.setSpacing(10);
+        contenedorVertical2.setPadding(new Insets(15));
+        contenedorVertical2.setStyle("-fx-background-color: darkred;");
 
         this.setRight(contenedorVertical2);
-
-    }
-    
-    private void setBotonFinTurno(AlgoPoly aPoly) {
-
-
 
     }
 
@@ -109,39 +105,70 @@ public class ContenedorPrincipal extends BorderPane {
         this.setTop(menuBar);
     }
 
-    /*private void setCentro(AlgoPoly aPoly) {
+    private void setCentro(AlgoPoly aPoly) {
 
-        canvasCentral = new Canvas(460, 220);
-        vistaRobot = new VistaRobot(robot, canvasCentral);
-        vistaRobot.dibujar();
+        canvasCentral = new Canvas(360, 360);
+        
+        Jugador jugadorRojo = new Jugador();
+        Jugador jugadorAzul = new Jugador();
+        Jugador jugadorAmarillo = new Jugador();
+        
+        VistaJugador vistaJugadorRojo = new VistaJugador(canvasCentral, jugadorRojo, Color.DARKRED);
+        VistaJugador vistaJugadorAzul = new VistaJugador(canvasCentral, jugadorAzul, Color.DARKBLUE);
+        VistaJugador vistaJugadorAmarillo = new VistaJugador(canvasCentral, jugadorAmarillo, Color.YELLOW);
+        
+        vistaJugadorRojo.dibujar(0);
+        vistaJugadorAzul.dibujar(0);
+        vistaJugadorAmarillo.dibujar(0);
 
         contenedorCentral = new VBox(canvasCentral);
         contenedorCentral.setAlignment(Pos.CENTER);
         contenedorCentral.setSpacing(20);
         contenedorCentral.setPadding(new Insets(25));
-        Image imagen = new Image("file:src/vista/imagenes/tablero.jpg");
+        
+        Image imagen = new Image("file:src/vista/imagenes/fondo.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedorCentral.setBackground(new Background(imagenDeFondo));
 
         this.setCenter(contenedorCentral);
-    }*/
+    }
 
-    private void setConsola() {
+	private void setConsola() {
 
+        this.actualizarConsola("Consola...");
+    }
+    
+    public void actualizarConsola(String nuevoTexto) {
+    	
+    	Label etiqueta = this.crearEtiquetaDeConsola(nuevoTexto);
+    	
+    	VBox contenedorConsola = this.crearVBoxDeConsola(etiqueta);
+    	
+    	this.setBottom(contenedorConsola);
+    	
+    }
+
+	private Label crearEtiquetaDeConsola(String nuevoTexto) {
+		
         Label etiqueta = new Label();
-        etiqueta.setText("Consola...");
-        etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
-        etiqueta.setTextFill(Color.WHITE);
-
+        etiqueta.setText(nuevoTexto);
+        etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 15));
+        etiqueta.setTextFill(Color.DARKRED);
+		
+		return etiqueta;
+	}
+	
+    private VBox crearVBoxDeConsola(Label etiqueta) {
+		
         VBox contenedorConsola = new VBox(etiqueta);
         contenedorConsola.setSpacing(10);
         contenedorConsola.setPadding(new Insets(15));
-        contenedorConsola.setStyle("-fx-background-color: orange;");
+        contenedorConsola.setStyle("-fx-background-color: beige;");
+    	
+		return contenedorConsola;
+	}
 
-        this.setBottom(contenedorConsola);
-    }
-
-    public BarraDeMenu getBarraDeMenu() {
+	public BarraDeMenu getBarraDeMenu() {
         return menuBar;
     }
 

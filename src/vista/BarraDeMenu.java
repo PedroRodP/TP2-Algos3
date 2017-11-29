@@ -3,7 +3,6 @@ package vista;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.Stage;
 import vista.eventos.OpcionAcercaDeEventHandler;
 import vista.eventos.OpcionPantallaCompletaEventHandler;
@@ -15,8 +14,7 @@ public class BarraDeMenu extends MenuBar {
 
     public BarraDeMenu(Stage stage) {
 
-        Menu menuSalir = new Menu("Salir");
-        Menu menuVer = new Menu("Ver");
+        Menu menuOpciones = new Menu("Opciones");
         Menu menuAyuda = new Menu("Ayuda");
 
         MenuItem opcionSalir = new MenuItem("Salir");
@@ -31,11 +29,10 @@ public class BarraDeMenu extends MenuBar {
         OpcionPantallaCompletaEventHandler opcionPantallaCompletaHandler = new OpcionPantallaCompletaEventHandler(stage, opcionPantallaCompleta);
         opcionPantallaCompleta.setOnAction(opcionPantallaCompletaHandler);
 
-        menuSalir.getItems().addAll(opcionSalir);
+        menuOpciones.getItems().addAll(opcionPantallaCompleta, opcionSalir);
         menuAyuda.getItems().addAll(opcionAcercaDe);
-        menuVer.getItems().addAll(opcionPantallaCompleta);
 
-        this.getMenus().addAll(menuVer, menuAyuda, menuSalir);
+        this.getMenus().addAll(menuOpciones, menuAyuda);
     }
 
     public void aplicacionMaximizada() {

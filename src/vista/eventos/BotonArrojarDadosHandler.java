@@ -9,10 +9,12 @@ public class BotonArrojarDadosHandler implements EventHandler<ActionEvent> {
 
 	AlgoPoly aPoly;
 	Button miBoton;
+	Button botonTurno;
 	
-	public BotonArrojarDadosHandler(AlgoPoly aPoly, Button miBoton) {
+	public BotonArrojarDadosHandler(AlgoPoly aPoly, Button miBoton, Button botonTurno) {
 		this.aPoly = aPoly;
 		this.miBoton = miBoton;
+		this.botonTurno = botonTurno;
 	}
 	
 	@Override
@@ -21,6 +23,7 @@ public class BotonArrojarDadosHandler implements EventHandler<ActionEvent> {
 		this.aPoly.opcionMoverse();
 		
 		this.miBoton.setDisable(true);
+		this.botonTurno.setDisable(false);
 	}
 	
 }

@@ -16,12 +16,14 @@ public class AlgoPoly {
 		tablero.agregarJugadores(grupo.getJugadores());
 	}
 
-	public void jugar() {
+	public void proximoTurno() {
 		
-		//Cambio de turno
 		this.jugadorActual = turnador.siguienteTurno();
-		
-		//Bloque comienzo de turno
+	}	
+	
+	/* JUEGO
+	 * 
+	  	//Bloque comienzo de turno
 		this.opcionPagarFianza();
 		
 		//Bloque pre-movida
@@ -30,7 +32,8 @@ public class AlgoPoly {
 		
 		//Bloque jugada
 		this.opcionMoverse();
-	}		
+	 * 
+	 */
 
 	public void opcionPagarFianza() {
 		try {
