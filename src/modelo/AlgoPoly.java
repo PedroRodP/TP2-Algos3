@@ -1,9 +1,6 @@
 package modelo;
 
-import modelo.excepciones.ExcepcionCapitalInsuficiente;
-import modelo.excepciones.ExcepcionJugadorPreso;
-import modelo.excepciones.ExcepcionNoExistePropietario;
-import modelo.excepciones.ExcepcionPagarFianzaNoCorresponde;
+import modelo.excepciones.*;
 
 public class AlgoPoly {
 
@@ -73,6 +70,8 @@ public class AlgoPoly {
 			
 		} catch (ExcepcionNoExistePropietario e) {
 			e.printStackTrace();
+		} catch (ExceptionArrojoDoblesTresVeces exceptionArrojoDoblesTresVeces) {
+			exceptionArrojoDoblesTresVeces.printStackTrace();
 		}
 	}
 
