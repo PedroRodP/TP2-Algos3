@@ -11,8 +11,8 @@ public class OpcionAcercaDeEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Acerca de...");
-        alert.setHeaderText("Acerca de...");
-        String mensaje = "AlgoPoly es un juego creado para el trabajo practico 2 de Algoritmos 3";
+        alert.setHeaderText("ALGOPOLY");
+        String mensaje = "AlgoPoly es un juego para 3 jugadores creado para el trabajo practico 2 de Algoritmos 3";
         alert.setContentText(mensaje);
         alert.show();
     }

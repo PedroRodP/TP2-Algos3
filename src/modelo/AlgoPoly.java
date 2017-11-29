@@ -7,6 +7,7 @@ public class AlgoPoly {
 	private GrupoJugadores grupo = new GrupoJugadores();
 	private Tablero tablero = new Tablero();
 	private Turnador turnador;
+	private Jugador jugadorActual;
 	
 	
 	public AlgoPoly() {
@@ -18,21 +19,22 @@ public class AlgoPoly {
 	public void jugar() {
 		
 		//Cambio de turno
-		Jugador jugador = turnador.siguienteTurno();
+		this.jugadorActual = turnador.siguienteTurno();
 		
 		//Bloque comienzo de turno
-		this.opcionPagarFianza(jugador);
+		this.opcionPagarFianza();
 		
 		//Bloque pre-movida
-		this.opcionEdificar(jugador);
+		this.opcionVenderPropiedades();
+		this.opcionEdificar();
 		
 		//Bloque jugada
-		this.opcionMoverse(jugador);
+		this.opcionMoverse();
 	}		
 
-	private void opcionPagarFianza(Jugador jugador) {
+	public void opcionPagarFianza() {
 		try {
-			jugador.pagarFianza();
+			jugadorActual.pagarFianza();
 			
 		} catch (ExcepcionPagarFianzaNoCorresponde e) {
 			
@@ -43,11 +45,15 @@ public class AlgoPoly {
 		}
 	}
 	
-	private void opcionEdificar(Jugador jugador) {
+	public void opcionVenderPropiedades() {
 		
 	}
 	
-	private void opcionMoverse(Jugador jugador) {
+	public void opcionEdificar() {
+		
+	}
+	
+	public void opcionMoverse() {
 		
 		Tirada tirada = new Tirada();
 		
@@ -56,11 +62,11 @@ public class AlgoPoly {
 			while (tirada.salenDobles() && !tirada.salieron3Dobles()) {
 				
 				int numeroDados = tirada.arrojarDados();
-				tablero.avanzar(jugador, numeroDados);
+				tablero.avanzar(jugadorActual, numeroDados);
 				
 			}
 			
-			if (tirada.salieron3Dobles()) { tablero.enviarALaCarcel(jugador); }
+			if (tirada.salieron3Dobles()) { tablero.enviarALaCarcel(jugadorActual); }
 			
 		} catch (ExcepcionJugadorPreso e) {
 			//El jugador no debe poder moverse

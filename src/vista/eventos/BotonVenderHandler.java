@@ -5,12 +5,12 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import modelo.AlgoPoly;
 
-public class BotonPagarFianzaHandler implements EventHandler<ActionEvent> {
+public class BotonVenderHandler implements EventHandler<ActionEvent> {
 
 	AlgoPoly aPoly;
 	Button miBoton;
 	
-	public BotonPagarFianzaHandler(AlgoPoly aPoly, Button miBoton) {
+	public BotonVenderHandler(AlgoPoly aPoly, Button miBoton) {
 		this.aPoly = aPoly;
 		this.miBoton = miBoton;
 	}
@@ -18,7 +18,8 @@ public class BotonPagarFianzaHandler implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent actionEvent) {
 		
-		this.aPoly.opcionPagarFianza();
+		this.aPoly.opcionVenderPropiedades();
+		
 		this.miBoton.setDisable(true);
 	}
 	

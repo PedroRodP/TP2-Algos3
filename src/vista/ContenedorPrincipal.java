@@ -20,7 +20,9 @@ import javafx.stage.Stage;
 import modelo.AlgoPoly;
 import vista.eventos.BotonArrojarDadosHandler;
 import vista.eventos.BotonEdificarHandler;
+import vista.eventos.BotonFinTurnoHandler;
 import vista.eventos.BotonPagarFianzaHandler;
+import vista.eventos.BotonVenderHandler;
 
 public class ContenedorPrincipal extends BorderPane {
 
@@ -34,32 +36,69 @@ public class ContenedorPrincipal extends BorderPane {
 //        this.setCentro(aPoly);
         this.setConsola();
     	this.setBotonera(aPoly);
+    	this.setBotonFinTurno(aPoly);
     }
 
     private void setBotonera(AlgoPoly aPoly) {
 
+    	//Creacion de todos los botones
+    	
+        Button botonTurno = new Button();
+        botonTurno.setText("Terminar turno");
+    	
         Button botonDados = new Button();
         botonDados.setText("Arrojar dados");
-        BotonArrojarDadosHandler dadosButtonHandler = new BotonArrojarDadosHandler();
-        botonDados.setOnAction(dadosButtonHandler);
-
+        
         Button botonFianza = new Button();
         botonFianza.setText("Pagar fianza");
-        BotonPagarFianzaHandler fianzaButtonHandler = new BotonPagarFianzaHandler();
-        botonFianza.setOnAction(fianzaButtonHandler);
+        
+        Button botonVender = new Button();
+        botonVender.setText("Vender propiedades");
         
         Button botonEdificar = new Button();
         botonEdificar.setText("Edificar");
-        BotonEdificarHandler edificarButtonHandler = new BotonEdificarHandler();
-        botonEdificar.setOnAction(edificarButtonHandler);
-        
+    	
+    	//Asignacion de controladores
+
+        BotonArrojarDadosHandler dadosButtonHandler = new BotonArrojarDadosHandler(aPoly, botonDados);
+        botonDados.setOnAction(dadosButtonHandler);
+
+        BotonPagarFianzaHandler fianzaButtonHandler = new BotonPagarFianzaHandler(aPoly, botonFianza);
+        botonFianza.setOnAction(fianzaButtonHandler);
         
 
-        VBox contenedorVertical = new VBox(botonFianza, botonEdificar, botonDados);
+        BotonVenderHandler venderButtonHandler = new BotonVenderHandler(aPoly, botonVender);
+        botonVender.setOnAction(venderButtonHandler);
+        
+        BotonEdificarHandler edificarButtonHandler = new BotonEdificarHandler(aPoly, botonEdificar);
+        botonEdificar.setOnAction(edificarButtonHandler);
+        
+        BotonFinTurnoHandler turnoButtonHandler = new BotonFinTurnoHandler(aPoly, botonTurno, botonFianza, botonVender, botonEdificar, botonDados);
+        botonTurno.setOnAction(turnoButtonHandler);
+        
+
+        //Botonera izquierda
+        
+        VBox contenedorVertical = new VBox(botonFianza, botonVender, botonEdificar, botonDados);
         contenedorVertical.setSpacing(10);
         contenedorVertical.setPadding(new Insets(15));
 
         this.setLeft(contenedorVertical);
+        
+        
+        //Botonera derecha
+
+        VBox contenedorVertical2 = new VBox(botonTurno);
+        contenedorVertical.setSpacing(10);
+        contenedorVertical.setPadding(new Insets(15));
+
+        this.setRight(contenedorVertical2);
+
+    }
+    
+    private void setBotonFinTurno(AlgoPoly aPoly) {
+
+
 
     }
 
