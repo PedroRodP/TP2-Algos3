@@ -383,4 +383,14 @@ public class JugadorTest {
 		
 		barrio.edificar();
 	}
+	
+	@Test (expected = ExcepcionPagarFianzaNoCorresponde.class)
+	public void test25JugadorEnCasilleroSalidaIntentaPagarFianzaYArrojaExcepcionPagarFianzaNoCorresponde() throws ExcepcionJugadorPreso, ExcepcionPagarFianzaNoCorresponde, ExcepcionCapitalInsuficiente {
+		
+		Jugador jugador = new Jugador();
+		Casillero salida = new Salida();
+		
+		jugador.avanzar(salida);
+		jugador.pagarFianza();
+	}
 }
