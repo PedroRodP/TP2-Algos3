@@ -1,6 +1,7 @@
 package unitarios;
 
 import modelo.Jugador;
+import modelo.excepciones.ExcepcionJugadorPreso;
 import modelo.excepciones.ExceptionArrojoDoblesTresVeces;
 import org.junit.Test;
 
@@ -53,5 +54,20 @@ public class TiradaTest {
         } while (saleDobleEsCero > 0);
 
         Assert.assertEquals(true, tiradaJugador.arrojarDados() >= 0);
+    }
+
+    //Test 1: 3ra. Entega
+    //Un jugador arroja los dados. Verificar que este paso de su posición actual a la posición indicada por los dados.
+    @Test
+    public void test04JugadorArrojaLosDadosYVerificarQueAvanzoDesdeSuPosicionActualHastaLoIndicadoPorLosDados() throws ExceptionArrojoDoblesTresVeces, ExcepcionJugadorPreso {
+	    Jugador unJugador = new Jugador();
+	    Tirada tiradaJugador = new Tirada();
+
+	    int posicionActual= unJugador.getPosicionNumerica();
+        int cantidadPosiciones = tiradaJugador.arrojarDados();
+
+        unJugador.avanzar(cantidadPosiciones);
+
+	    Assert.assertEquals(posicionActual, unJugador.getPosicionNumerica() - cantidadPosiciones);
     }
 }

@@ -14,13 +14,18 @@ public class Jugador implements Propietario {
 
 	private double capital;
 	private EstadoJugador estado;
+
+	//TODO las dos pposiciones seran componentes atributos de la clase posicion
 	private Casillero posicion;
+	private int posicionNumerica;
+
 	private int cantidadDeInmuebles;
 
 	public Jugador() {
 		capital = 100000;
 		estado = new Jugando();
 		cantidadDeInmuebles = 0;
+		posicionNumerica = 0;
 	}
 
 	@Override
@@ -51,6 +56,11 @@ public class Jugador implements Propietario {
 		this.actualizarPosicion(nuevaPosicion);
 	}
 
+	public void avanzar(int cantidadPasos) throws ExcepcionJugadorPreso {
+		//TODO avanzar hasta el casillero que corresponda, lo decide la Posicion(Class) y segun EstadoJugador.
+		posicionNumerica = cantidadPasos;
+	}
+
 	private void actualizarPosicion(Casillero nuevaPosicion) {
 		
 		posicion = nuevaPosicion;
@@ -58,6 +68,12 @@ public class Jugador implements Propietario {
 	
 	public Casillero getPosicion() {
 		return posicion;
+	}
+
+	public int getPosicionNumerica() {
+		//TODO esto debe resolverse desde la clase Posicion
+		//Tal vez esta deba ser el verdadero getPosicion;
+		return posicionNumerica;
 	}
 
 	public void cumplirCondena() throws ExcepcionJugadorYaEstaJugando {
