@@ -20,7 +20,7 @@ public class BotonArrojarDadosHandler implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent actionEvent) {
 		
-		this.aPoly.opcionMoverse();
+		this.aPoly.opcionMoverse(this.aPoly.arrojarDados());
 		
 		this.miBoton.setDisable(true);
 		this.botonTurno.setDisable(false);

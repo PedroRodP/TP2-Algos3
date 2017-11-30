@@ -2,7 +2,7 @@ package unitarios;
 
 import modelo.Jugador;
 import modelo.excepciones.ExcepcionJugadorPreso;
-import modelo.excepciones.ExceptionArrojoDoblesTresVeces;
+import modelo.excepciones.ExcepcionArrojoDoblesTresVeces;
 import org.junit.Test;
 
 import modelo.Tirada;
@@ -12,7 +12,7 @@ import org.junit.Assert;
 public class TiradaTest {
 
 	@Test
-	public void test01ArrojarLosDadosDevuelveUnNumeroEntre0Y12() throws ExceptionArrojoDoblesTresVeces {
+	public void test01ArrojarLosDadosDevuelveUnNumeroEntre0Y12() throws ExcepcionArrojoDoblesTresVeces {
 		
 		Tirada tirada = new Tirada();
 		
@@ -25,7 +25,7 @@ public class TiradaTest {
 	//Test 1: 3ra. Entega
 	//Un jugador arroja los dados y ambos tienen el mismo valor. Verificar que puede volver a jugar.
 	@Test
-	public void test02JugadorArrojaLosDadosConMismoValorUnaVezYPuedeVuelveAJugar() throws ExceptionArrojoDoblesTresVeces {
+	public void test02JugadorArrojaLosDadosConMismoValorUnaVezYPuedeVuelveAJugar() throws ExcepcionArrojoDoblesTresVeces {
 		Tirada tiradaJugador = new Tirada();
 		int saleDobleEsCero;
 
@@ -39,7 +39,7 @@ public class TiradaTest {
     //Test 1: 3ra. Entega
     //Un jugador arroja los dados y ambos tienen el mismo valor en dos oportunidades. Verificar que puede volver a jugar.
     @Test
-    public void test03JugadorArrojaLosDadosConMismoValorUnaVezYPuedeVuelveAJugar() throws ExceptionArrojoDoblesTresVeces {
+    public void test03JugadorArrojaLosDadosConMismoValorUnaVezYPuedeVuelveAJugar() throws ExcepcionArrojoDoblesTresVeces {
         Tirada tiradaJugador = new Tirada();
         int saleDobleEsCero;
 
@@ -59,7 +59,7 @@ public class TiradaTest {
     //Test 1: 3ra. Entega
     //Un jugador arroja los dados. Verificar que este paso de su posición actual a la posición indicada por los dados.
     @Test
-    public void test04JugadorArrojaLosDadosYVerificarQueAvanzoDesdeSuPosicionActualHastaLoIndicadoPorLosDados() throws ExceptionArrojoDoblesTresVeces, ExcepcionJugadorPreso {
+    public void test04JugadorArrojaLosDadosYVerificarQueAvanzoDesdeSuPosicionActualHastaLoIndicadoPorLosDados() throws ExcepcionArrojoDoblesTresVeces, ExcepcionJugadorPreso {
 	    Jugador unJugador = new Jugador();
 	    Tirada tiradaJugador = new Tirada();
 

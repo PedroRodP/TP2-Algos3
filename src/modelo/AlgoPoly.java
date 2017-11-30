@@ -8,6 +8,7 @@ public class AlgoPoly {
 	private Tablero tablero = new Tablero();
 	private Turnador turnador;
 	private Jugador jugadorActual;
+	private Tirada tirada = new Tirada();
 	
 	
 	public AlgoPoly() {
@@ -56,31 +57,35 @@ public class AlgoPoly {
 		
 	}
 	
-	public void opcionMoverse() {
+	public int arrojarDados() {
 		
-		Tirada tirada = new Tirada();
+		int valorDados;
+		
+		try { 
+			valorDados = tirada.arrojarDados();
+			
+		} catch (ExcepcionArrojoDoblesTresVeces e) {
+			
+			this.tablero.enviarALaCarcel(jugadorActual);
+			this.proximoTurno();
+			
+			valorDados = this.arrojarDados();
+		}
+		
+		return valorDados;
+	}
+	
+	public void opcionMoverse(int valorDados) {
 		
 		try {
-			//Entra aunque sea una vez al ciclo. Continua si salen dobles. Corta si salen 3 veces.
-			while (tirada.salenDobles() && !tirada.salieron3Dobles()) {
-				
-				int numeroDados = tirada.arrojarDados();
-				tablero.avanzar(jugadorActual, numeroDados);
-				
-			}
-			
-			if (tirada.salieron3Dobles()) { tablero.enviarALaCarcel(jugadorActual); }
-			
+			tablero.avanzar(jugadorActual, valorDados);
+	
 		} catch (ExcepcionJugadorPreso e) {
-			//El jugador no debe poder moverse
 		
 		} catch (ExcepcionCapitalInsuficiente e) {
-			
-			
+		
 		} catch (ExcepcionNoExistePropietario e) {
-			e.printStackTrace();
-		} catch (ExceptionArrojoDoblesTresVeces exceptionArrojoDoblesTresVeces) {
-			exceptionArrojoDoblesTresVeces.printStackTrace();
+		
 		}
 	}
 

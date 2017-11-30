@@ -1,6 +1,6 @@
 package modelo;
 
-import modelo.excepciones.ExceptionArrojoDoblesTresVeces;
+import modelo.excepciones.ExcepcionArrojoDoblesTresVeces;
 
 public class Tirada {
 
@@ -8,9 +8,9 @@ public class Tirada {
 	private Dado dado2 = new Dado();
 	private int vecesDobles = 0;
 	
-	public int arrojarDados() throws ExceptionArrojoDoblesTresVeces {
+	public int arrojarDados() throws ExcepcionArrojoDoblesTresVeces {
 		if (salieron3Dobles())
-			throw new ExceptionArrojoDoblesTresVeces();
+			throw new ExcepcionArrojoDoblesTresVeces();
 
 		int numero1 = dado1.tirar();
 		int numero2 = dado2.tirar();
